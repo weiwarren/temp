@@ -1,26 +1,26 @@
 {
-  "name": "kindo",
-  "version": "0.0.1-109",
+  "name": "giftuu-uat",
+  "version": "0.0.1-108",
   "scripts": {
     "start": "node server.js"
   },
   "domains": [],
   "dependencies": {
-    "cloudinary": "1.2.",
-    "connect-mongo-store": "0.1.8",
+    "cloudinary": "*",
+    "connect-mongo-store": "*",
     "express": "3.4.3",
     "express-mailer": "0.2.3",
-    "fbgraph": "1.0.0",
-    "googleapis": "2.0.4",
-    "imagemagick": "0.1.3",
-    "jade": "1.10.0",
-    "mailchimp": "1.1.0",
+    "fbgraph": "*",
+    "googleapis": "*",
+    "imagemagick": "*",
+    "jade": "*",
+    "mailchimp":"1.1.0",
     "moment": "2.6.0",
     "mongoskin": "0.6.1",
-    "passport": "0.2.2",
-    "passport-facebook": "2.0.0",
-    "passport-google": "0.3.0",
-    "passport-google-oauth": "0.2.0",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-google": "*",
+    "passport-google-oauth": "*",
     "passport-linkedin-oauth2": "^1.2.1",
     "passport.socketio": "*",
     "q": "*",
@@ -29,8 +29,8 @@
     "url": "*",
     "winston": "*"
   },
+  "subdomain": "uat.giftuu.org",
   "engines": {
-    "node": "0.10.33"
-  },
-  "subdomain": "weiwarren-temp"
+    "node": ">=0.4"
+  }
 }

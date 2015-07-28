@@ -1,0 +1,58 @@
+<div class="container-fluid contentPageHeader darkStandard confirmPage">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 contentPage text-center">
+                <div class="HeartBG">
+                    <i class="icon-solid-heart"></i>
+
+                    <h1>Thanks for<br/>giving!</h1>
+                </div>
+                <p class="confirmTagline">Your world's a better place</p>
+
+                <p class="confirmCTA"><a ng-href="#viewGift/{{gift._id}}"
+                                         class="btn btn-primary btn-lg btn-block viewGift">View my gift</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid-giftuu confirmPage">
+    <div class="container-giftuu">
+        <div class="row-giftuu text-center">
+
+
+            <div class="ShareGift">
+                <h2> Get the word out</h2>
+                <!-- FACEBOOK SHARE-->
+                <a ng-href="https://www.facebook.com/sharer/sharer.php?u=http://{{host}}/viewGift/?id={{giftId}}" target="_blank"
+                   class="btn-med btn btn-primary"><i class="fa fa-facebook"></i></a>
+
+                <!-- PINTEREST SHARE-->
+                <a user-detail="gift.userId"
+                   ng-href="http://pinterest.com/pin/create/button/?url=http://{{host}}/viewGift/?id={{giftId}}&media={{gift.images[0].url}}&description={{currentUser.displayName}} is giving away {{gift.giftType=='help'?'':'a '}}{{gift.giftType}}: {{gift.title}}"
+                   target="_blank"
+                   class="btn-med  btn btn-danger"><i class="fa fa-pinterest"></i></a>
+                <!-- TWITTER SHARE-->
+                <a ng-href="http://twitter.com/share?url=http://{{host}}/viewGift/{{giftId}}" target="_blank"
+                   class="btn-med btn btn-info"><i class="fa fa-twitter"></i></a>
+
+                <!-- GOOGLE PLUS SHARE-->
+                <a ng-href="https://plus.google.com/share?url=http://{{host}}/viewGift/{{giftId}}" target="_blank"
+                   class="btn-med btn btn-danger"><i class="fa fa-google-plus"></i></a>
+
+                <!-- LINKED IN SHARE-->
+                <a ng-href="http://www.linkedin.com/shareArticle?mini=true&url=http://{{host}}/viewGift/{{giftId}}"
+                   target="_blank" class="btn-med btn btn-primary"><i class="fa fa-linkedin"></i></a>
+
+                <!-- EMAIL SHARE-->
+                <a ng-href="mailto:?Subject=I am giving away a gift on Giftuu.com&Body=Check%20out%20my%20gift%20here:%20http://{{host}}/viewGift/{{giftId}}"
+                   class="btn btn-default"><i class="btn-med fa fa-envelope"></i></a>
+            </div>
+            <hr/>
+            <p class="confirmCTA"><a ng-href="https://www.facebook.com/sharer/sharer.php?u=http://{{host}}/viewGift/?id={{giftId}}"
+                                     target="_blank" class="btn btn-primary btn-lg btn-block viewGift">Post on
+                facebook</a></p>
+        </div>
+
+    </div>
+</div>

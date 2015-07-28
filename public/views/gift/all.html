@@ -1,0 +1,150 @@
+<!-- IF user not logged in, display sign in call to action-->
+<div ng-if="!loggedIn" class="giftuuAbout">
+    <!--Header (Hero Unit with Slider)-->
+    <div class="heroWrapper">
+        <div class="heroWrapperInner">
+            <header class="hero top-hero homeCampaign">
+                <div class="container">
+
+
+                    <!--Hero Slider-->
+                    <div class="row">
+                        <div class="hero-slider-new">
+                            <div class="slide first-slide">
+                                <div class="col-lg-12 col-md-12 col-sm-12 animated fadeInDown">
+
+                                    <h1 class="text-center newBannerGiftuuHeadingOne"><b>Discover another you</b></h1>
+
+
+
+                                    <p class="text-center newBannerGiftuuHeadingTwo">Connect with others that share your interests, skills and passions</p>
+
+
+                                    <div class="newBannerGiftuu">
+                                        <img src="/images/bgs/GiftuuHeader2.svg" class="giftuuHeader hideInMobile">
+                                        <img src="/images/bgs/GiftuuHeaderMobile3.svg" class="giftuuHeaderMobile hideBannerInDesktop">
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="loginButtonHomeCampaign">
+                                            <a href="/#/login" class="btn btn-block btn-lg btn-home-login" type="button">Bring Kindo to your workplace!</a>
+                                        </div>
+                                     </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--Close Hero Slider-->
+
+                </div>
+        </div>
+        </header>
+    </div>
+    <!--Close Header-->
+
+</div>
+
+<div class="giftListing grayBG home" free-wall="gifts" gap="6" factor="240" ng-init="scrollLoad(true)">
+    <div class="freeWall" ng-style="{'width':(wallWidth+'px')}" ng-repeat="wall in walls track by $index" >
+        <!-- Gift item col-sm-6 col-md-3  size24 -->
+        <div class="wallItem homeAddGifts" ng-if="loggedIn && $index==0 && !user.deactivated && user.active"  ng-style="{'padding':(gap+'px')}">
+            <div class="giftAddTable containerTable fullWidth">
+                <div class="containerRow addGiftHeartParent">
+                    <a class="addGiftHeart containerCell text-center" href="/#/addGift" analytics-on="click" analytics-event="postGift homePage" analytics-category="gift">
+                        <div class="relative"><i class="icon-solid-heart"></i>
+                            <h3 class="heartHeading">post gift</h3></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="repeated-item wallItem fx-fade-down fx-speed-400 fx-easing-quad" ng-repeat="gift in gifts" ng-if="(($index+(loggedIn?1:0)) % walls.length) == $parent.$index"
+             ng-style="{'padding':(gap+'px')}">
+            <div class="thumbnail" ng-class="{'ribbon-thing':gift.giftType=='thing','ribbon-skill':gift.giftType=='skill','ribbon-help':gift.giftType=='help'}">
+
+                <a class="gift_tag" href="#/search//{{gift.giftType}}">
+                    <div class="ribbon"></div>
+                    <div class="giftTypeWrapper">
+                        <span class="giftTypesRibbon"><i ng-class="{'icon-thing':gift.giftType=='thing','icon-skill':gift.giftType=='skill','icon-help':gift.giftType=='help'}"></i>
+                              <em ng-show="gift.giftType=='thing'">Thing</em>
+                              <em ng-show="gift.giftType=='skill'">Skill</em>
+                              <em ng-show="gift.giftType=='help'">Help</em>
+                        </span>
+
+
+                    </div>
+                </a>
+                <a ng-href="#viewGift/{{gift._id}}" ng-class="{'hover':gift.hoverLocation}" class="gift-list-link" >
+                    <img class="giftListingImage" ng-style="{'height':getImageHeight(gift.images[0])}" ng-src="http://res.cloudinary.com/giftuu/image/fetch/w_400/{{gift.images[0].url}}"/>
+                </a>
+                <div class="giftWrap" user-detail="gift.userId">
+                    <a ng-href="/#/profile/{{gift.userId}}">
+                        <img class="giftListingProfile img-circle"
+                             cloud-pic="currentUser"/>
+                    </a>
+                    <a ng-mouseover="gift.hoverLocation=true" ng-Mouseleave="gift.hoverLocation=false" ng-href="#viewGift/{{gift._id}}" class="shadowBackdrop col-sm-12 col-md-12">
+                        <h4 class="condensed" >
+                            {{gift.location.address_components.length == 1 ? (gift.location.address_components[0].long_name) : (gift.location|addressShort)}}</h4>
+                        <!--<debug val="gift.location.address_components.length"></debug>-->
+                    </a>
+                    <svg class="redHeart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="25px" height="24px" viewBox="0 0 25 24"
+                         enable-background="new 0 0 25 24" xml:space="preserve">
+                        <path d="M12.487 4.281C12.49 4.3 12.5 4.3 12.5 4.285s0.01-0.003 0.013-0.004 M12.513 4.281C13.388 1.8 15.5 0 18.3 0 C22.016 0 25 3.1 25 6.857c0 0.724-0.111 1.421-0.312 2.076C22.754 15.8 12.5 24 12.5 24S2.247 15.8 0.3 8.9 C0.111 8.3 0 7.6 0 6.857C0 3.1 3 0 6.7 0c2.795 0 4.9 1.8 5.8 4.3"></path></svg>
+                    <div class="heartNumber">{{currentUser.heart || 0}}</div>
+                </div>
+                <div class="giftDetails">
+                    <h3>{{gift.title}}</h3>
+
+                    <p>{{gift.description | words:25}}</p>
+
+                    <!--<div class="pull-left giftTypeIcon"><a href="#/search//{{gift.giftType}}"><i
+                            ng-class="{'icon-thing':gift.giftType=='thing','icon-skill':gift.giftType=='skill','icon-help':gift.giftType=='help'}"></i></a>
+                    </div>-->
+
+                    <div class="pull-right commentsAndWants">
+                        <a ng-href="#viewGift/{{gift._id}}?scrollTo=all">
+                            <i class="fa fa-star"></i>
+                            {{gift.wishers || 0}}
+                        </a> &nbsp;&nbsp;
+                        <a ng-href="#viewGift/{{gift._id}}?scrollTo=all">
+                            <i class="fa fa-comment"></i>
+                            {{gift.comments || 0}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wallItem wallItemLoader" infinite-scroll="scrollLoad" offset="-20" loading="loading" ng-if="canLoadMore" ng-style="{'padding':(gap+'px')}">
+            <div class="thumbnail">
+                <span class="gift-list-link">
+                    <!--<img class="giftListingImage" src="/images/giftplaceholder.jpg">-->
+                </span>
+
+                <div class="giftWrap">
+                </div>
+                <div class="giftDetails">
+                </div>
+            </div>
+        </div>
+        <!-- Gift item-->
+        <div class="clear"></div>
+    </div>
+    <div class="freeWall fx-fade-up fx-speed-300 fx-easing-quad"  ng-style="{'width':(wallWidth+'px')}" ng-if="!walls || walls.length==0">
+        <!-- Gift item col-sm-6 col-md-3  size24 -->
+        <div class="wallItem homeAddGifts" ng-if="loggedIn">
+            <div class="giftAddTable containerTable fullWidth">
+                <div class="containerRow addGiftHeartParent">
+                    <a class="addGiftHeart containerCell text-center" href="/#/addGift">
+                        <div class="relative"><i class="icon-solid-heart"></i>
+                            <h3 class="heartHeading">post gift</h3></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loadingImageHome" ng-show="loading && canLoadMore"></div>
+</div>

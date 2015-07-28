@@ -1,0 +1,7 @@
+<div class="speechBubble">
+    <a href="/#/pickupGift/{{notification.gift._id}}" gift-detail="notification.gift._id">
+        <span class="display-block"></span><strong class="postedByName">{{currentUser.displayName}}</strong>
+        needs feedback on the gift: <strong class="multiLine" ng-bind-html="multiLine(notification.gift.title)">.</strong> experience you had with her.</span>
+        <small class="dateLocation display-block"> {{notification.created | ago:false}} <i class="very-happy"></i></small>
+    </a>
+</div>

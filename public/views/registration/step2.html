@@ -1,0 +1,88 @@
+<div class="giftListing contentPageHeader text-center ng-scope gradientGray loginPages"
+     ng-init="page.title='Registration'">
+    <p class="WelcomeText">Welcome to</p>
+
+    <p class="GifterLogo"><img src="/images/kindo-logo.svg" alt="Kindo logo"></p>
+</div>
+
+<div class="col-lg-8 col-lg-offset-2 contentPage text-center loginPages">
+    <h5>
+        <small>Step 1 of 2</small>
+    </h5>
+    <p class="loginSummary">Edit your Kindo profile.</p>
+    <hr>
+    <h4 class="profileWelcome"><img class="img-circle gifterFace" ng-src="{{user.profilePictureUrl}}"> Welcome
+        {{user.firstName}}!</h4>
+</div>
+<form role="form" id="profileStep2" name="profileStep2" action="/registration" method="post"
+      enctype="multipart/form-data" novalidate prevent-submit="profileStep2.$invalid">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="col-lg-8 col-lg-offset-2 contentPage">
+
+        <div class="form-group" ng-class="{'has-error':invalidRegister && profileStep2.addressFormatted.$invalid}">
+            <label class="control-label" for="address">Your town or city</label>
+            <input type="text" id="address" name="addressFormatted" class="form-control"
+                   placeholder="Enter your local area" ng-model="address" required googleplace>
+            <input name="address" type="hidden" ng-init="address=userProfile.location" ng-value="address | json"
+                   required>
+            <span ng-show="invalidRegister && profileStep2.address.$invalid" class="form-control-feedback"></span>
+        </div>
+        <p class="help-block">We'll present you with gifts in your local area. <br>
+            <b>Don't enter your exact address.</b>
+        </p>
+
+        <div class="form-group" ng-class="{'has-error':invalidRegister && profileStep2.aboutMe.$invalid}">
+            <label for="aboutMe">About me (optional)</label>
+            <textarea class="form-control msd-elastic" rows="3" id="aboutMe" name="aboutMe"
+                      placeholder="Tell people a bit about yourself" ng-model="aboutMe"></textarea>
+            <span ng-show="invalidRegister && profileStep2.aboutMe.$invalid" class=" form-control-feedback"></span>
+        </div>
+        <p class="help-block">Gift givers will use this to get to know you.</p>
+
+        <div class="form-group" ng-init="wishes=[]">
+            <label for="wishes">Your wishes</label>
+
+            <div class="input-group wishInUserProfile" ng-repeat="wish in wishes" id="wishes">
+                <input type="text" class="form-control ghost-input" ng-enter="wishes.push({value:'',focused:true})" ng-model="wish.value"
+                       placeholder="Add a gift you would like"
+                       focus-me="wish.focused">
+                <input type="hidden" ng-value="wish | json" name="wishes[{{$index}}]">
+                <span class="input-group-addon btn-danger"
+                      ng-click="wishes.splice($index,1)"><i class="fa fa-trash-o"></i></span>
+
+            </div>
+            <div class="form-control ghost-input opacity50 cursorText" ng-click="wishes.push({value:'',focused:true})">
+                Add a gift you would like
+            </div>
+        </div>
+        <p class="help-block">Wishes help people discover their valuable gifts.</p>
+
+        <!--<div class="form-group has-feedback">
+            <label>
+                <input type="checkbox" ng-model="subscribe"> Subscribe me to giftuu newsletters
+            </label>
+        </div>-->
+
+        <div class="form-group has-feedback" ng-class="{'has-error':invalidRegister && profileStep2.checkbox.$invalid}">
+            <label>
+                <input type="checkbox" ng-model="checkbox" required> I have read and agree to <a href="/#/termsandconditions">
+                Kindo's terms and conditions</a>
+            </label>
+            <p></p>
+            <p ng-show="invalidRegister && !checkbox" class="help-block alert alert-danger"><i
+                    class="fa fa-warning"></i> Please agree with the terms and conditions to proceed.</p>
+        </div>
+    </div>
+    <div class="giftListing contentPageHeader text-center clear">
+        <p class="fbAuth">
+            <button type="submit" ng-click="profileStep2.$invalid?(invalidRegister=true):(loadingShow=true)"
+                    class="btn btn-primary btn-lg"
+                    ng-hide="loadingShow">
+                <i class="fa fa-arrow-circle-right"></i>
+                Take me to the gifts!
+            </button>
+        <div ng-show="loadingShow" class="loadingImage text-center center-block"></div>
+        </p>
+    </div>
+</form>

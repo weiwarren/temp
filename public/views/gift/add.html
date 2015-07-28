@@ -1,0 +1,68 @@
+<div ng-if="user.active && !user.deactivated">
+    <div class="container-fluid-giftuu mainToolbar addGiftToolbar">
+        <div class="container-giftuu">
+            <div class="row-giftuu">
+                <div class="editProfileButtons col-md-12">
+                    <ul class="giftStatus">
+                        <li class="active">Post<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                        <li>Choose<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                        <li>Organise<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                        <li>Rate<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="container-fluid-giftuu mainToolbar brand-red-BG">
+        <div class="container-giftuu">
+            <div class="row-giftuu">
+                <div class="col-md-12">
+                    <h2 class="active" ng-show="giftType=='skill'">Post your gift or passion</h2>
+
+                    <h2 class="active" ng-show="giftType=='help'">Post a helping hand</h2>
+
+                    <h2 class="active" ng-show="giftType=='thing'">Post a gift you treasure</h2>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="container-fluid-giftuu postGiftButtons">
+        <div class="container-giftuu">
+            <div class="row-giftuu">
+                <div class="col-md-12">
+                    <label class="control-label">I want to give a</label>
+
+                    <div class="containerTable fullWidth text-center giftAddTable">
+                        <div class="containerRow">
+                            <div class="skill gift containerCell" ng-class="{'active':giftType=='skill'}"
+                                 ng-click="switchGiftType('skill'); newAddress=false;">
+
+                                <a href="javascript:void(0)" class="#skill thumbnail"><i class="icon-skill"></i>
+                                    Skill</a>
+                            </div>
+                            <div class="help gift containerCell" ng-class="{'active':giftType=='help'}"
+                                 ng-click="switchGiftType('help'); newAddress=false;">
+
+                                <a href="javascript:void(0)" class="#help thumbnail"><i class="icon-help"></i> Help</a>
+                            </div>
+                            <div class="thing gift containerCell" ng-class="{'active':giftType=='thing'}"
+                                 ng-click="switchGiftType('thing'); newAddress=false;">
+                                <a href="javascript:void(0)" class="#thing thumbnail"><i class="icon-thing"></i>
+                                    Thing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="giftType">
+        <add-gift-directive gift-type="giftType"></add-gift-directive>
+    </div>
+
+</div>

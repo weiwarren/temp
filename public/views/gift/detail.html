@@ -1,0 +1,1126 @@
+<div class="container-fluid-giftuu mainToolbar" ng-class="{noTitle:totalWishers==0&&(isOwner||!user.canAsk)}">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12"
+                 ng-class="{'editProfileButtons':(isOwner&&totalWishers>0&&(gift.status=='available'||(user.canRate&&ratingStatus!='hide')))||((giftuu.wishersId.indexOf(user._id)>=0&&user.canRate)&&ratingStatus!='hide')}">
+                <ul ng-show="(isOwner&&totalWishers>0&&(gift.status=='available'||(user.canRate&&ratingStatus!='hide')))||((giftuu.wishersId.indexOf(user._id)>=0&&user.canRate)&&ratingStatus!='hide')"
+                    class="giftStatus" ng-class="{'hideInMobile': giftForm.editGiftMode}">
+                    <li>Post<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    <li ng-class="{'active': isOwner && user.canGive==true && gift.status == 'available' && totalWishers>0}">
+                        Choose<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    <li ng-class="{'active': gift.status=='given' && giftuu.isPending && (isOwner||giftuu.wishersId.indexOf(user._id)>=0)}">
+                        Organise<br/><i
+                            class="fa fa-play fa-rotate-90"></i></li>
+                    <li ng-class="{'active': (isOwner||giftuu.wishersId.indexOf(user._id)>=0) && gift.status =='given' && user.canRate && !giftuu.isPending && (ratingStatus=='show' || ratingStatus=='fading')}">
+                        Rate<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                </ul>
+                <div class="pull-right blackText" ng-if="!user.deactivated && user.active">
+                    <a class="pull-right btn btn-link"
+                       ng-show="!giftForm.editGiftMode && isOwner && gift.status!='given'"
+                       ng-click="(giftForm.editGiftMode = true)">
+                        <i class="fa fa-pencil"></i> edit
+                    </a>
+                    <a class="pull-right btn btn-link muted cursorShow" data-toggle="modal" data-target="#deleteModal"
+                       ng-show="!giftForm.editGiftMode && isOwner && gift.status!='given'">
+                        <i class="fa fa-trash-o"></i> delete gift
+                    </a>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-success pull-right" type="button"
+                            ng-click="updateGift(giftForm.$invalid, 1);"
+                            ng-show="!updating && giftForm.editGiftMode">
+                        <i class="fa fa-check">
+                        </i> save changes
+                    </button>
+                    <a class="pull-right btn btn-link" ng-show="giftForm.editGiftMode && !updating"
+                       ng-click="(giftForm.editGiftMode = false)">cancel</a>
+
+                    <div ng-show="giftForm.editGiftMode && updating && buttonNo==1" class="loadingImage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="loggedIn && (isOwner&&(gift.status=='available'||(user.canRate&&ratingStatus!='hide')))||((giftuu.wishersId.indexOf(user._id)>=0&&user.canRate)&&ratingStatus!='hide')"
+         class="clear"></div>
+</div>
+<div class="container-fluid-giftuu mainToolbar"
+     ng-class="{'brand-blue-BG': user.canGive==true && gift.status == 'available' && totalWishers>0, 'brand-purple-BG': gift.status=='given' && giftuu.isPending && (isOwner|| gift.wishersId.indexOf(user._id)>=0), 'brand-green-BG': user.canRate && (ratingStatus=='show' || ratingStatus=='fading' || ratingStatus=='faded') && gift.status=='given' && !giftuu.isPending && (isOwner|| giftuu.wishersId.indexOf(user._id)>=0)}"
+     ng-show="(isOwner&&totalWishers>0&&(gift.status=='available'||user.canRate))||(giftuu.wishersId.indexOf(user._id)>=0&&user.canRate)">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <h2>Post your gift</h2>
+
+                <h2 ng-class="{'active': isOwner && user.canGive==true && gift.status == 'available' && totalWishers>0}">
+                    Choose a recipient</h2>
+
+                <h2 ng-class="{'active': gift.status == 'given' && giftuu.isPending && (isOwner||giftuu.wishersId.indexOf(user._id)>=0)}">
+                    Organise gift time
+                    and place</h2>
+
+                <h2 ng-class="{'active': (isOwner||giftuu.wishersId.indexOf(user._id)>=0) && gift.status =='given' && user.canRate && !giftuu.isPending && (ratingStatus=='show' || ratingStatus=='fading')}">
+                    Rate this gift experience</h2>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div class="container-fluid-giftuu paddingBottomMobileFix"
+     ng-class="{'brand-green-BG': (ratingStatus=='show' || ratingStatus=='fading' || ratingStatus=='faded') && gift.status=='given' && !giftuu.isPending}"
+     ng-show="('isOwner||giftuu.wishersId.indexOf(user._id)>=0') && gift.status =='given' && user.canRate && !giftuu.isPending && (ratingStatus=='show' || ratingStatus=='fading')">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <div ng-if="ratingStatus=='fading'"
+                     class="alert alert-success fx-fade-down fx-speed-400 fx-easing-quad">Thanks for the rating!
+                </div>
+                <div ng-if="ratingStatus=='show'" class="alert alert-success alert-dismissable text-center">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                    <h4 class="text-success text-center" ng-if="!isOwner">You have been given this gift</h4>
+                    <h4 class="text-success text-center" ng-if="isOwner">You have given this gift</h4>
+
+                    <div class="text-center alertGiveGiftFromParent">
+                        <hr/>
+                        <div class="alertGiveGiftFrom">
+                            <div class="GiveGiftFrom containerRow">
+                                <div class="avatar containerCell" user-detail="gift.userId">
+                                    <giftuu-avatar></giftuu-avatar>
+                                </div>
+                                <div class="containerCell text-center giftFromToArrow">
+                                    <i class="fa fa-angle-right text-success"></i>
+                                </div>
+                                <div class="arrow-gift-give containerCell text-center visualGiftGiveHeader rateImage">
+                                    <a ng-href="/#/pickupGift/{{gift._id}}">
+                                        <img class="img-rounded"
+                                             ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_100/{{gift.images[0].url}}"
+                                             alt="{{gift.title}}"/>
+                                    </a>
+                                </div>
+                                <div class="containerCell text-center giftFromToArrow">
+                                    <i class="fa fa-angle-right text-success"></i>
+                                </div>
+                                <!-----need to add the wisher/s from gift details----->
+                                <div class="avatar containerCell wishers">
+                                    <div class="avatar containerCell" user-detail="wisherId"
+                                         ng-repeat="wisherId in giftuu.wishersId track by $index">
+                                        <giftuu-avatar></giftuu-avatar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div ng-if="ratingStatus=='show'">-->
+                    <hr class="noBorder"/>
+                    <h4 class="text-success text-center">Rate your experience</h4>
+
+                    <div class="alertGiveGiftFrom">
+                        <div class="containerTable giftExperienceRatingWrapper fullWidth">
+                            <ul class="giftExperienceRating containerRow">
+                                <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 1)"><i
+                                        class="icon-very-sad"></i></span></li>
+                                <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 2)"><i
+                                        class="icon-sad"></i></span></li>
+                                <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 3)"><i
+                                        class="icon-neutral"></i></span></li>
+                                <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 4)"><i
+                                        class="icon-happy"></i></span></li>
+                                <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 5)"><i
+                                        class="icon-very-happy"></i></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr/>
+                    <h4 class="text-success text-center">Still organising the exchange?</h4>
+                    <a class="btn btn-primary bottomAlertButtonSpacing text-center"
+                       ng-href="/#/pickupGift/{{gift._id}}">
+                        View exchange details</a>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<div class="alert alert-success statusHeight"
+     ng-if="loggedIn && user.asked && gift.status == 'available'">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <div class="text-success">
+                    <i class="fa fa-check text-success"></i>
+                    You have asked for this gift
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-success statusHeight"
+     ng-if="loggedIn && giftuu.wishersId.indexOf(user._id)>=0  && !isOwner && !giftuu.isPending && !user.canRate && ratingStatus=='hide' && gift.status == 'given'">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <div class="text-success">
+                    <i class="fa fa-check text-success"></i>
+                    You have received this gift from
+                    <span user-detail="giftuu.ownerId">
+                        {{currentUser.firstName}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-success statusHeight"
+     ng-if="loggedIn && isOwner && !giftuu.isPending && !user.canRate && ratingStatus=='hide' && gift.status == 'given'">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <div class="text-success">
+                    <i class="fa fa-check text-success"></i>
+                    You have given this gift to
+                    <span user-detail="wisherId" detail="wisherId"
+                          ng-repeat="wisherId in giftuu.wishersId track by $index">
+                        {{ $index>0 ? (',' + currentUser.firstName) : (currentUser.firstName)}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--- This is the gift given to someone message --->
+<div class="alert alert-success statusHeightGiven text-center"
+     ng-if="giftuu.wishersId.length && giftuu.wishersId.indexOf(user._id) < 0 && !isOwner">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <div class="text-success">
+                    <p class="text-success sorryGivenTo">Sorry this gift has been given to</p>
+                    <hr/>
+                    <div class="center-block given-to">
+                        <div class="avatar giver-toInner" user-detail="wisherId"
+                             ng-repeat="wisherId in giftuu.wishersId track by $index">
+                            <div class="containerTable">
+                                <div class="containerRow">
+                                    <div class="containerCell">
+                                        <giftuu-avatar></giftuu-avatar>
+                                    </div>
+                                    <div class="containerCell middleAlign"><p class="UserName text-success"><a
+                                            ng-href="/#/profile/{{currentUser._id}}" data-ng-bind="currentUser.displayName"
+                                            class="text-success"></a></p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--Top Status Details-->
+<div ng-switch="gift.status" class="container-fluid-giftuu rateThisAlert"
+     ng-class="{'brand-purple-BG': (giftuu.wishersId.indexOf(user._id) > -1 || isOwner) && giftuu.isPending}">
+    <!--Invisible different states-->
+    <!--gift is given -->
+    <div class="container-giftuu" ng-switch-when="given">
+        <div class="row-giftuu">
+            <!-- DISPLAY GIFT RECIEVIED NOTIFICATION
+            IF gift has been given to the user  present this detail-->
+            <div class="col-md-12" ng-if="(giftuu.wishersId.indexOf(user._id) > -1 || isOwner) && giftuu.isPending">
+                <!-----exchange start---->
+                <div class="alert alert-purple alert-dismissable">
+                    <button type="button" class="close text-success" data-dismiss="alert"
+                            aria-hidden="true">&times;</button>
+                    <strong class="text-success">Here are the current details of the gift exchange:</strong>
+
+                    <div class="text-center alertGiveGiftFromParent">
+                        <hr/>
+                        <div class="alertGiveGiftFrom">
+                            <div class="GiveGiftFrom containerRow">
+                                <div class="avatar containerCell" user-detail="gift.userId">
+                                    <giftuu-avatar></giftuu-avatar>
+                                </div>
+                                <div class="containerCell text-center giftFromToArrow">
+                                    <i class="fa fa-angle-right text-success"></i>
+                                </div>
+                                <div class="arrow-gift-give containerCell text-center visualGiftGiveHeader">
+                                    <a ng-href="/#/pickupGift/{{gift._id}}">
+                                        <img class="img-rounded"
+                                             ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_100/{{gift.images[0].url}}"
+                                             alt="{{gift.title}}"/>
+                                    </a>
+                                </div>
+                                <div class="containerCell text-center giftFromToArrow">
+                                    <i class="fa fa-angle-right text-success"></i>
+                                </div>
+                                <!-----need to add the wisher/s from gift details----->
+
+                                <!--<div class="avatar containerCell" user-detail="currentGift.wisherId"
+                                    ng-repeat="wisherId in awaitingGift.wishersId">
+                                    <giftuu-avatar></giftuu-avatar>
+                                    </div>-->
+
+                                <div class="avatar containerCell" user-detail="wisherId"
+                                     ng-repeat="wisherId in giftuu.wishersId track by $index">
+                                    <giftuu-avatar></giftuu-avatar>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="alert-purple-exchange text-success"><i
+                                ng-show="giftuu.exchangeTime || giftuu.exchangeDate" class="fa fa-calendar"></i> {{
+                            giftuu.exchangeTime | date:'HH:mm'}} {{!giftuu.exchangeDate || !giftuu.exchangeTime ? ('') :
+                            (', ')}} {{giftuu.exchangeDate
+                            | date: 'dd/MM/yyyy'}}</p>
+
+                        <p ng-show="giftuu.location" class="alert-purple-exchange text-success"><i
+                                ng-show="giftuu.location" class="fa fa-map-marker"></i>{{ !giftuu.location ? ('') : (' '
+                            +
+                            giftuu.location.formatted_address)}}</p>
+                    </div>
+                    <hr/>
+                    <div class="alertGiveGiftFrom">
+                        <div class="containerTable text-center fullWidth">
+                            <a class="btn btn-primary" href="/#/pickupGift/{{gift._id}}">View exchange details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-----exchange end---->
+            </div>
+            <!-- DISPLAY GIFT GIVEN-->
+
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!--IF deactivated gift-->
+    <div class="grayBG deactivated-gift alert alert-dismissable whiteText text-center" ng-switch-when="deactivated">
+        <h3><i class="fa fa-flag"></i> Sorry, this gift has been deactivated</h3>
+        <a href="#/communityguidelines" type="button" class="btn btn-primary btn-lg paddingHorizontal40">Community
+            guidelines<br/>
+            <small>are what makes Kindo great</small>
+        </a>
+    </div>
+
+    <!-- IF user not logged in, display sign in call to action-->
+    <div class="contentPageHeader darkStandard" ng-if="!loggedIn">
+        <div class="container-fluid overlayPattern">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-12 contentPage text-center">
+                        <h1>Be a happiness creator </h1>
+
+                        <p>Find out more <a href="/#/aboutkindo">about Kindo</a></p>
+                        <hr/>
+                        <a href="/#/login" class="btn btn-default">Bring Kindo to your workplace</a>
+                        <a ng-href="/auth/linkedin{{redirectUrl}}" class="btn btn-primary"><i
+                                class="fa fa-linkedin"></i>
+                            Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class=" alert alert-info not-logged-in  alert-dismissable pushDown" ng-switch-when="expired">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h3><i class="fa fa-clock-o"> </i> Expired gift</h3>
+        <p>This gift has not been updated in more than 2 weeks and no longer displays in search results.</p>
+        <div class="clear"></div>
+    </div>-->
+</div>
+
+<!--Responsive grid-->
+<div class="container-fluid-giftuu">
+<div class="container-giftuu">
+<div class="row-giftuu">
+
+<!--Sliding image-->
+<div class="col-md-6 ">
+    <div class="grayBG askGiftMain fixGiftMargin"
+         ng-if="user.canAsk && gift.status =='available' && !user.deactivated && user.active"
+         ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+        <button class="btn btn-success btn-lg btn-block" type="button" data-toggle="modal"
+                data-target="#askModal"><i
+                class="fa fa-star"></i> Ask for gift
+        </button>
+    </div>
+    <div class="positionRelative fixGiftMargin" ng-class="{'fixGiftMarginRemove': giftForm.editGiftMode}">
+        <h1 ng-show="giftForm.editGiftMode">
+        <span ng-class="{'unEditableDiv': giftForm.editGiftMode == true}" class="pull-left textBesideButton"><a
+                ng-href="#/search//{{gift.giftType}}">
+            <i ng-class="{'icon-thing':gift.giftType=='thing','icon-skill':gift.giftType=='skill','icon-help':gift.giftType=='help'}"></i></a>
+        </span>
+            <label ng-show="giftForm.editGiftMode">Edit gift</label>
+        </h1>
+        <!-- Start visible gift page-->
+        <div ng-class="{'editableDiv': giftForm.editGiftMode == true}">
+            <!-- Start visible gift page-->
+            <div>
+                <div id="giftuu-owl" class="Gift-image-container owl-carousel" owl-slider="gift.images"
+                     ng-hide="giftForm.editGiftMode">
+                    <!-- PREVIEW IMAGE -->
+                    <!--Start Gift Info-->
+                    <div class="item" ng-repeat="slide in gift.images">
+                        <img ng-src="{{'http://res.cloudinary.com/giftuu/image/fetch/w_1024/'+slide.url}}"
+                             alt="{{gift.title}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="forms" ng-show="giftForm.editGiftMode">
+                <label>Edit gift photos</label>
+
+                <div id="uploadImage">
+                    <div class="imageSelectParent ng-pristine" ng-class="{'imageAfterInput': gift.images.length > 0}">
+
+
+                        <div class="imageSelect"><i class="fa fa-picture-o"></i>
+                            <i class="fa fa-plus-circle"></i>
+                            <input type="file" accept="image/*" capture name="imageUpload"
+                                   ng-file-select="onFileSelect($files)">
+                        </div>
+
+                        <div class="imagePreview imageSelected imageUploadNew" ng-repeat="file in uploadResult">
+                            <a class="img-responsive cursorShow" ng-click="toggleSelection(file);">
+                                <i class="fa fa-check" ng-show="!file.processing && file.selected"></i>
+                                <i class="fa fa-spinner" ng-show="file.processing"></i>
+                                <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}"/>
+                            </a>
+                        </div>
+
+                        <div class="imagePreview" ng-repeat="r in gift.images" ng-init="r.selected=true;"
+                             ng-hide="r.removed" ng-class="{'imageSelected': r.selected == true}">
+                            <a class="img-responsive" href="javascript:void(0)"
+                               ng-click="toggleSelection(r)">
+                                <i class="fa fa-check" ng-show="r.selected"></i>
+                                <img ng-src="{{r.url}}">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    <div class="btn-toolbar text-center social-icons hideInMobile"
+         ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">Share
+        <div class="btn-group btn-group-md text-center-auto">
+            <!-- FACEBOOK SHARE-->
+            <a ng-href="https://www.facebook.com/sharer/sharer.php?u=http://{{host}}/viewGift/?id={{giftId}}"
+               target="_blank" class="btn-med btn btn-primary"><i class="fa fa-facebook"></i></a>
+
+            <!-- PINTEREST SHARE-->
+            <a user-detail="gift.userId"
+               ng-href="http://pinterest.com/pin/create/button/?url=http://{{host}}/viewGift/?id={{giftId}}&media={{gift.images[0].url}}&description={{currentUser.displayName}} is giving away {{gift.giftType=='help'?'':'a '}}{{gift.giftType}}: {{gift.title}}"
+               target="_blank"
+               class="btn-med  btn btn-danger"><i class="fa fa-pinterest"></i></a>
+            <!-- TWITTER SHARE-->
+            <a ng-href="http://twitter.com/share?url=http://{{host}}/viewGift/?id={{giftId}}" target="_blank"
+               class="btn-med btn btn-info"><i class="fa fa-twitter"></i> </a>
+            <a ng-href="https://plus.google.com/share?url=http://{{host}}/viewGift/?id={{giftId}}" target="_blank"
+               class="btn-med btn btn-danger"><i class="fa fa-google-plus"></i></a>
+
+            <!-- LINKED IN SHARE-->
+            <a ng-href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://{{host}}/viewGift/?id={{giftId}}"
+               target="_blank" class="btn-med btn btn-primary"><i class="fa fa-linkedin"></i></a>
+
+            <!-- EMAIL SHARE-->
+            <a ng-href="mailto:?Subject=I am giving away a gift on Giftuu.com&amp;Body=Check%20out%20my%20gift%20here:%20http://{{host}}/viewGift/?id={{giftId}}"
+               class="btn-med btn btn-success"><i class="btn-med fa fa-envelope"></i></a>
+        </div>
+    </div>
+
+</div>
+
+
+<!--heading and description-->
+<div class="col-md-6 contentInner">
+<!--Start Gift Info-->
+<div class="reportingGift" ng-if="user.canReportGift">
+    <button ng-if="loggedIn && gift.userId!=user._id" class="btn btn-link pull-right" data-toggle="modal"
+            data-target="#reportModal">
+        <i class="fa fa-flag"></i>
+    </button>
+</div>
+
+<h1 ng-hide="giftForm.editGiftMode">
+        <span ng-class="{'unEditableDiv': giftForm.editGiftMode == true}" class="pull-left textBesideButton"><a
+                ng-href="#/search//{{gift.giftType}}">
+            <i ng-class="{'icon-thing':gift.giftType=='thing','icon-skill':gift.giftType=='skill','icon-help':gift.giftType=='help'}"></i></a>
+        </span>
+    <span class="multiLine" ng-bind-html="multiLine(gift.title)"></span>
+</h1>
+
+<div ng-class="{'editableDiv giftEditImage': giftForm.editGiftMode == true}">
+    <form id="giftForm" name="giftForm" novalidate>
+        <div class="form-group" ng-class="{'has-error':invalidGiftUpdate && giftForm.title.$invalid}">
+            <label ng-show="giftForm.editGiftMode">Title</label>
+            <textarea type="text" ng-show="giftForm.editGiftMode" class="form-control msd-elastic" rows="3" id="title"
+                      name="title" placeholder="enter a title for this gift" ng-model="gift.title" required></textarea>
+            <span ng-show="invalidGiftUpdate && giftForm.title.$invalid" class=" form-control-feedback"></span>
+        </div>
+        <div class="form-group" ng-class="{'has-error':invalidGiftUpdate && giftForm.description.$invalid}">
+            <label ng-show="giftForm.editGiftMode">Description</label>
+
+            <p class="multiLine" ng-hide="giftForm.editGiftMode"
+               ng-bind-html="multiLine(gift.description) | parseUrlFilter:'_blank'"></p>
+            <textarea ng-show="giftForm.editGiftMode" class="form-control msd-elastic" id="description"
+                      name="description"
+                      ng-model="gift.description" placeholder="describe this gift" required></textarea>
+            <span ng-show="invalidGiftUpdate && giftForm.description.$invalid" class=" form-control-feedback"></span>
+        </div>
+
+
+        <ul class="giftuu-key" ng-class="{'unEditableDiv': giftForm.editGiftMode}">
+            <li ng-show="gift.status=='available'" ng-class="{'active':gift.status=='available'}"><i
+                    class="fa fa-check"></i> Available
+            <li ng-show="gift.status!='available'" ng-class="{'active':gift.status=='available'}"><span
+                    class="notAvailCross">&times;</span> Not available
+            <li ng-show="gift.giftType=='skill'" ng-class="{'active':gift.giftType=='skill'}"><i class="icon-skill"></i>
+                Skill
+            <li ng-show="gift.giftType=='help'" ng-class="{'active':gift.giftType=='help'}"><i class="icon-help"></i>
+                Help
+            <li ng-show="gift.giftType=='thing'" ng-class="{'active':gift.giftType=='thing'}"><i class="icon-thing"></i>
+                Thing
+            <li ng-show="gift.sessionType=='oneOnOne'" ng-class="{'active':gift.sessionType=='oneOnOne'}"><i
+                    class="fa fa-user"></i> One on one
+            <li ng-show="gift.sessionType=='group'" ng-class="{'active':gift.sessionType=='group'}"><i
+                    class="fa fa-users"></i> Group session
+            <li ng-show="gift.sessionType=='oneOff'" ng-class="{'active':gift.sessionType=='oneOff'}"><i
+                    class="fa fa-plus"></i> One off
+            <li ng-show="gift.sessionType=='onGoing'" ng-class="{'active':gift.sessionType=='onGoing'}"><i
+                    class="fa fa-refresh"></i> ongoing
+                <!--<li ng-show="gift.sessionType=='toKeep'" ng-class="{'active':gift.sessionType=='toKeep'}"><i class="fa fa-heart"></i> To keep
+                <li ng-show="gift.sessionType=='toShare'" ng-class="{'active':gift.sessionType=='toShare'}"><i class="fa fa-globe"></i> To share</li>-->
+        </ul>
+        <hr/>
+
+
+        <div class="containerTable fullWidth giftDetailPage" user-detail="gift.userId">
+            <div class="containerRow">
+                <div class="containerCell giftDetailFace" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+
+                    <div class="largerProfile">
+                        <div class="avatar largeHeart pull-left clearfix">
+                            <giftuu-avatar></giftuu-avatar>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="containerCell">
+                    <h4 ng-class="{'unEditableDiv': giftForm.editGiftMode}"><a ng-href="/#/profile/{{gift.userId}}"
+                                                                               ng-bind="currentUser.displayName"></a>
+                    </h4>
+                    <h4 ng-hide="giftForm.editGiftMode" class="weightNormal"><span class="text-muted lighter">I want to give this to {{gift.sessionType == "group" ? ('people') : ('someone')}} who</span>
+                    </h4>
+                    <h4 class="multiLine" ng-hide="giftForm.editGiftMode" ng-bind-html="multiLine(gift.ideal)"></h4>
+                    <h4 class="weightNormal" ng-show="gift.giftType=='help' && !giftForm.editGiftMode">
+                        <span class="text-muted lighter">{{gift.sessionType == "onGoing" ? ('as an on-going thing') : ('as a one-off')}}</span>
+                    </h4>
+
+                    <div class="form-group" ng-show="giftForm.editGiftMode"
+                         ng-class="{'has-error':invalidGiftUpdate && giftForm.ideal.$invalid}">
+                        <label class="control-label" for="address">I want to give this to </label>
+                        <label ng-show="gift.giftType!='skill'">{{gift.sessionType == "group" ? ('people') :
+                            ('someone')}}</label>
+
+                        <div ng-show="gift.giftType=='skill'" class="containerTable fullWidth text-center giftAddTable">
+                            <div class="containerRow" ng-init="sessionType='group'" id="sessiontypeSkill">
+                                <div class="gift containerCell" ng-class="{'active':gift.sessionType=='group'}">
+                                    <a href="javascript:void(0)" ng-click="gift.sessionType = 'group'"
+                                       class="thumbnail"><i class="fa fa-users"></i> people</a>
+                                </div>
+                                <div class="gift containerCell" ng-class="{'active':gift.sessionType=='oneOnOne'}">
+                                    <a href="javascript:void(0)" ng-click="gift.sessionType = 'oneOnOne'"
+                                       class="thumbnail"><i class="fa fa-user"></i> someone</a>
+                                </div>
+                                <div class="textBesideSessionType">
+                                    <label> who</label>
+                                </div>
+                            </div>
+                        </div>
+                        <label ng-show="gift.giftType!='skill'"> who</label>
+                        <textarea class="form-control msd-elastic" id="ideal" name="ideal"
+                                  placeholder="describe the type of person you want to give this to"
+                                  ng-model="gift.ideal"
+                                  required></textarea>
+                        <span ng-show="invalidGiftUpdate && giftForm.ideal.$invalid"
+                              class="form-control-feedback"></span>
+                    </div>
+                    <div ng-show="gift.giftType=='help' && giftForm.editGiftMode"
+                         class="containerTable fullWidth text-center giftAddTable">
+                        <div class="containerRow" id="sessiontypeHelp">
+                            <div class="skill gift containerCell" ng-class="{'active':gift.sessionType=='oneOff'}">
+                                <a href="javascript:void(0)" ng-click="gift.sessionType = 'oneOff'" class="thumbnail"><i
+                                        class="fa fa-plus"></i> As a one off</a>
+                            </div>
+                            <div class="help gift containerCell" ng-class="{'active':gift.sessionType=='onGoing'}">
+                                <a href="javascript:void(0)" ng-click="gift.sessionType = 'onGoing'"
+                                   class="thumbnail"><i class="fa fa-refresh"></i> Ongoing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <!--map -->
+        <div class="map">
+            <div class="gifterLocation" ng-hide="giftForm.editGiftMode">
+                <p>For people who live near
+                    <a ng-href="https://maps.google.com/maps?saddr={{gift.location.formatted_address}}"
+                       ng-bind="gift.location.formatted_address" title="Click to view on google map">
+                    </a></p>
+            </div>
+            <!-- Location name and link -->
+            <div class="form-group">
+                <div class="gifterLocation" ng-show="giftForm.editGiftMode"
+                     ng-class="{'has-error':invalidGiftUpdate && !gift.location}">
+                    <label class="control-label" for="address">For people who live near</label>
+                    <input ng-show="giftForm.editGiftMode" type="text" id="address" name="addressFormatted"
+                           class="form-control" placeholder="enter the local community you want to give this skill to"
+                           ng-model="gift.location" required googleplace>
+                    <input name="address" type="hidden" ng-value="gift.location | json" required>
+                <span ng-show="invalidGiftUpdate && giftForm.address.$invalid"
+                      class=" form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="fixGiftMarginMobile paddingBottom" ng-hide="giftForm.editGiftMode">
+                <div class="panel-info">
+                    <div class="clear"></div>
+                    <!--Map with link -->
+                    <p><a class="gifterMap"
+                          ng-href="https://maps.google.com/maps?saddr={{gift.location.formatted_address}}"
+                          title="Click to view on google map">
+                        <img class="img-responsive" alt="Click to view on google map"
+                             ng-src="http://maps.googleapis.com/maps/api/staticmap?center={{gift.location.formatted_address}}&markers=icon:http://res.cloudinary.com/dhzzedkki/image/upload/c_fill,w_35/v1404380791/mapMarker.png%7C{{gift.location.formatted_address}}&size=600x300&maptype=roadmap&sensor=false&key=AIzaSyDITwlZOo4gcdcfjivK1h4Q2n8lMvEYBEQ"
+                             alt="google map address view" class="gift-map">
+                    </a></p>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <!-- Edit and save buttons
+    <hr ng-show="giftForm.editGiftMode"/>
+    <button ng-if="giftForm.editGiftMode" class="btn btn-danger btn-block" data-toggle="modal"
+            data-target="#deleteModal">
+        Delete my gift
+    </button>--->
+
+</div>
+<!-- End edit and save buttons -->
+
+<hr ng-show="giftForm.editGiftMode"/>
+<div class="editAndreportProfile pull-right">
+            <span class="linkNoHref cancelButton" ng-show="giftForm.editGiftMode && !updating"
+                  ng-click="(giftForm.editGiftMode = false) && (inputAboutMe = userProfile.aboutMe)">
+           cancel</span>
+    <button type="button" class="btn btn-success" ng-click="updateGift(giftForm.$invalid, 2)"
+            ng-show="giftForm.editGiftMode && !updating">
+        <i class="fa fa-check">
+        </i> save changes
+    </button>
+    <div ng-show="giftForm.editGiftMode && updating && buttonNo==2" class="loadingImage"></div>
+</div>
+
+<div class="clear"></div>
+
+<!---gift activity-->
+
+<!-- All activity tabs -->
+<ul class="nav nav-tabs detailTabs" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+    <li class="active"><a ng-href="?#all" data-toggle="tab">All</a></li>
+    <li><a ng-href="?#requests" data-toggle="tab"><i class="fa fa-star"></i> {{totalWishers == 1 ? (totalWishers + '
+        Request') : (totalWishers + ' Requests')}}</a></li>
+    <li><a ng-href="?#comments" data-toggle="tab"><i class="fa fa-comment"></i> {{totalComments == 1 ? (totalComments + '
+        Comment') : (totalComments + ' Comments')}}</a></li>
+</ul>
+
+<!-- All activity content panes -->
+<div class="tab-content giftActivity">
+    <div class="tab-pane active" id="all">
+        <div class="giftActivity" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+            <div ng-switch="gift.status">
+                <!-- Also need to change the status of the button once clicked to disabled. Users should not be able to keep saying they want the gift (OM) -->
+                <div class="row"><!--ng-if="wishers.length"-->
+                    <div class="col-lg-12 RequestsForGift">
+                        <!-- Need to show a max of 5 requests for a gift at a time, then have a 'view previous requests' link to show more -->
+                        <div ng-show="(totalComments + totalWishers)>0" class="pull-right Previous-number">
+                            {{(totalComments
+                            + totalWishers) <= 5 ? ((totalComments + totalWishers) + ' of '
+                            + (totalComments + totalWishers)) : (limitActivities + ' of ' + (totalComments +
+                            totalWishers))}}
+                        </div>
+                        <div class="clear"></div>
+                        <div class="View-previous" ng-click="viewMoreActivity()"
+                             ng-if="activities.length>0 && activities.length< (totalComments + totalWishers)"
+                             ng-focus="commentAnchor"><span>view previous activities...</span>
+                        </div>
+                        <div class="posterActivity wantThisGift">
+                            <ul class="chats">
+                                <!-- activities repeat -->
+                                <li class="by-me" ng-repeat="activity in activities | orderBy:'created'"
+                                    user-detail="activity.from"
+                                    ng-class="{'requestDetail': activity.type=='wishGift', 'commentDetail': activity.type=='viewGift'}">
+
+                                    <!-- Use the class "pull-left" in avatar -->
+                                    <giftuu-avatar></giftuu-avatar>
+                                    <div class="chat-content">
+                                        <button class="btn btn-large pull-right btn-primary pickme"
+                                                ng-click="selectWisher(activity);"
+                                                ng-class="{'btn-success':activity.selected}"
+
+                                                ng-if="activity.type=='wishGift'
+                                                && gift.status=='available'
+                                                && user.canGive && currentUser._id != gift.userId
+                                                && !user.deactivated && user.active">
+                                            <i class="fa fa-star-o"></i> pick me
+                                        </button>
+                                        <div class="chat-meta">
+                                            <div class="chat-meta">
+                                                <i ng-class="{'fa-star':activity.type=='wishGift','display-none':activity.type=='viewGift'}"
+                                                   class="fa brand-blue-color"></i>
+                                                <a ng-href="/#/profile/{{activity.from}}">{{currentUser.displayName}} wants this</a>
+                                            </div>
+                                            <p ng-bind-html="multiLine(activity.comment)" class="multiLine"></p>
+                                            <small data-ng-bind="activity.created | ago:false"></small>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="alert alert-danger"
+                                     ng-show="selectedWishers.length==1 && gift.giftType=='skill' && gift.sessionType=='group'">
+                                    <strong>Hold on! You need to pick more than one person</strong>
+                                </div>
+                                <!-- make button enabled if at least one gift is selected and at least 1 person must wish for the item -->
+                                <li ng-if="user.canGive && gift.status =='available' && gift.giftType!='thing'&&gift.sessionType!='oneOnOne' && wishers.length>1">
+                                    <button class="btn btn-large btn-block btn-success" ng-click="give()"
+                                            ng-disabled="selectedWishers.length<2">
+                                        <i class="fa fa-check"></i> Give my gift
+                                    </button>
+                                </li>
+                                <li class="alert alert-success"
+                                    ng-if="loggedIn && user && user.asked && gift.status == 'available'">
+                                    <i class="fa fa-check"></i>
+                                    You have already asked for this gift
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="requests">
+        <!--want this gift-->
+        <div class="wantThisGiftWrapper" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+            <div ng-switch="gift.status">
+                <!-- Also need to change the status of the button once clicked to disabled. Users should not be able to keep saying they want the gift (OM) -->
+                <div class="row"><!--ng-if="wishers.length"-->
+                    <div class="col-lg-12 RequestsForGift">
+                        <div class="alert alert-info" ng-switch-when="expired">
+                            <strong>
+                                Sorry!
+                            </strong>
+                            You can not ask for an expired gift
+                        </div>
+
+                        <!-- Need to show a max of 5 requests for a gift at a time, then have a 'view previous requests' link to show more -->
+                        <div ng-show="totalWishers>0" class="pull-right Previous-number">
+                            {{totalWishers <= limitWishers?(totalWishers+ ' of ' + totalWishers) : (limitWishers + ' of
+                            ' + totalWishers)}}
+                        </div>
+                        <div class="clear"></div>
+                        <div class="View-previous" ng-if="wishers.length>0 && wishers.length< totalWishers">
+										<span ng-click="viewMoreWishers()">view
+											previous requests...
+										</span>
+                        </div>
+                        <div class="posterActivity wantThisGift">
+                            <ul class="chats">
+                                <!-- Wishers repeat -->
+                                <li class="by-me requestDetail"
+                                    ng-repeat="wisher in wishers | orderBy:'created'"
+                                    user-detail="wisher.from">
+                                    <!-- Use the class "pull-left" in avatar -->
+                                    <giftuu-avatar></giftuu-avatar>
+                                    <div class="chat-content">
+                                        <button class="btn btn-large pull-right btn-primary pickme"
+                                                ng-click="selectWisher(wisher);"
+                                                ng-class="{'btn-success':wisher.selected}"
+                                                ng-if="gift.status=='available' &&
+                                                user.canGive && currentUser._id != gift.userId && !user.deactivated && user.active">
+                                            <i
+                                                    class="fa fa-star-o"></i> pick me
+                                        </button>
+                                        <!-- In meta area, first include "name" and then "time" -->
+                                        <div class="chat-meta">
+                                            <div class="chat-meta">
+                                                <i class="fa fa-star brand-blue-color"></i>
+                                                <a ng-href="/#/profile/{{wisher.from}}"
+                                                   data-ng-bind="currentUser.displayName"></a>
+                                            </div>
+                                            <p ng-bind-html="multiLine(wisher.comment)" class="multiLine"></p>
+                                            <small data-ng-bind="wisher.created | ago:false"></small>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="alert alert-danger"
+                                     ng-show="selectedWishers.length==1 && gift.giftType=='skill' && gift.sessionType=='group'">
+                                    <strong>Hold on! You need to pick more than one person</strong>
+                                </div>
+                                <!-- make button enabled if at least one gift is selected and at least 1 person must wish for the item -->
+                                <li ng-if="user.canGive && gift.status =='available' && gift.giftType!='thing'&&gift.sessionType!='oneOnOne' && wishers.length>1">
+                                    <button class="btn btn-large btn-block btn-success" ng-click="give()"
+                                            ng-disabled="selectedWishers.length<2">
+                                        <i class="fa fa-check"></i> Give my gift
+                                    </button>
+                                </li>
+
+                                <li class="alert alert-success"
+                                    ng-if="user && user.asked && gift.status == 'available'">
+                                    <i class="fa fa-check"></i>
+                                    You have already asked for this gift
+                                </li>
+                            </ul>
+                            <div class="chat-content">
+                                <li class="by-me"
+                                    ng-if="(user) && (gift.status =='available') && (user.requesting) && (user.asked)"
+                                    user-detail="user._id">
+                                    <div class="alert alert-success" ng-if="user.asked"><i class="fa fa-check"></i>You
+                                        asked for this gift
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="comments">
+        <div class="giftActivity" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+            <!--<h2 class=""><i class="fa fa-comment"></i> {{totalComments == 1 ? (totalComments + ' comment') : (totalComments + '
+                comments')}}</h2>-->
+            <!-- do not show more than three comments, collapse behind a button -->
+            <div ng-show="totalComments>0" class="pull-right Previous-number">{{totalComments <= limitComments ?
+                (totalComments + ' of '
+                + totalComments) : (limitComments + ' of ' + totalComments)}}
+            </div>
+            <div class="clear"></div>
+            <div class="View-previous" ng-click="viewMoreComments()"
+                 ng-if="comments.length>0 && comments.length< totalComments" ng-focus="commentAnchor"><span>view previous comments...</span>
+            </div>
+
+            <div class="posterActivity wantThisGift">
+                <ul class="chats"> <!--ng-if="comments.length"-->
+                    <!-- comments -->
+                    <li class="by-me commentDetail" ng-repeat="comment in comments | orderBy:'created'"
+                        user-detail="comment.from">
+                        <!-- Use the class "pull-left" in avatar -->
+                        <giftuu-avatar></giftuu-avatar>
+                        <div class="chat-content">
+                            <!-- In meta area, first include "name" and then "time" -->
+                            <div class="chat-meta"><a ng-href="/#/profile/{{comment.from}}"
+                                                      ng-bind="currentUser.displayName"></a>
+                            </div>
+                            <p class="multiLine" ng-bind-html="multiLine(comment.comment)"></p>
+                            <small class="pull-left dateLocation" data-ng-bind="comment.created | ago:false"></small>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="giftActivity" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+    <div class="alert alert-info" ng-if="!loggedIn">
+        <strong>Want to comment or ask for it?</strong> You need to <a href="/#/login">sign in first</a>
+    </div>
+    <div class="posterActivity wantThisGift" ng-if="!user.deactivated && user.active">
+        <ul class="chats">
+            <li class="by-me commentDetail" ng-if="user" user-detail="user._id">
+                <giftuu-avatar></giftuu-avatar>
+                <div class="chat-content">
+                    <textarea focus-me="focusAll" rows="3" class="form-control msd-elastic" name="comment"
+                              ng-model="user.comment"
+                              placeholder="Write a comment"
+                              ng-focus="user.commenting=true"></textarea>
+
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+        <div class="askCommentButtonsWrapper" ng-show="loggedIn">
+            <div class="containerTable fullWidth askCommentButtons">
+                <div class="containerRow">
+                    <div class="containerCell">
+                        <button type="button" ng-show="!commenting" ng-disabled="!user.comment || commenting" ng-click="commenting=true; addComment(user.comment); commenting=false"
+                                class="btn btn-lg col-md-12 btn-primary fullWidth"
+                                disabled="disabled"><i class="fa fa-comment"></i> Comment
+                        </button>
+                        <div ng-show="commenting" class="loadingImage"></div>
+                    </div>
+                    <div class="containerCell middleAlign text-center"><span class="orInset">or</span></div>
+                    <div class="containerCell">
+                        <button type="button"
+                                ng-show="!requesting"
+                                ng-disabled="!user.comment || !user || gift.status !='available' || !user.canAsk || requesting"
+                                ng-click="requesting=true; requestGift(user.comment); requesting=false"
+                                class="btn btn-lg col-md-12 btn-success fullWidth"><i
+                                class="fa fa-star"></i> Ask for gift
+                        </button>
+                        <div ng-show="requesting" class="loadingImage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="giftComment"></div>
+    </div>
+</div>
+
+
+<div class="btn-toolbar text-center social-icons hideInDesktop"
+     ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">Share
+    <div class="btn-group btn-group-md text-center-auto">
+        <!-- FACEBOOK SHARE-->
+        <a ng-href="https://www.facebook.com/sharer/sharer.php?u=http://{{host}}/viewGift/?id={{giftId}}"
+           target="_blank" class="btn-med btn btn-primary"><i class="fa fa-facebook"></i></a>
+
+        <!-- PINTEREST SHARE-->
+        <a user-detail="gift.userId"
+           ng-href="http://pinterest.com/pin/create/button/?url=http://{{host}}/viewGift/?id={{giftId}}&media={{gift.images[0].url}}&description={{currentUser.displayName}} is giving: {{gift.title}}"
+           target="_blank"
+           class="btn-med  btn btn-danger"><i class="fa fa-pinterest"></i></a>
+        <!-- TWITTER SHARE-->
+        <a ng-href="http://twitter.com/share?url=http://{{host}}/viewGift/?id={{giftId}}" target="_blank"
+           class="btn-med btn btn-info"><i class="fa fa-twitter"></i> </a>
+        <a ng-href="https://plus.google.com/share?url=http://{{host}}/viewGift/?id={{giftId}}" target="_blank"
+           class="btn-med btn btn-danger"><i class="fa fa-google-plus"></i></a>
+
+        <!-- LINKED IN SHARE-->
+        <a ng-href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://{{host}}/viewGift/?id={{giftId}}"
+           target="_blank" class="btn-med btn btn-primary"><i class="fa fa-linkedin"></i></a>
+
+        <!-- EMAIL SHARE-->
+        <a ng-href="mailto:?Subject=I am giving away a gift on Giftuu.com&amp;Body=Check%20out%20my%20gift%20here:%20http://{{host}}/viewGift/?id={{giftId}}"
+           class="btn-med btn btn-success"><i class="btn-med fa fa-envelope"></i></a>
+    </div>
+</div>
+
+
+</div>
+
+
+<!--updated-->
+<div class="col-md-12 lastUpdated" ng-class="{'unEditableDiv': giftForm.editGiftMode == true}">
+    <p class="pull-right">Last updated {{gift.created | date:"dd/MM/yyyy"}} </p>
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabelDelete"><i class="fa fa-exclamation-triangle"></i> You
+                    are
+                    about to delete your gift</h4>
+            </div>
+            <div class="modal-body">
+                <p> We will delete the following information from Kindo:</p>
+                <ul>
+                    <li>Your gift picture</li>
+                    <li>Your gift location and details</li>
+                    <li>Your gift URL</li>
+                </ul>
+                <p>
+                    Your gift will be deleted.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteGift()">Delete my gift</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!--<form class="chat-content" name="requestGiftForm">
+<textarea rows="3" class="form-control msd-elastic" name="request" ng-model="request"
+      placeholder="Tell the giver why you want this gift" ng-required="true"
+      ng-focus="user.requesting=true"></textarea>
+
+<div>
+<input type="button" value="Ask for it"
+       class="btn btn-large btn-primary pull-right"
+       ng-show="user.requesting"
+       ng-click="requestGift(request);"
+       ng-disabled="requestGiftForm.$invalid">
+<br/>
+            <span class="pull-right textBesideButton"
+                  ng-show="user.requesting"
+                  ng-click="user.requesting=false">cancel </span>
+</div>
+<div class="clearfix"></div>
+</form>-->
+
+<div class="modal" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModalLabel" focus-on-shown="#ask"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- Add comment to report  ng-show=" user.canReportGift && reporting"-->
+            <form class="askForm" id="askForm" name="reportForm" role="form" enctype="multipart/form-data" novalidate>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="askModalLabel"><i class="fa fa-star"></i> Ask for gift</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea ng-show="!askedGift" rows="10" class="msd-elastic form-control" name="ask"
+                              id="ask"
+                              ng-model="askReason"
+                              placeholder="Why would you like this gift?" required></textarea>
+
+                    <div class="alert alert-success"
+                         ng-if="loggedIn && user && user.asked && gift.status == 'available'">
+                        <i class="fa fa-check"></i>
+                        Success! You have asked for this gift
+                    </div>
+                </div>
+                <div class="modal-footer" ng-show="!askedGift">
+                    <button
+                            class="btn btn-large btn-primary pull-right"
+                            ng-click="requestGift(askReason); askedGift=true;"
+                            ng-disabled="!askReason || askedGift">Ask for it
+                    </button>
+                    <button class="btn btn-default"
+                            data-dismiss="modal">Cancel
+                    </button>
+                    &nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- Add comment to report  ng-show=" user.canReportGift && reporting"-->
+            <form class="Add-comment-to-report" id="reportForm" name="reportForm" role="form"
+                  enctype="multipart/form-data" novalidate>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-flag"></i> Report gift</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-if="!reported">
+                        <p>Why are you reporting this gift?</p>
+
+                        <div class="radio">
+                            <label>
+                                <input ng-click="reporting='quality'" type="radio" name="optionsRadios"
+                                       id="optionsRadios1"
+                                       value="option1">
+                                Low quality or broken
+                            </label>
+                            <textarea rows="3" ng-show="user && reporting=='quality'" class="msd-elastic form-control"
+                                      name="report" id="quality" ng-model="reportReason"
+                                      placeholder="Tell us more..." required></textarea>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input ng-click="reporting='content'" type="radio" name="optionsRadios"
+                                       id="optionsRadios2"
+                                       value="option2">
+                                Inappropriate / offensive content
+                            </label>
+                            <textarea rows="3" ng-show="user && reporting=='content'" class="msd-elastic form-control"
+                                      name="report" id="content" ng-model="reportReason"
+                                      placeholder="Tell us more..." required></textarea>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input ng-click="reporting='information'" type="radio" name="optionsRadios"
+                                       id="optionsRadios3"
+                                       value="option3">
+                                Misleading / suspicious information
+                            </label>
+                            <textarea rows="3" ng-show="user && reporting=='information'"
+                                      class="msd-elastic form-control"
+                                      name="report" id="information" ng-model="reportReason"
+                                      placeholder="Tell us more..." required></textarea>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input ng-click="reporting='spam'" type="radio" name="optionsRadios" id="optionsRadios4"
+                                       value="option4">
+                                Spam
+                            </label>
+                            <textarea rows="3" ng-show="user && reporting=='spam'" class="msd-elastic form-control"
+                                      name="report" id="spam" ng-model="reportReason"
+                                      placeholder="Tell us more..." required></textarea>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input ng-click="reporting='other'" type="radio" name="optionsRadios"
+                                       id="optionsRadios5"
+                                       value="option5">
+                                Other
+                            </label>
+                            <textarea rows="3" ng-show="user && reporting=='other'" class="msd-elastic form-control"
+                                      name="report" id="other" ng-model="reportReason"
+                                      placeholder="Tell us more..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="alert alert-info" ng-if="reported">Thanks! We have sent your report for action.<br/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div ng-if="!reported">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="button" value="Report" class="btn btn-danger pull-right" ng-click="report()"
+                                ng-disabled="reportForm.$invalid">report
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" ng-if="reported">Ok
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

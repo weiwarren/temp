@@ -1,0 +1,3154 @@
+/* Some overrides from default bootstrap styles */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100;
+  font-family: @gt-font-family-primary;
+  color: @dark-color;
+  margin: inherit 0 0.25em 0;
+}
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-family: geniusmedium;
+}
+
+h4 {
+  font-size: 1.1em;
+  font-family: geniusmedium;
+}
+
+.clear {
+  clear: both
+}
+
+.condensed {
+  font-family: @gt-font-family-condensed;
+  font-weight: bold;
+}
+
+body, td, p, span, div {
+  font-family: @gt-font-family-primary;
+  color: @dark-color2;
+  font-weight: 300;
+}
+
+
+/* HTML ELEMENTS */
+input,
+button,
+select,
+textarea {
+  font-family: @gt-font-family-primary;
+}
+
+
+/* SPAN CLASSES */
+span.linkNoHref {
+  color: @brand-main-dark;
+}
+
+span.linkNoHref:hover {
+  text-decoration: none;
+  cursor: pointer
+}
+
+span.cancelButton {
+  padding: 0px 8px 0px 8px;
+}
+
+
+
+
+
+
+
+
+/* NAVBAR */
+.navbar-inverse {
+  min-height: 48px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  border-bottom: 1px solid #191e23;
+
+  background: #2c3742; /* Old browsers */
+  background: -moz-linear-gradient(top, #2c3742 0%, #28303a 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2c3742), color-stop(100%, #28303a)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2c3742 0%, #28303a 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2c3742 0%, #28303a 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #2c3742 0%, #28303a 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #2c3742 0%, #28303a 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c3742', endColorstr='#28303a', GradientType=0); /* IE6-9 */
+}
+
+/* navbar-nav*/
+.navbar-inverse .navbar-nav {
+  padding-right: 20px;
+}
+
+/* menu toggler */
+.navbar-inverse .navbar-toggle {
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+/* navbar brand*/
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: 11px 20px;
+}
+
+.navbar-inverse .navbar-brand strong {
+  font-weight: normal;
+}
+
+/* navbar links */
+.navbar-inverse .nav > li > a {
+  padding: 13px 15px 8px;
+  border-left: 1px solid #101417;
+  color: rgb(214, 214, 214);
+  outline: 0px;
+  height: 46px;
+  transition: background .1s linear;
+  -moz-transition: background .1s linear; /* Firefox 4 */
+  -webkit-transition: background .1s linear; /* Safari and Chrome */
+  -o-transition: background .1s linear; /* Opera */
+}
+
+.navbar-inverse .nav > li > a:hover {
+  background: rgba(25, 31, 36, 0.6);
+}
+
+/* span caret */
+.dropdown-toggle .caret {
+  color: white;
+  position: relative;
+  top: -1px;
+}
+
+/* dropdown caret */
+.dropdown .caret {
+  color: white;
+  position: relative;
+  top: -1px;
+}
+
+/* dropdown active */
+.dropdown.open > a,
+.dropdown.open > a:hover,
+.dropdown.open > a:focus {
+  border-color: #101417;
+}
+
+/* dropdown menu */
+.dropdown-menu > li > a {
+  outline: none;
+  &:hover, &:focus {
+    color: white;
+  }
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color: @dropdown-link-hover-color;
+  background-color: @dropdown-link-hover-bg !important;
+}
+
+/* PAGINATION */
+.pagination > li > a, .pagination > li > span {
+  font-weight: 600;
+}
+
+.pagination.inverse a,
+.pagination.inverse span {
+  background-color: #333e4a;
+  color: #fff;
+  border-top-color: #333e4a;
+  border-bottom-color: #333e4a;
+  border-right-color: #566676;
+  border-left-color: #566676;
+}
+
+.pagination.inverse a:hover,
+.pagination.inverse span:hover {
+  background-color: #000;
+}
+
+.pagination.inverse > li.active > a {
+  color: #3b9ff3;
+  background-color: #212b36;
+  border-right-color: #212b36;
+  border-left-color: #212b36;
+}
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* TABLES*/
+
+.table thead {
+  border-top: 1px solid #dee3ea;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #f5fafc;
+}
+
+.table th.sortable {
+  cursor: pointer;
+}
+
+.table th.sortable:hover {
+  text-decoration: none;
+}
+
+.table thead th {
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 20px !important;
+  padding-top: 5px !important;
+  text-transform: uppercase;
+  vertical-align: top !important;
+  border-bottom: 0px !important;
+}
+
+.table td {
+  color: #526273;
+  border-top-color: #edf2f7 !important;
+  vertical-align: middle !important;
+}
+
+.table th.align-right,
+.table td.align-right {
+  text-align: right;
+  padding-right: 10px !important;
+}
+
+table tr.first td {
+  border-top: 0 none;
+}
+
+table th span.line {
+  position: absolute;
+  top: 0;
+  left: -8px;
+  border-left: 1px solid #dee3ea;
+  height: 10px;
+}
+
+/* modals */
+.modal-backdrop.in {
+  opacity: 0.5 !important;
+}
+
+.modal-body textarea {min-height: 100px !important}
+
+/* override navbar toggle */
+
+@media (max-width: @screen-md) {
+  .navbar-toggle {
+    display: block !important;
+  }
+}
+
+/* Heart shape  */
+
+.heartShapedSmall {
+  background: url(/images/heart.svg) no-repeat;
+}
+
+.heartNumber {
+  position: absolute;
+  color: white;
+  font-size: 0.8em;
+  font-family: geniusbold;
+  width: 38px;
+}
+
+.blueHeart {
+  height: 30px;
+  width: 30px;
+  fill: @brand-primary
+}
+
+.greenHeart {
+  height: 30px;
+  width: 30px;
+  fill: @brand-success
+}
+
+.lightBlueHeart {
+  height: 30px;
+  width: 30px;
+  fill: @brand-info
+}
+
+.lightGrayHeart {
+  height: 30px;
+  width: 30px;
+  fill: @mid-light-colour;
+}
+
+.goldHeart {
+  height: 30px;
+  width: 30px;
+  fill: @brand-warning
+}
+
+.redHeart {
+  fill: @brand-danger
+}
+
+.avatar .redHeart {
+  height: 28px;
+  width: 26px;
+}
+
+.avatar.largeHeart .redHeart {
+  height: 30px;
+  width: 30px;
+}
+
+.avatar {
+  position: relative;
+  margin-right: 10px
+}
+
+.by-other .avatar {
+  margin-right: 0
+}
+
+.timePickerClass > tbody > tr:nth-child(2) > td:nth-child(4) > button
+{
+  color: #ffffff;
+  background-color: #519ed3;
+  border-color: #3d93ce;
+}
+
+.avatar .redHeart {
+  position: absolute;
+  z-index: 3;
+  left: -5px;
+  top: -2px
+}
+
+.avatar .heartNumber {
+  position: absolute;
+  z-index: 3;
+  left: 3px;
+  top: 3px
+}
+
+.avatarGiftExchange .heartNumber {
+  position: absolute;
+  z-index: 3;
+  left: 0px;
+  top: 1px
+}
+
+.gifterBlurb .avatar .redHeart {
+  position: absolute;
+  z-index: 3;
+  left: -35px;
+  top: -10px
+}
+
+.gifterBlurb .avatar .heartNumber {
+  display: block;
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: -3px;
+  width: 40px;
+  z-index: 3;
+}
+
+.postBox .avatar .redHeart {
+  position: absolute;
+  z-index: 3;
+  left: -35px;
+  top: -8px
+}
+
+.postBox .avatar .heartNumber {
+  position: absolute;
+  z-index: 3;
+  left: -26px;
+  top: -1px
+}
+
+/*--GT Overrides--*/
+
+.main {
+  background: white;  /*-----Need this one to remove the gray background -----*/
+  overflow: hidden; /*----- need to verify this doesn't cause horizontal pull on mobile -----*/
+}
+
+.grayBG {
+  background: @gray-lighter;
+  /*border-top: 1px solid @borderOnGray /*-----Need this one for gift detail page -----*/
+}
+
+.whiteBG {
+  background: white
+}
+
+.grayBG.contentInner, .whiteBG.contentInner {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.contentBlock {
+  background: #f6f6f6
+}
+
+/*--- nav ----*/
+
+.navbar-header {
+  padding-right: 0
+}
+
+.navbar-default {
+  background: #fff
+}
+
+.st-menu {
+  background-color: @brand-primary;
+  a, span, p {
+    text-decoration: none;
+    color: white;
+  }
+  ul#dashboard-menu li a {
+    padding: 8px 12px !important;
+  }
+  h2 {
+  }
+
+}
+
+.st-menu a, .st-menu p, .st-menu span, .st-menu h2 {
+  color: white;
+}
+
+ul#dashboard-menu-profile > li li > a {
+}
+
+.searchFilters {margin: 0 13px; text-align: center;
+  .searchFiltersInner {width: 300px; ; margin: 0 auto;
+    a {float: left; display: block; color: #777;  padding: 5px 20px; border-bottom: 3px solid transparent}
+    a.active {font-family: @gt-font-family-logo;}
+    a.active.allFilter,a.allFilter:hover {border-color: @brand-red}
+    a.active.skillFilter,a.skillFilter:hover {border-color: @brand-purple}
+    a.active.helpFilter,a.helpFilter:hover {border-color: @brand-green}
+    a.active.thingFilter,a.thingFilter:hover {border-color: @brand-blue}
+  }
+}
+
+.searchParent {
+  padding: 10px 0;
+  div.searchInput {background: white; border-radius: @border-radius-base; border: 1px solid @borderOnGray; position: relative;
+    input {
+      border-radius: @border-radius-base * 5;
+      border: none;
+      padding: 5px 5px;
+      width: 75%;
+      text-align: center;
+      border: none;
+      background: transparent;
+    }
+    ul.dropdown-menu {display: none}
+    input.active {
+      text-align: left;
+      padding: 5px 135px 5px 15px;
+    }
+    a.search-dropdown {
+      position: absolute;
+      right: 40px;
+      top: 5px;
+      padding-left: 15px;
+      border-left: 1px solid @gray-lighter;
+      color: #666;
+      display: none;
+      text-decoration: none;
+    }
+    a.searchButton {
+      background: @brand-blue;
+      border-top-right-radius: @border-radius-small;
+      border-bottom-right-radius: @border-radius-small;
+      color: #FFFFFF;
+      height: 35px;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      text-decoration: none;
+      top: 0;
+      padding: 7px 15px;
+
+
+      i {
+
+      }
+    }
+    a.search-dropdown.active, a.searchButton.active {
+      display: block
+    }
+    .navbar-right .dropdown-menu {left: 0; }
+  }
+}
+
+.modal-dialog {
+  left: 0
+}
+
+#mainSearch {
+  background: @mid-light-colour;
+}
+
+.navbar {
+  margin-bottom: 0;
+  min-height: 50px;
+  .logoArea {
+    position: absolute;
+    left: 0;
+    z-index: 99;
+    height: 50px;
+    width: 170px;
+  }
+}
+
+.navbar-header {
+  float: none;
+  height: 50px
+}
+
+//*---------Profile styles -----*//
+.profileTop {
+  img {
+    width: 40px;
+  }
+  & > li {
+    & > a {
+      padding: 5px 10px;
+      position: relative;
+      span.badge {
+        background-color: @brand-blue;
+        font-weight: bold;
+        position: absolute;
+        left: 3px;
+        top: 3px;
+      }
+    }
+  }
+  li.mainSearchButton {
+    a.collapsed {
+      background: white
+    }
+    a {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background: @mid-light-colour;
+      &:hover {
+        cursor: pointer;
+        color: @dark-color;
+        background: @mid-light-colour;
+      }
+    }
+  }
+  li.mainSearchButton.desktopMenu {
+    a {font-size: 0.9em; background: white; padding-left: 15px; padding-right: 15px;
+      &:hover {
+        color: @dark-color;
+        background: @mid-light-colour;
+      }
+    }
+  }
+  li.loginButton {
+    position: relative;
+    width: 75px;
+    div.noUser {
+      background: @mid-light-colour;
+      width: 40px;
+      height: 40px;
+      margin: 0 13px 0 0;
+      &:hover, {
+        cursor: pointer;
+        color: @dark-color;
+        background: @mid-light-colour;
+      }
+      i {
+        position: absolute;
+        left: 23px;
+        top: 16px;
+      }
+    }
+    .noUserWrap b {
+      position: absolute;
+      right: 9px;
+      top: 24px
+    }
+  }
+  li.open {
+    div.noUser {
+      background: white;
+      &:hover {
+        background: white;
+      }
+    }
+  }
+  li.postGiftButton {
+    button {
+      margin: 8px 15px 8px 15px;
+    }
+  }
+}
+
+@media (max-width: @screen-sm-min) {
+  .dropdown-menu {
+    width: 100%
+  }
+
+  .dropdown-menu li.menu-item {
+    width: 100%
+  }
+
+  .navbar-header.pull-right {
+    .profileTop {
+      margin: 0
+    }
+  }
+
+  .profileTop {
+    > li {
+      float: left;
+      > a {
+        right: -15px;
+        position: relative
+      }
+    }
+    > li.loginButton {
+      width: 75px;
+      position: static !important;
+      ul.dropdown-menu {
+        position: absolute !important;
+        left: 0;
+        float: left !important;
+        background-clip: padding-box !important;
+        background-color: #FFFFFF !important;
+        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        /*border-radius: 4px;*/
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176) !important;
+        padding: 0 !important;
+        position: absolute !important;
+        z-index: 1000 !important;
+        right: 0;
+        .divider {
+          background-color: #E5E5E5 !important;
+          height: 1px !important;
+          margin: 9px 0 !important;
+          overflow: hidden;
+        }
+        a {
+          color: #333 !important;
+          display: block !important;
+        }
+      }
+    }
+  }
+}
+
+.navbar-toggle {
+  margin-bottom: 0;
+  margin-left: 5px
+}
+
+@media (min-width: @screen-sm) {
+  .navbar {
+    //		.container {padding-left: 0}
+  }
+}
+
+.loggedIn {
+  float: right;
+  position: relative;
+  &:hover {
+    text-decoration: none;
+  }
+  i {
+    color: #666
+  }
+}
+
+/*-----fixed horizontal scroll------*/
+//.navbar-header.pull-right {overflow: hidden}
+
+.navbar-brand {
+  color: @dark-color2 !important;
+  position: relative;
+  padding: 12px 10px 10px 47px;
+  font-weight: 200;
+  font-family: @gt-font-family-logo;
+  left: -15px;
+  .logo {
+    width: 70px;
+    height: 50px;
+    position: absolute;
+    left: 7px;
+    top: 0px;
+    &:hover {
+      text-decoration: none
+    }
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .desktopMenu {display: none !important}
+}
+
+.navbar-toggle {
+  display: block;
+  float: left;
+  border-width: 0;
+  padding: 10px;
+  &:hover {
+    background-color: @navbar-default-bg !important;
+  }
+  .icon-bar {
+    background-color: @dark-color !important;
+    height: 3px;
+    margin: -1px;
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .navbar-toggle {
+    margin-left: 5px
+  }
+}
+
+.chats {
+  .avatar {
+    position: relative
+  }
+  .gifterFace {
+    left: -30px
+  }
+}
+
+/*--- Gifter----*/
+//Gift-image-container
+.giftEditImage {
+  margin-top: 91px
+}
+
+.minusThumb {
+  position: relative;
+  z-index: 100;
+}
+
+.imageThumbs {
+  width: 130px;
+  height: 130px;
+}
+
+.imageThumb {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+}
+
+/*--- Gifter----*/
+//Gift-image-container
+.giftDescription {
+  h1 {
+    margin-top: 20px
+  }
+  p {
+  }
+}
+
+.textBesideButton {
+  padding-right: 10px;
+  a {
+    color: @light-color;
+    font-size: 0.7em;
+    margin-bottom: 5px;
+  }
+  a:hover {
+    text-decoration: none;
+    color: @brand-primary;
+  }
+  i {
+    position: relative;
+    bottom: 2px
+  }
+}
+
+.textBesideSessionType
+{
+  margin-left:5px;
+  margin-top:10px;
+  width:20px;
+}
+
+.Gift-page-actions {
+  padding-top: 5px
+}
+
+.containerTable.giftDetailPage .containerCell {
+  vertical-align: top
+}
+
+.giftDetailFace {
+  width: 80px
+}
+
+.giftDetailPage .containerCell > h4.multiLine {line-height: 140%; margin-top: -5px; margin-bottom: -5px}
+
+.giftTypesOnDetail {
+  button {
+    color: @light-color;
+  }
+}
+
+img.gifterFace {border-radius: 300px;max-width: 65px}
+
+.gifterBlurb {
+  position: relative;
+  h3 {
+    font-weight: 200;
+    line-height: 70%;
+    margin-top: 0 !important;
+    .text-muted {
+      color: @dark-color;
+      display: block;
+      padding-left: 25px;
+      display: block;
+    }
+  }
+  ul.chats {
+    border-bottom: 1px solid @gray-lighter;
+    li {
+      margin-bottom: 0
+    }
+  }
+  div.chat-meta {
+    margin-bottom: 5px;
+    a {
+      font-family: @gt-font-family-logo;;
+    }
+  }
+  img.gifterFace {
+    position: absolute;
+    margin-top: 10px;
+    width: 65px;
+    border-radius: 300px;
+    overflow: hidden;
+  }
+  a.largeFace {
+    display: block;
+    width: 65px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 300px;
+    position: relative;
+    left: -30px;
+    z-index: 2;
+    img.gifterFace {
+      max-height: 65px;
+      max-width: 65px;
+      margin: 0;
+      left: 0;
+      top: 0;
+      border-radius: 300px;
+    }
+  }
+
+  .fixGiftDetailFormat {
+    position: relative;
+    left: -35px;
+  }
+
+  .fixGiftLocText {
+    text-align: vertical;
+    position: relative;
+    top: -10px;
+  }
+
+  button {
+    margin-top: 15px
+  }
+  div.heartShapeSmall {
+    margin-top: 10px
+  }
+  .chats .by-me .chat-content {
+    border: none;
+    padding: 1px 0;
+    margin-left: 50px;
+    left: -10px;
+    &:after, &:before {
+      border: none
+    }
+  }
+}
+
+.gifterLocation {
+  padding-top: 15px;
+  h4 {
+    margin-bottom: 0;
+  }
+  a {
+    font-weight: bold
+  }
+}
+
+a.gifterMap {
+  img {
+    min-width: 100%
+  }
+}
+
+/*--- Want this gift ---*/
+
+.askGiftMain {padding: 15px;}
+p.UserName {margin-bottom: 5px}
+p.UserName a {
+  font-family: geniuslight;
+  font-size: 1.2em
+}
+
+.sorryGivenTo {font-size: 1.2em}
+
+.Gift-page-actions {
+  margin-bottom: 24px
+}
+
+.wantThisGift {
+  h4 {
+    padding-bottom: 10px;
+  }
+  button.giveButton {
+    margin: 0 0 20px 20px
+  }
+  .heartNumber {
+    display: block;
+    left: -12px;
+    position: absolute;
+    text-align: center;
+    top: 4px;
+    width: 40px;
+    z-index: 3;
+  }
+  img.gifterFace {
+    width: 45px;
+    height: 45px;
+    margin-left: 5px;
+  }
+  .chats {
+    padding-left: 0;
+    margin-top: 0;
+    margin-left: 0;
+    li {
+      &:first-child {
+      }
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 10px;
+      }
+      .chat-content {position: relative;
+        padding: 3px 0 3px 10px;
+        input.form-control.ng-pristine {
+          height: 45px;
+          margin-top: 3px;
+        }
+        .btn-large.pull-right {}
+      }
+    }
+    li.requestDetail {background: @alert-info-bg; border-radius: @border-radius-small; border-color: @alert-info-border; color: @alert-info-text; border-style: solid; border-width: 1px; margin: 15px 0;  padding: 10px 2px 10px 10px;
+      .chat-content {background: @alert-info-bg; padding: 3px 0;
+        small {padding-left: 10px}
+        p.multiLine {text-indent: 0; padding-left: 10px;}
+      }
+      .pickme {margin: 8px}
+    }
+
+    li.commentDetail {padding: 0 0 0 10px;}
+
+
+    div.heartShapeSmall {
+      margin-left: 30px;
+      margin-top: 0;
+    }
+    .by-me {
+      .chat-content:after, .chat-content:before {
+        border: none
+      }
+      .chat-content {
+        border: none;
+        /*margin-left: 50px* -------this breaks the gift detail page---*/
+      }
+      .chat-meta {
+        color: @light-color;
+        a {
+          font-family: @gt-font-family-logo;
+        }
+      }
+      .chat-meta span {
+        color: @light-color;
+        top: 10px;
+        margin-top: 4px
+      }
+      .chat-content p {
+
+      }
+    }
+    .alert.alert-success {margin-bottom: 0 !important;}
+  }
+}
+
+.askCommentButtonsWrapper {padding-left: 80px}
+
+@media (max-width: 400px) {
+  .askCommentButtonsWrapper {padding-left: 0;
+    .btn {
+      font-size: 1.1em;
+    }
+  }
+}
+
+
+
+
+
+/* View previous */
+.View-previous {
+  border-top: 1px solid @borderOnGray;
+  border-bottom: 1px solid @borderOnGray;
+  margin-bottom: 20px;
+  color: @brand-primary;
+  min-height: 33px;
+}
+
+.View-previous:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: @brand-primary;
+}
+
+.View-previous span {
+  padding-top: 5px;
+  color: @brand-primary;
+  display: inline-block;
+}
+
+.View-previousProfile {margin-top: -20px;
+  .View-previous {border-top: none;}
+}
+
+.panel-body div.View-previous {
+  padding-left: 10px;
+  margin: 0;
+  border-top: 0px;
+  margin: 0px 5px
+}
+
+.tab-content.giftActivity {
+  .View-previous {border-top: none;}
+}
+
+.panel-body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.Previous-number {
+  padding: 8px 8px 0 0;
+  margin-bottom: 0;
+  color: @gray-light;
+  font-size: .8em;
+}
+
+/*--- post box----*/
+
+.postBox {
+  position: relative;
+  h2 {
+
+    padding: 10px 0;
+  }
+  h3 {
+
+    font-weight: 200;
+    line-height: 130%;
+    margin-top: 10px !important
+  }
+  div.chat-meta {
+
+    margin-bottom: 5px
+  }
+  img.gifterFace {
+    position: absolute;
+  }
+  button {
+    margin-top: 15px
+  }
+  .chats .by-me {
+    img {
+      margin-top: 0
+    }
+    .chat-content {
+      padding: 10px 15px;
+      margin-left: 50px;
+      &:before {
+        margin-top: -2px
+      }
+      &:after {
+        margin-top: -1px
+      }
+    }
+  }
+}
+
+.chat-content {
+  p {margin: 5px 0 8px 0;}
+  small {
+    color: @gray-light;
+    top: -5px;
+    position: relative;
+  }
+  input.btn.btn-large.pull-right {
+    margin-top: 10px
+  }
+}
+
+.posterActivity {
+  border-radius: @border-radius-base;
+  background: white;
+  margin-bottom: 20px;
+  li.View-previous {
+    border-top: none;
+    padding: 0 10px 10px 10px;
+  }
+  .chats li {
+    padding: 0;
+    //border-bottom: 1px solid @borderOnGray;
+  }
+  .chats li.alert {
+    padding: 15px;
+    //border-bottom: 1px solid @borderOnGray;
+  }
+}
+
+.wishInUserProfile {padding-bottom: 15px}
+
+@media (max-width: 380px) {
+  .detailTabs > li > a {font-size: 0.9em; padding: 10px 7px;}
+}
+
+/*---Gift listing ----*/
+.giftLanding.alert {
+  margin-bottom: 0
+}
+
+.item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto
+}
+
+.giftListing.home {
+  padding: 3px 6px 30px 6px
+}
+
+.giftListing {
+  padding: 15px 0px;
+
+  .addGiftHeartParent {
+    font-size: 8em
+  }
+  .addGiftHeart {
+    border-color: rgba(0, 0, 0, 0.15);
+    border-style: dashed;
+    border-width: 2px;
+    background: #f8f8f8;
+    i {
+      color: rgba(0, 0, 0, 0.05);
+      position: relative;
+      top: 10px;
+      margin-left: -3px
+    }
+    &:hover {
+      text-decoration: none;
+      border-color: transparent;
+      background: transparent url("/images/bgs/circles-blur-color.jpg") center center;
+      background-size: 150%;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      i {
+        color: white
+      }
+      //color: @brand-primary !important
+    }
+    .relative {
+      position: relative
+    }
+    h3 {
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      color: rgba(0, 0, 0, 0.35);
+      font-size: @xxSmallFont
+    }
+  }
+  .thumbnail.homeAddGifts {
+    padding: 0
+  }
+  .freeWall {
+    .wallItemLoader .thumbnail {
+      min-height: 250px;
+      background: @borderOnGray;
+      opacity: 0.6;
+    }
+    vertical-align: top;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    .wallItem {
+      padding-right: 0;
+      clear:both;
+      .thumbnail {
+        margin-bottom: 0;
+        padding: 0;
+        border-width: 1px 1px 2px;
+        position: relative;
+        //overflow: hidden;
+        border-radius: @border-radius-small;
+
+        .gift_tag {
+          position: absolute;
+          right: 0;
+          top: 20px;
+          z-index: 3;
+          //border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .gift_tag .ribbon {
+          -moz-border-bottom-colors: none;
+          -moz-border-left-colors: none;
+          -moz-border-right-colors: none;
+          -moz-border-top-colors: none;
+          border-image: none;
+          border-style: solid;
+          border-width: 16px 8px 17px 11px;
+          display: inline-block;
+          float: left;
+          transform: rotate(360deg);
+        }
+
+
+        .gift_tag .giftTypeWrapper {
+          color: #3982DB;
+          display: inline-block;
+          float: left;
+          height: 33px;
+          padding: 3px 7px 0 0;
+          text-align: left;
+          transition: all 0.5s ease 0s;
+        }
+
+        .giftTypesRibbon {position: relative; top: 2px; padding-right: 5px; color: white;
+          em {font-style: normal; font-size: 0.9em; font-family: @gt-font-family-logo;}
+          i { font-size: 0.9em;}
+        }
+
+        img.giftListingImage {
+          width: 100%; opacity: 0.8;
+          border-top-right-radius: @border-radius-small;
+          border-top-left-radius: @border-radius-small;
+          min-height: 90px;
+        }
+
+        a.gift-list-link:hover img, a.gift-list-link.hover img {
+          opacity: 1;
+        }
+
+        .gift-list-link {
+          display: block;
+          //overflow: hidden;
+          background-size: 100%;
+          background: black;
+          border-top-right-radius: @border-radius-small;
+          border-top-left-radius: @border-radius-small;
+        }
+        .giftDetails {
+          min-height: 100px;
+          overflow: hidden;
+          padding: 0 10px 10px;
+          h3 {
+            line-height: 130%
+          }
+        }
+
+        .giftWrap {
+          position: relative;
+          img.giftListingProfile {
+            position: absolute;
+            z-index: 3;
+            right: 10px;
+            border: 2px solid white;
+            bottom: -20px;
+            width: 45px;
+            height: 45px;
+          }
+          .shadowBackdrop {
+            /*background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+            background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+            background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));  */
+            position: absolute;
+            bottom: 0;
+            z-index: 2;
+            padding-top: 20px;
+            padding-bottom: 15px;
+            width: 100%;
+            border: none;
+            display: block;
+            padding-left: 10px;
+
+          }
+          .shadowBackdrop:hover {
+            text-decoration: none
+          }
+          h4 {
+            color: white;
+            z-index: 3;
+            text-shadow: @carousel-text-shadow;
+            padding: 0 80px 0 0;
+            margin: 0;
+            line-height: 125%;
+          }
+          svg {
+            position: absolute;
+            bottom: 8px;
+            right: 38px;
+            z-index: 4
+          }
+          .heartNumber {
+            bottom: 13px;
+            right: 45px;
+            z-index: 5;
+            margin-right: -9px;
+            text-align: center;
+            width: 30px;
+          }
+        }
+      }
+
+      .ribbon-thing {
+        .gift_tag {
+          border-top: 1px solid @brand-blue;
+        }
+        .gift_tag .ribbon {
+          border-color: @brand-blue @brand-blue @brand-blue rgba(0, 0, 0, 0);
+        }
+        .gift_tag .giftTypeWrapper {
+          background: none repeat scroll 0 0 @brand-blue;
+        }
+      }
+
+      .ribbon-skill {
+        .gift_tag {
+          border-top: 1px solid @brand-purple;
+        }
+        .gift_tag .ribbon {
+          border-color: @brand-purple @brand-purple @brand-purple rgba(0, 0, 0, 0);
+        }
+        .gift_tag .giftTypeWrapper {
+          background: none repeat scroll 0 0 @brand-purple;
+        }
+      }
+
+      .ribbon-help {
+        .gift_tag {
+          border-top: 1px solid @brand-green;
+        }
+        .gift_tag .ribbon {
+          border-color: @brand-green @brand-green @brand-green rgba(0, 0, 0, 0);
+        }
+        .gift_tag .giftTypeWrapper {
+          background: none repeat scroll 0 0 @brand-green;
+        }
+      }
+
+    }
+  }
+}
+
+@media (max-width: @screen-sm) {
+
+  .freeWall {
+    .wallItemLoader .thumbnail {
+      min-height: 150px;
+    }
+    .wallItem {
+      .thumbnail {
+        .gift_tag {
+          position: absolute;
+          right: 0;
+          top: 0 !important;
+          z-index: 3;
+          border-top-right-radius: @border-radius-small;
+        }
+
+        .gift_tag .ribbon {
+          -moz-border-bottom-colors: none;
+          -moz-border-left-colors: none;
+          -moz-border-right-colors: none;
+          -moz-border-top-colors: none;
+          border-image: none;
+          border-style: solid;
+          border-width: 16px 8px 17px 11px;
+          display: inline-block;
+          float: left;
+          transform: rotate(360deg);
+        }
+
+
+        .gift_tag .giftTypeWrapper {
+          color: #3982DB;
+          display: inline-block;
+          float: left;
+          height: 33px;
+          padding: 3px 7px 0 0;
+          text-align: left;
+          transition: all 0.5s ease 0s;
+        }
+
+        .giftTypesRibbon {
+          em {display: none}
+          i { font-size: 0.9em;}
+        }
+
+      }
+    }
+  }
+
+}
+
+.giftListingImage.img-rounded {height: 45px; width: 45px}
+
+.multiLine {
+  whitespace: pre;
+}
+
+@media (max-width: @screen-md) {
+  .giftListing {
+    padding: 0;
+  }
+
+}
+
+
+.giftDetails {
+  .giftTypeIcon a, .commentsAndWants a {
+    color: @light-color;
+    opacity: 0.5 !important;
+  }
+  .giftTypeIcon a:hover, .commentsAndWants a:hover {
+    opacity: 1
+  }
+  .giftTypeIcon a:Hover, .commentsAndWants a:Hover {
+    text-decoration: none;
+    color: @brand-primary;
+  }
+}
+
+.lastUpdated {
+  padding-top: 10px;
+  font-size: 1em;
+  text-align: center;
+  p {color: @gray-light; padding-bottom: 20px; }
+}
+
+/*----- dismissible overlays ------*/
+div.alert-dismissable.grayBG {
+  border-radius: 0;
+  min-width: 100%;
+  z-index: 99;
+  hr {
+    border-color: #ddd -moz-use-text-color -moz-use-text-color
+  }
+}
+
+div.alert-dismissable.grayBG.pushDown {
+  position: static;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  hr {
+    border-color: #ddd -moz-use-text-color -moz-use-text-color
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
+
+div.alert-dismissable.grayBG.whiteText {
+  background-color: rgba(255, 255, 255, 0.85);
+  p, button, div, a {
+    color: white
+  }
+  h3 {
+    margin-bottom: 30px
+  }
+  div.avatar {
+    margin-bottom: 5px
+  }
+}
+
+/*--- Add gift page ----*/
+.grayBGGift {
+  background: @lighter-color
+}
+
+.giftType {
+  margin-bottom: 12px; /*background: @brand-primary !important;*/
+  h2 {
+    margin: 0;
+    background: @brand-primary !important;
+    color: white;
+    padding: 8px;
+    font-family: @gt-font-family-logo;
+    font-size: 1.6em;
+  }
+  .has-feedback .form-control {
+    padding-right: 8px
+  }
+}
+
+.pillsGroup .nav-pills > li + li {
+  margin-left: 0
+}
+
+.btn-sm, .btn-xs {
+  line-height: 1.5;
+  padding: 2px 5px;
+}
+
+.wallItem .giftAddTable .containerCell a {
+  background: white;
+  margin: 20px 0 12px 0
+}
+
+.giftAddTable .gift.containerCell {
+  position: relative
+}
+
+.postGiftButtons {
+  padding-top: 25px;
+}
+
+.giftAddTable {
+  width: 100%;
+  max-width: 800px;
+  .containerCell {
+    width: 33.333%;
+    a {
+      border-radius: 3px;
+      display: block;
+      border: none;
+      text-decoration: none;
+      padding: 10px 0;
+      background: @gray-lighter;
+      color: @brand-main-dark;
+      &:hover {
+        text-decoration: none;
+        background: @brand-primary;
+        color: white;
+      }
+    }
+    &:nth-child(1) a {
+      margin-right: 3px;
+    }
+    &:nth-child(2) a {
+      margin-left: 3px;
+      margin-right: 3px
+    }
+    &:nth-child(3) a {
+      margin-left: 3px
+    }
+  }
+  .active {
+    a {
+      background: @brand-primary;
+      color: white;
+    }
+  }
+}
+
+.nav-pills > li > a {
+  max-width: 285px;
+  border: 1px solid @borderOnGray
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  border: none
+}
+
+.gradientGray {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @gray-lighter), color-stop(0.35, white));
+  background-image: -o-linear-gradient(bottom, @gray-lighter 0%, white 35%);
+  background-image: -moz-linear-gradient(bottom, @gray-lighter 0%, white 35%);
+  background-image: -webkit-linear-gradient(bottom, @gray-lighter 0%, white 35%);
+  background-image: -ms-linear-gradient(bottom, @gray-lighter 0%, white 35%);
+  background-image: linear-gradient(to bottom, @gray-lighter 0%, white 35%);
+}
+
+
+/*--- add photos ----*/
+div.photoDefault {
+  background: url(/images/giftplaceholder.jpg) center;
+  background-size: 200%;
+  height: 100px;
+  width: 150px;
+  border: 1px solid @gray-lighter
+}
+
+/*--- add photos ----*/
+div.loadingImage {
+  background: url("/images/aboutUsTheme/spinner.gif") center;
+  background-size: 100%;
+  height: 24px;
+  width: 24px;
+}
+
+div.loadingImageHome {
+  background: url("/images/aboutUsTheme/spinnerHome.gif") center;
+  background-size: 100%;
+  height: 24px;
+  width: 24px;
+  margin:auto;
+  clear:both;
+  position: relative;
+  bottom: -15px;
+}
+
+.ng-pristine input[type="file"] {
+  cursor: pointer;
+  height: 120px;
+  left: 0;
+  line-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100px;
+}
+
+.imagePreview {display: none}
+.imageUploadNew {display: block}
+.imageAfterInput .imagePreview {display: block}
+
+div#uploadImage {
+  div.imageSelectParent > div {
+    position: relative;
+    //float: left;
+    margin: 0 0 10px 10px;
+  }
+  div.imageSelectParent {
+    margin-left: -10px;
+    .imagePreview {
+      height: 120px;
+      border: 1px solid #E1E1E8;
+      border-radius: @border-radius-base * 1;
+      float: left;
+      &:hover {
+        img {opacity: 1}
+      }
+      img {
+        height: 120px;
+        border-radius: @border-radius-base * 1;
+        opacity: 0.5;
+        padding-bottom: 2px;
+      }
+      i.fa-minus-circle {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        background: white;
+        border-radius: 300px;
+        font-size: 1.7em;
+        cursor: pointer
+      }
+    }
+    .imageSelected {background: black;
+      a {position: relative; text-align: center;
+        i {
+          color: white;
+          font-size: 2em;
+          margin: 0 auto;
+          position: absolute;
+          top: 38px;
+          width: 100%;
+          z-index: 9;
+          text-shadow: 0px 0px 12px rgba(150, 150, 150, 1);
+        }
+      }
+      img {opacity: 0.8}
+
+    }
+    div.imageSelect {
+      height: 120px;
+      width: 100px;
+      position: relative;
+      float: left;
+      i.fa-picture-o, i.icon-skill, i.icon-help, i.icon-thing {
+        position: absolute;
+        top: 28px;
+        left: 16px;
+        font-size: 4.3em
+      }
+      i.fa-plus-circle {
+        position: absolute;
+        top: -7px;
+        left: -7px;
+        background: white;
+        border-radius: 300px;
+        font-size: 1.7em;
+        width: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-sm) {
+  div#uploadImage {
+    div.imageSelectParent > div {
+      margin: 0 0 10px 10px;
+    }
+    div.imageSelectParent {
+      margin-left: -10px;
+      .imagePreview {
+        height: 80px;
+        img {
+          height: 80px;
+        }
+        i.fa-minus-circle {
+          top: -7px;
+          right: -7px;
+          font-size: 1.7em;
+        }
+      }
+      .imageSelected {background: black;
+        a {
+          i {
+            font-size: 2em;
+            top: 25px;
+          }
+        }
+      }
+      div.imageSelect {
+        height: 80px;
+        width: 60px;
+        i.fa-picture-o, i.icon-skill, i.icon-help, i.icon-thing {
+          top: 21px;
+          left: 9px;
+          font-size: 2.5em
+        }
+        i.fa-plus-circle {
+          top: -7px;
+          left: -7px;
+          font-size: 1.7em;
+          width: 24px;
+        }
+      }
+    }
+  }
+}
+
+div.formSubmitArea {
+  text-align: center;
+}
+
+div.formSubmitArea > div, div.formSubmitArea > button {
+  display: inline-block
+}
+
+div.formSubmitArea > button {
+}
+
+div.formSubmitArea > button i {
+}
+
+.addPhotos label {
+  padding-bottom: 6px
+}
+
+/*--- content page ----*/
+.contentPage {
+  padding-top: 20px;
+}
+
+.contentPagePadding {padding-bottom: 40px;}
+
+.contentPageHeader.darkStandard a[href*="/#/aboutgiftuu"] {text-decoration: underline; }
+
+.contentPageHeader {
+  /*--border-bottom: 1px solid @gray-lighter;---*/
+  h1 {
+    color: #fff;
+    opacity: 0.95;
+    padding-top: 0;
+    margin-top: 0;
+
+    font-size: 2.3em;
+  }
+}
+
+.background-image {
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+div.overlayPattern {background: transparent url(/images/aboutUsTheme/overlay-pattern.png);}
+
+.contentPageHeader {
+  border-radius: 0
+}
+
+.contentPageHeader.standard {
+  background: transparent url("/images/bgs/circles-blur-color.jpg") center center;
+  background-size: 100%;
+}
+
+.contentPageHeader.bluerpt {
+  background: transparent url("/images/bgs/circles-blur-color.jpg") center center;
+  background-size: 100%;
+}
+
+.contentPageHeader.darkStandard {
+  background: transparent url("/images/bgs/circles-blur-color.jpg") center center;
+  background-size: 100%;
+  border: 0;
+  h1 {
+    color: white;
+    margin: 0 0 10px 0;
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
+  }
+  p {
+    color: white;
+    font-size: 1.1em;
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
+  }
+  p a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  hr {
+    opacity: 0.6
+  }
+  a.btn {
+    margin-bottom: 20px
+  }
+}
+
+.contentPageHeader h4.bannerSubheading {
+  color: white;
+  opacity: 0.95
+}
+
+@media (max-width: @screen-md) {
+  .contentPageHeader.standard,
+  .contentPageHeader.wave,
+  .contentPageHeader.bluerpt,
+  .contentPageHeader.geometric,
+  .contentPageHeader.gradient-multicolour,
+  .contentPageHeader.darkStandard {
+    background: transparent url("/images/bgs/circles-blur-color-flipped.jpg");
+    background-size: 100%;
+    background-position: center center;
+  }
+  .lastUpdated {
+    p.pull-right {float: none !important; padding-top: 20px; padding-left: 30px;}
+  }
+}
+
+@media (max-width: 768px) {
+  .contentPageHeader.standard,
+  .contentPageHeader.wave,
+  .contentPageHeader.bluerpt,
+  .contentPageHeader.geometric,
+  .contentPageHeader.gradient-multicolour,
+  .contentPageHeader.darkStandard {
+    background: transparent url("/images/bgs/circles-blur-color-flipped.jpg");
+    background-size: 100%;
+    background-position: center center;
+  }
+}
+
+.search-text
+{
+  color: white;
+}
+
+.search-icon
+{
+  z-index:100;
+  position: relative;
+}
+
+/*--- Login page ----*/
+
+.loginPages {
+  small {
+    margin-left: 0 !important
+  }
+  h5 {
+    margin: 0 !important
+  }
+  p.WelcomeText {
+    padding: 5px 0;
+  }
+  p.GifterLogo img {
+    height: 130px;
+  }
+  p.GifterLogo {
+    font-size: 6em
+  }
+  p.DividerTextWithLine {
+    margin: 0
+  }
+  p.DividerTextWithLine em {
+    width: 200px;
+    position: relative;
+    top: 30px;
+    background: white;
+    padding: 0 20px;
+    font-style: normal
+  }
+  p.loginSummary {
+    margin-top: 20px;
+    margin-bottom: 0
+  }
+  p.fbAuth a, p.fbAuth button {
+    width: 400px;
+    padding: 13px;
+    margin: 0 0 15px 0;
+    font-family: @gt-font-family-logo
+  }
+  form#profileStep2 > .grayBG.formHeader:after {
+    content: "Private - not accessible by anyone";
+  }
+
+  .profileWelcome {
+    margin-bottom: 20px
+  }
+  div.grayBG.formHeader {
+    padding-top: 50px
+  }
+  form#profileStep2 > .contentPage {
+    margin-top: -40px
+  }
+  form#profileStep2 > .contentPage:first-child {
+    margin-top: 0
+  }
+  form#profileStep2 > .contentPage:nth-child(2) p {
+    padding-bottom: 40px
+  }
+  form#profileStep2 div#map-canvas {
+    margin-top: 20px
+  }
+
+  @media (max-width: @screen-md) {
+    .giftListing {
+      padding: 0;
+    }
+
+    p.GifterLogo img {
+      height: 60px;
+    }
+
+    p.GifterLogo {
+      font-size: 3em
+    }
+
+    p.fbAuth a, p.fbAuth button {
+      width: 300px;
+      padding: 13px
+    }
+  }
+}
+
+/* Profile pages */
+
+.profileDescription {
+  clear: both;
+  padding: 0;
+}
+
+.profile-view .open > .dropdown-menu {
+  /* Change to menu Report button open to the left for mobile */
+  right: 0;
+  left: auto;
+}
+
+.profile-view .panel-default > .panel-heading + .panel-collapse .panel-body h4 {
+  margin: 0 0 0.2em 0;
+  padding-top: 0
+}
+
+.profile-view .panel-heading {
+  padding: 0
+}
+
+.profile-view .panel-title > a {
+  display: block;
+  cursor: pointer;
+  padding: 10px 15px;
+  line-height: 1.5em;
+}
+
+.profile-view .panel-title > a:hover {
+  text-decoration: none
+}
+
+.profile-view .panel-default > .panel-heading + .panel-collapse .panel-body .row {
+  margin-bottom: 0.8em
+}
+
+.profile-view .panel-default > .panel-heading + .panel-collapse .panel-body .row a.gift-list-link:hover {
+  display: block;
+}
+
+.profile-view .panel-heading:hover {
+  background-color: #0078d9;
+}
+
+.profile-heading .containerCell {
+  vertical-align: top
+}
+
+.profile-heading .containerCell h1 {
+  padding-top: 10px;
+  padding-bottom: 5px
+}
+
+.containerCell.wrapperProfileImage {
+  width: 85px
+}
+
+.editAndreportProfile .contentPage > h2 {
+  margin-top: 0;
+}
+
+.editProfileButtons {
+  padding: 5px;
+  height: 42px;
+}
+
+.editProfileButtons a {
+  color: @brand-main-dark;
+  text-decoration: none
+}
+
+.editProfileButtons .btn {
+  font-size: 0.9em;
+}
+
+.profileHeartScore {
+  position: relative;
+  width: 200px;
+  height: 70px;
+}
+
+.profileHeartScore h2 {
+  color: white;
+  font-size: 1.3em;
+  position: absolute;
+  right: 80px
+}
+
+.profileHeartScore .heartProfile {
+  width: 100px;
+  position: absolute;
+  right: 0
+}
+
+.profileHeartScore .heartProfile > a {
+  position: relative
+}
+
+.profileHeartScore svg {
+  height: 110px
+}
+
+.profileHeartScore div.heartNumber {
+  color: white;
+  font-size: 1.3em;
+  position: absolute;
+  right: 79px;
+  text-align: center;
+  top: -82px;
+  width: 100px;
+  font-family: @gt-font-family-logo
+}
+
+.wrapperProfileImage .largerProfile {
+  position: relative;
+  top: -5px
+}
+
+.gift-listWrapper a.gift-list-link {
+  margin: 0;
+  opacity: 1
+}
+
+.gift-listWrapper a.gift-list-link h4 {
+  margin-top: 0;
+  padding-top: 0
+}
+
+.gift-listWrapper a.gift-list-link dl {
+  margin-bottom: 0
+}
+
+.gift-listWrapper a.gift-list-link dd {
+  font-size: 0.9em
+}
+
+.gift-listWrapper a.gift-list-link:hover dl {
+  background-color: #f6f6f6;
+}
+
+/*Remove small heart*/
+@media (max-width: 9999px) {
+  .wrapperProfileImage .heartNumber {
+    text-indent: -9999px;
+  }
+
+  .wrapperProfileImage svg {
+    display: none
+  }
+}
+
+/*Remove large heart*/
+@media (max-width: @screen-md) {
+  .profileHeartScore {
+    display: none;
+  }
+
+  .wrapperProfileImage .heartNumber {
+    text-indent: 0;
+  }
+
+  .wrapperProfileImage svg {
+    display: block
+  }
+}
+
+/*--- About giftuu page ----*/
+div.happinessCreator {
+  background: url("/images/AboutGiftuu/heart-balloon.jpg") 0;
+  background-position: center;
+  height: 754px;
+  position: relative;
+}
+
+div.giveSkills {
+  background: url("/images/AboutGiftuu/surfing.jpg") 0;
+  background-position: center;
+  color: white;
+  height: 754px;
+  position: relative;
+}
+
+div.giveHelp {
+  background: url("/images/AboutGiftuu/smilingWoman.jpg") 0;
+  background-position: center;
+  height: 754px;
+  position: relative;
+}
+
+div.giveThings {
+  background: url("/images/AboutGiftuu/feltHeart.jpg") 0;
+  background-position: center;
+  height: 754px;
+  position: relative;
+  color: white;
+}
+
+div.howDoesItWork {
+  color: white;
+  background-color: #519ED3;
+  background-position: center;
+  padding: 0px 0px 20px 0px
+}
+
+div.howDoesItWork h2 {
+  color: white;
+}
+
+div.howDoesItWork img {
+  padding: 10px;
+}
+
+.heartList {
+  list-style-image: url("/images/AboutGiftuu/heartBullet.png");
+}
+
+.heartlist li {
+  padding-top: 10px;
+}
+
+div.whyGiftuu {
+  background-color: #6DC06F
+}
+
+//accordion disable
+.disabledAccordion {
+  pointer-events: none;
+  border: 1px solid #f7f7f7;
+  color: @lighter-color;
+}
+
+.disabledAccordion .panel-heading {
+  background-color: #fafafa;
+}
+
+.disabledAccordion .panel-title > a > span {
+  color: @mid-dark-color;
+}
+
+//accordion disable
+.editableDiv {
+  border-color: rgba(0, 0, 0, 0.15);
+  border-style: dashed;
+  border-width: 2px;
+  padding: 10px;
+  border-radius: @border-radius-base;
+  margin-bottom: 20px;
+}
+
+#overlay-panel {
+  margin: auto auto auto auto;
+  width: 350px;
+  background: #FFF;
+}
+
+.overlay {
+}
+
+//accordion disable
+.unEditableDiv {
+  opacity: 0.2;
+  top: position-top -10;
+  left: position-left - 10;
+  background-color: white;
+  z-index: 5000;
+  pointer-events: none;
+}
+
+.unEditableDiv > h3 {
+  color: gray;
+
+}
+
+.unEditableDiv button {
+  enabled: false;
+}
+
+//Fix responsive images on gifts page
+.fixGiftMargin {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.fixGiftMarginRemove {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/*Add gift spinner controls*/
+.numTextBox {
+  height: 48px;
+}
+
+.spinnerButtons {
+  margin-right: -6px;
+}
+
+.bottomButton {
+  vertical-align: top;
+  margin-top: -10px;
+}
+
+.topButton {
+  vertical-align: top;
+  margin-bottom: -20px;
+}
+
+/*----notifications---*/
+ul.media-list li {
+  background: #f6f6f6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 6px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  border: 1px solid #ddd
+}
+
+ul.media-list li:hover {
+  background: #f2f2f2 !important;
+}
+
+ul.media-list li:nth-child(odd) {
+  background: white
+}
+
+ul.media-list .chat-content.containerTable {
+  width: 100%
+}
+
+ul.media-list .avatar.containerCell {
+  width: 55px;
+  vertical-align: middle
+}
+
+ul.media-list .containerCell {
+  vertical-align: top
+}
+
+ul.media-list .speechBubble a {
+  display: block;
+  width: 100%;
+  padding: 6px 0
+}
+
+ul.media-list .speechBubble a:hover {
+  text-decoration: none;
+}
+
+ul.media-list .speechBubble .postedByName {
+  color: @brand-primary
+}
+
+ul.media-list .speechBubble a:hover .postedByName {
+  color: @link-hover-color
+}
+
+ul.media-list .speechBubble .display-block small {
+  margin-top: 0
+}
+
+ul.media-list .dateLocation {
+  padding-right: 6px;
+  margin-top: 10px;
+}
+
+ul.media-list .dateLocation i {
+  font-size: 1.1em;
+  float: right
+}
+
+/*--------my gifts--------------*/
+
+.rateImage {
+  img {max-width: 80px}
+}
+
+.giftFromToArrow {
+  width: 100px;
+  i {
+    font-size: 1.5em
+  }
+}
+
+.gifts-given h2 {
+  font-size: 1.3em
+}
+
+.giftFromToWrapper {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  left: -10px;
+}
+
+.giftFromToWrapper .containerCell {
+  vertical-align: middle
+}
+
+.giftFromToWrapper .avatar.containerCell {
+  width: 70px
+}
+
+.giftFromToWrapper .avatar.containerCell:first-child {
+  padding-left: 20px
+}
+
+.giftFromToWrapper .arrow-gift-give.containerCell img {
+  width: 80px;
+}
+
+.main.contentBlock {
+  padding: 20px 0;
+  border-radius: @border-radius-small;
+  margin-bottom: 20px
+}
+
+.main.contentBlock p, .main.contentBlock h3, .main.contentBlock h4, .main.contentBlock .alert {
+  margin-right: 20px;
+  margin-left: 20px
+}
+
+.giftExperienceRatingWrapper {
+  width: 200px; margin-left: 5px;
+}
+
+.giftExperienceRating li {
+  list-style: none;
+  text-align: center;
+}
+
+.giftExperienceRating li > span {
+  display: block;
+  cursor: pointer;
+  font-size: 2.2em;
+  color: @gray-light
+}
+
+.giftExperienceRating li > span:hover {
+  color: @brand-primary
+}
+
+.giftFromToWrapper svg {
+  top: -4px !important;
+  left: -8px !important;
+}
+
+.box {
+  padding: 20px 0;
+  border-radius: @border-radius-small;
+  border: 1px solid @borderOnGray
+}
+
+/*-------------accordian---------------*/
+
+.accordianContent {
+  margin-bottom: 10px
+}
+
+.accordianContent > .containerRow > .containerCell {
+  vertical-align: top
+}
+
+.accordianContent > .containerRow > .containerCell:first-child > img {
+  width: 65px;
+  margin-right: 15px
+}
+
+.accordianContent > .containerRow > .containerCell:last-child > h3 {
+  font-size: 1.1em;
+  margin-top: 0
+}
+
+.giftQuestionsComments {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.paddingBottom {
+  padding-bottom: 10px;
+}
+
+.pre {
+  white-space: pre;
+}
+
+/*-----------speech chat new--------------*/
+
+.youReceivedAGiftNotification {
+  img.img-circle.gifterFace {max-width: 50px; }
+}
+
+.chatsNew {
+  .displayNameBelowBubble {
+    margin-bottom: 35px;
+    .chat-content {
+      padding-bottom: 3px !important;
+    }
+    .fromWhenBlock {
+      position: relative;
+      small {
+        position: absolute;
+        top: 13px
+      }
+      small:first-child {
+        left: 0
+      }
+      small:last-child {
+        right: 0
+      }
+    }
+    img.img-circle.gifterFace {max-width: 50px}
+  }
+  .chat-content > a {
+    text-decoration: none
+  }
+  .chat-content > a > span {
+    font-size: 0.9em;
+    margin-bottom: 6px;
+  }
+  .chat-content > span.chatTitle {
+    color: #aaa;
+  }
+  .chat-content > a > span.chatTitle {
+    font-size: 1em;
+    color: @brand-primary
+  }
+  .chat-content > a:hover > span.chatTitle {
+    color: @link-hover-color
+  }
+}
+
+/*------------sharing buttons ---------------*/
+.reportingGift button {margin-top: 25px}
+
+@media (max-width: @screen-md) {
+  .reportingGift button {margin-top: 5px}
+}
+
+.reporting.absoluteLeft {
+  padding: 3px;
+  a {
+    margin-bottom: 3px;
+    display: none
+  }
+  a.hideInhover {
+    display: inline-block;
+  }
+  &:hover a {
+    display: inline-block;
+    &:hover {
+      opacity: 1
+    }
+  }
+  &:hover a.hideInhover {
+    display: none
+  }
+}
+
+.reporting.fixedRight {
+  width: 40px;
+  height: 260px;
+  padding: 3px 0 0 3px;
+  margin: 100px 23px 0 0;
+  a {
+    width: 40px;
+    margin-bottom: 3px;
+  }
+  a.hideInhover {
+    display: none
+  }
+  &:hover a {
+    display: block
+  }
+  &:hover a.hideInhover {
+    display: none
+  }
+}
+
+.statusHeight
+{
+  height: 50px;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-bottom: 0;
+}
+
+.statusHeightGiven
+{
+  min-height: 155px;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-bottom: 0;
+}
+
+.reporting.shareUnderImage {
+  padding-top: 10px;
+  span.additionalShare {
+    a {
+      display: none;
+    }
+    a.hideInhover {
+      display: inline-block;
+    }
+    &:hover a {
+      display: inline-block
+    }
+    &:hover a.hideInhover {
+      display: none
+    }
+  }
+}
+
+.giftImageShare a {
+  background: black;
+  color: white;
+  border-color: transparent;
+  opacity: 0.3
+}
+
+/* override navbar toggle */
+@media (max-width: @screen-md) {
+  .reporting.shareUnderImage {
+    padding-right: 10px
+  }
+}
+
+/* ----- Calendar ------*/
+.giftuuCalendar button {
+  border-radius: 0;
+  border: none;
+}
+
+.giftuuCalendar thead tr:last-child {
+  border: 1px solid #ddd
+}
+
+.giftuuCalendar thead tr:last-child th {
+  padding: 8px 0;
+  background: #f8f8f8
+}
+
+.giftuuCalendar thead tr:last-child th:first-letter {
+}
+
+.giftuuCalendar tbody td {
+  border: 1px solid #ddd
+}
+
+.giftuuCalendar tbody td button {
+  padding: 6px 10px
+}
+
+.giftuuCalendar {
+  text-align: center
+}
+
+.giftuuCalendar table {
+  margin: 10px auto
+}
+
+.giftuuCalendar thead tr:first-child button {
+  padding-bottom: 15px;
+  font-size: 1em;
+  color: #666
+}
+
+.giftuuCalendar thead tr:first-child button i {
+  font-size: 0.8em;
+  color: #aaa
+}
+
+.giftuuCalendar thead tr:first-child button:hover,
+.giftuuCalendar thead tr:first-child button:hover i {
+  background: white;
+  color: @brand-primary
+}
+
+.giftuuCalendar button.btn-info span {
+  color: white
+}
+
+.giftuuCalendar {
+  .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background: white;
+    color: @brand-primary
+  }
+}
+
+.giftuuCalendar button.btn-info, .giftuuCalendar tbody td .btn-default:hover {
+  background: @brand-primary;
+}
+
+.giftuuCalendar tbody td .btn-default:hover span {
+  color: white
+}
+
+/*----------Form errors-----------------------*/
+.has-error input, .has-error textarea {
+  background-color: #f9e1df;
+}
+
+/*---------------gift exchange / pick up details ---------------*/
+.detailsHeader {
+  margin-bottom: 20px;
+  h3 {
+    margin: 0
+  }
+}
+
+.exchange-section {
+  h2.add {
+    margin-top: 0
+  }
+}
+
+.arrow-below {
+  margin-bottom: 40px;
+  position: relative;
+  .arrow-under i {
+    position: absolute;
+    bottom: -20px;
+    font-size: 2em;
+    color: @lighter-color
+  }
+}
+
+.editExchangeArea {
+  padding-top: 55px
+}
+
+
+
+.editExchangeAreaInfo {
+  div[class^="col-md"] {margin-bottom: 30px}
+  h3 {margin-top: 0; font-size: 1.25em;}
+  .highlight {
+    h3 {padding-top: 10px}
+  }
+
+}
+
+.exchange-section .panel-body {
+}
+
+.exchange-section .delete {
+  font-size: 1.2em;
+  color: @light-color
+}
+
+.exchange-section label {
+}
+
+.receiver-view div.jumbotron {
+  overflow: hidden;
+  border-radius: @border-radius-small;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  img.gifterFace {max-width: 50px;}
+  i.fa.fa-angle-right {margin: 0 10px;}
+}
+
+div.receiver-view .thumbnail {margin-bottom: 10px}
+
+.appreciate.row a.btn {
+  margin-bottom: 20px
+}
+
+.posterActivity.exchange-section .chatsNew {
+  padding-left: 0
+}
+
+.posterActivity.exchange-section .chats .chat-content {
+  padding: 3px 0 3px 10px;
+}
+
+/*.posterActivity .chatsNew li  {padding: 0px; border: 1px  solid}*/
+
+/*---------------confirmation ---------------*/
+.confirmPage {
+  .HeartBG {
+    overflow: hidden;
+    height: 230px;
+    position: relative;
+    i {
+      font-size: 15em;
+      color: white
+    }
+    h1 {
+      position: relative;
+      top: -155px;
+      text-shadow: 0px 0px 12px rgba(0, 0, 0, 0) !important;
+      color: @brand-red !important;
+      font-size: 2em !important
+    }
+  }
+  p.confirmTagline {
+    margin-bottom: 20px;
+    font-family: @gt-font-family-logo;
+    font-size: 1.3em
+  }
+  p.confirmCTA {
+    margin-bottom: 30px !important;
+  }
+  .viewGift {
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0) !important;
+    text-decoration: none !important;
+    max-width: 300px !important;
+    margin: 0 auto;
+  }
+  .ShareGift {
+    img{
+      max-width: 100%;
+     }
+  }
+}
+
+/*---------------giftStatus ---------------*/
+
+.mainToolbar.noTitle {border-bottom: 1px solid @borderOnGray}
+
+.mainToolbar h2 {
+  display: none;
+  color: white;
+}
+
+.mainToolbar h2.active {
+  font-size: 1.3em !important;
+  margin: 15px;
+  margin-left: -5px;
+  display: block
+}
+
+.giftStatus {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.giftStatus li {
+  float: left;
+}
+
+.giftStatus {
+  display: block;
+  margin: -5px !important;
+}
+
+//.giftStatus li:first-child {padding-top: 10px; padding-right: 20px}
+.giftStatus li {
+  padding-top: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  text-align: center;
+  border-top: 3px solid white
+}
+
+.giftStatus li i {
+  display: none
+}
+
+.giftStatus li.active {
+  font-family: @gt-font-family-logo
+}
+
+.giftStatus li.active:nth-child(n+1) {
+  border-top: 3px solid @brand-red;
+}
+
+.giftStatus li.active:nth-child(n+2) {
+  border-top: 3px solid @brand-blue;
+}
+
+.giftStatus li.active:nth-child(n+3) {
+  border-top: 3px solid @brand-purple;
+}
+
+.giftStatus li.active:nth-child(n+4) {
+  border-top: 3px solid @brand-green;
+}
+
+.giftStatus li.active:nth-child(n+5) {
+  border-top: 3px solid @brand-yellow;
+}
+
+.giftStatus li.active:nth-child(n+6) {
+  border-top: 3px solid @brand-army-green;
+}
+
+@media (max-width: @screen-md) {
+  .giftStatus {
+    margin: 0 !important;
+    li {
+      border: none !important;
+      padding-left: 6px;
+      padding-right: 6px;
+      font-size: 0.9em;
+    }
+  }
+}
+
+.addGiftHeader {
+  margin-left: -15px;
+  margin-right: -15px
+}
+
+.contentPageHeader.overflowHidden {
+  border: none
+}
+
+.contentPageHeader {
+  span.badge.round {background-color: @brand-blue; display: none;}
+}
+
+.giftStatus li.active i {
+  display: inline;
+  position: absolute;
+  bottom: -25px;
+  color: white;
+  font-size: 2em;
+  margin-left: -15px;
+}
+
+.rateThisAlert .alert {
+  margin: 0 -15px 15px -15px;
+  .giftExperienceRatingWrapper {
+    width: 100%;
+    i {
+      color: @brand-blue !important;
+    }
+    i:hover {
+      color: @brand-green !important;
+    }
+  }
+}
+
+.alertGiveGiftFromParent {
+  margin-right: -20px
+}
+
+.alertGiveGiftFrom {
+  margin: 0 auto;
+  max-width: 350px;;
+  .avatar.containerCell {
+    vertical-align: middle;
+  }
+  .redHeart {
+    left: -10px;
+    top: -10px;
+  }
+  .heartNumber {
+    left: -16px;
+    top: -3px;
+  }
+}
+
+@media (max-width: @screen-md) {
+  .mainToolbar, .rateThisAlert {
+    padding: 1px 0;
+    margin-top: -2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainToolbar, .rateThisAlert {
+
+  }
+
+  .rateThisAlert .alert {
+    margin: 0 0 15px 0;
+  }
+}
+
+.animate-opacity.ng-enter {
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
+  opacity:0.25;
+}
+
+
+.animate-opacity.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+
+.giftExperienceRate {font-size: 2.1em !important;}
+
+.social-icons {padding-top: 20px}
+
+div.ng-valid-time td[ng-show="showMeridian"] {vertical-align: top; padding-left: 5px}
+
+.orInset {padding: 0 8px}
+
+
+/*-------------about page overrides---------------*/
+
+.top-hero {
+  ul.heartList {padding-left:30px; list-style:none;
+    li { margin-bottom:20px; color: white; font-size: 1.3em; line-height: 1.3em;}
+    li:before {
+      margin:0 0 0 -30px;
+      width: 30px;
+      color: white;
+      font-size: 1.1em
+    }
+  }
+  blockquote {color: white;}
+}
+
+.reportedStatus
+{
+  margin-top:-14px;
+  margin-left:5px;
+}
+
+.featuresContent {
+  p {font-size: 1.2em;}
+  ul.bulletTick {padding-left:30px; list-style:none;
+    li { margin-bottom:20px; font-size: 1.2em; line-height: 1.2em;}
+    li:before {
+      margin:0 0 0 -30px;
+      width: 30px;
+      font-size: 1.1em;
+      color: @brand-green;
+    }
+  }
+}
+
+
+.switchWrapper {background: rgba(0, 0, 0, 0.4); border-radius: 300px; float: right; top: 25px; position: absolute; left: 25px; z-index: 99;
+  div {display: inline-block; padding: 5px; min-width: 33px; text-align: center;}
+  div:nth-child(1) {border-radius: 300px 0 0 300px;}
+  div:nth-child(2) {border-radius: 0 300px 300px 0; margin-left: -5px;}
+  div.switch {color: white; background: transparent; opacity: 0.8}
+  div.switch.active {background: @brand-purple; color: white; opacity: 1}
+}
+
+.helpGreen {
+  .switchWrapper {
+    div.switch.active {background: @brand-green;}
+  }
+}
+
+
+/*
+.searchImageInner {float: left}
+.searchImageInner .thumbnail {float: left}
+.searchImageInner .thumbnail img {height: 110px}
+
+*/
+
+
+/*-- Share Giftuu -- */
+.shareGiftuuButton {
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  0% {
+    -moz-transform: rotate(0);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+.fa-spinner{
+  animation: rotation 1s infinite steps(8);
+  -webkit-animation: rotation 1s infinite steps(8);
+  -moz-animation: rotation 1s infinite steps(8);
+}
+
+/*---giftuu key on gift detail---*/
+
+.giftuu-key {list-style: none; padding: 0; text-align: right; margin-bottom: -5px;
+  li {display: inline; font-size: 0.8em; padding-right: 10px; color: #ccc; border-right: 1px solid #eee; padding-left: 10px;
+    i {font-size: 1.1em;}
+  }
+  li.active {color: rgba(0, 0, 0, 0.7)}
+}
+
+.deactivated-gift {
+  height: 100%;
+  position: absolute;
+  right: 15px;
+  top: 0px;
+}
+
+.deactivated-gift h3 {
+  margin-top: 170px
+}
+
+.notAvailCross {font-size: 1.6em; color: #ccc; font-weight: bold; position: relative; bottom: -1px; margin-right: 2px}
+
+@media (max-width: @screen-md) {
+  .deactivated-gift {
+    right: 0;
+  }
+}
+
+div.blackText a {color: #666; margin: 3px 0}
+div.blackText a:hover {text-decoration: none}
+.giver-toInner {float: left;}
+.giver-toInner .containerTable {margin-right: 20px; margin-bottom: 20px;
+  .redHeart {
+    left: -9px;
+    top: -9px;
+  }
+
+  img.gifterFace {
+    max-width: 50px;
+  }
+
+  .heartNumber {
+    left: 1px;
+    top: -2px;
+  }
+
+}
+@media (max-width: 768px) {
+  .statusHeightGiven {
+    padding-left: 20px;
+  }
+}
+
+
+ .btn-lg, .btn-group-lg > .btn {border-radius: 6px;
+  font-size: 16px;
+  line-height: 1.33;
+  padding: 14px 16px;}
+
+html {display: block;}
+

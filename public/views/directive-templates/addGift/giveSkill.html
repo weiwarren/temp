@@ -1,0 +1,139 @@
+<!-- START THING FORM -->
+<div class="container-fluid-giftuu">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <form id="uploadForm" name="uploadForm" role="form" action="/gifts" method="post"
+                      enctype="multipart/form-data"
+                      novalidate
+                      prevent-submit="(uploadForm.$invalid) ||  (selectedImages.length == 0 && (imageSearchResults | filter:{selected:true}).length == 0)">
+                    <div class="GiveSkill">
+                        <input type="hidden" name="giftType" id="giftType" value="skill">
+
+                        <div class="form-group has-feedback"
+                             ng-class="{'has-error':invalidGive && uploadForm.title.$invalid}">
+                            <input type="hidden" name="user" id="user" ng-value="userString"/>
+                            <label class="control-label" for="title">I want to give this skill</label>
+                            <input class="form-control msd-elastic" id="title" name="title" google-image-search
+                                      search-results="imageSearchResults"
+                                      placeholder="enter a title for this skill" ng-model="title" required/>
+                            <span ng-show="invalidGive && uploadForm.title.$invalid"
+                                  class="form-control-feedback"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="SessionType">In a</label>
+
+                            <div class="containerTable fullWidth text-center giftAddTable">
+                                <div class="containerRow" ng-init="sessionType='group'" id="sessiontype">
+                                    <div class="skill gift containerCell" ng-class="{'active':sessionType=='group'}">
+
+                                        <a href="javascript:void(0)" ng-click="sessionType = 'group'" class="thumbnail"><i
+                                                class="fa fa-users"></i> Group session</a>
+                                    </div>
+                                    <div class="help gift containerCell" ng-class="{'active':sessionType=='oneOnOne'}">
+
+                                        <a href="javascript:void(0)" ng-click="sessionType = 'oneOnOne'"
+                                           class="thumbnail"><i class="fa fa-user"></i> One on one</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input name="sessionType" type="hidden" ng-value="sessionType" ng-model="sessionType">
+
+                        <div class="form-group has-feedback"
+                             ng-class="{'has-error':invalidGive && uploadForm.ideal.$invalid}">
+                            <label class="control-label" for="ideal">to {{sessionType == "oneOnOne" ? ('someone') :
+                                ('people')}} who</label>
+                            <textarea class="form-control msd-elastic" id="ideal" name="ideal"
+                                      placeholder="describe the type of person you want to give this to"
+                                      ng-model="ideal" required></textarea>
+                            <span ng-show="invalidGive && uploadForm.ideal.$invalid"
+                                  class="form-control-feedback"></span>
+
+                        </div>
+
+                        <div class="form-group has-feedback"
+                             ng-class="{'has-error':invalidGive && uploadForm.addressFormatted.$invalid}">
+                            <label class="control-label" for="address">and who live near</label>
+                            <input type="text" id="address" name="addressFormatted" class="form-control"
+                                   placeholder="enter the local community you want to give this skill to"
+                                   ng-model="address" required googleplace>
+                            <input name="address" type="hidden" ng-init="address=user.location"
+                                   ng-value="address | json" required>
+                            <span ng-show="invalidGive && uploadForm.address.$invalid"
+                                  class="form-control-feedback"></span>
+                        </div>
+
+                        <div class="form-group has-feedback"
+                             ng-class="{'has-error':invalidGive && uploadForm.description.$invalid}">
+                            <label class="control-label" for="description">here are the details</label>
+                            <textarea class="form-control" id="description" name="description" ng-model="description"
+                                      placeholder="describe how you will share this skill" required></textarea>
+                            <span ng-show="invalidGive && uploadForm.description.$invalid"
+                                  class="form-control-feedback"></span>
+                        </div>
+
+                        <div class="form-group addPhotos">
+                            <label>Add or select photos</label>
+                            <!--file upload button-->
+                            <div id="uploadImage">
+                                <div class="imageSelectParent ng-pristine" select-image
+                                     ng-class="{'imageAfterInput': imageSearchResults.length >= 1}">
+
+                                    <div class="imageSelect"><i class="fa fa-picture-o"></i>
+                                        <i class="fa fa-plus-circle"></i>
+                                        <input type="file" accept="image/*" capture="camera" name="images[{{$index}}]"
+                                               ng-repeat="input in selectedInputs"
+                                               onchange="angular.element(this).scope().fileNameChaged(this.files)"/>
+                                    </div>
+
+                                    <input type="hidden" ng-value="imageSearchResults | filter:{selected:true} | json"
+                                           name="googleImages" id="googleImages">
+
+                                    <div class="imagePreview imageSelected imageUploadNew"
+                                         ng-repeat="item in selectedImages">
+                                        <a class="img-responsive cursorShow" ng-click="removeItem($index);">
+                                            <i class="fa fa-check"></i>
+                                            <img ng-src="{{item.src}}"/>
+                                        </a>
+                                    </div>
+
+                                    <div class="imagePreview" ng-hide="errored" ng-repeat="r in imageSearchResults"
+                                         ng-class="{'imageSelected': r.selected == true}">
+                                        <a class="img-responsive" href="javascript:void(0)"
+                                           ng-click="r.selected=!r.selected">
+                                            <i class="fa fa-check" ng-show="r.selected"></i>
+                                            <img ng-src="{{r.tbUrl}}" image-error="errored">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+                            <div class="has-error"
+                                 ng-show="invalidGive && !(selectedImages.length || (imageSearchResults | filter:{selected:true}).length)">
+                                <span class="form-control-feedback">Please attach an image for this gift.</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="formSubmitArea">
+                            <button ng-click="uploadForm.$invalid? (invalidGive=true):(loadingShow=true)" type="submit"
+                                    class="btn btn-primary btn-lg" ng-hide="loadingShow" analytics-on="click" analytics-event="postGift skillPage" analytics-category="gift">
+                                <i class="fa fa-heart"></i>
+                                Kindo
+                            </button>
+                            <div ng-show="loadingShow" class="loadingImage"></div>
+                        </div>
+                        <div class="heightThirty clear"></div>
+                    </div>
+                </form>
+                <!-- END SKILL FORM -->
+
+            </div>
+        </div>
+    </div>
+</div>

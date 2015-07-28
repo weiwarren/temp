@@ -1,0 +1,60 @@
+<!-- HEADER ------------->
+<!--<div class="container-fluid contentPageHeader bluerpt" ng-if="accessible">
+    <div class="container">
+        <div class="row exchangeHeader ">
+            <div class=" col-md-12 contentPage text-center">
+                <h1 ng-if="isOwner">Organise place and time</h1>
+                <h1 ng-if="!isOwner">Receive your gift</h1>
+            </div>
+
+        </div>
+    </div>
+</div>-->
+
+<div class="container-fluid-giftuu mainToolbar" ng-if="isOwner">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="editProfileButtons col-md-12">
+                <ul class="giftStatus">
+                    <li>Post<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    <li>Choose<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    <li class="active">Organise<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                    <li>Rate<br/><i class="fa fa-play fa-rotate-90"></i></li>
+                </ul>
+                <div class="pull-right" ng-if="!giftuuDetail.new">
+                    <a class="pull-right btn btn-link" ng-click="giftuuDetail.userMode='edit'"
+                       ng-show="giftuuDetail.userMode!='edit'">
+                        <i class="fa fa-pencil"></i> edit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="container-fluid-giftuu mainToolbar brand-purple-BG" ng-if="isOwner">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12">
+                <h2>Post your gift</h2>
+
+                <h2>Choose a recipient</h2>
+
+                <h2 class="active">Organise gift time and place</h2>
+
+                <h2>Rate this gift experience</h2>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="container-fluid-giftuu exchangePage" ng-if="accessible">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <pickup-gift-directive mode="giftuuDetail.userMode"></pickup-gift-directive>
+        </div>
+    </div>
+</div>
+

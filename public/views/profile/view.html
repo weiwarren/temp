@@ -1,0 +1,574 @@
+﻿<div class="container-fluid-giftuu deletedProfile" ng-show="profileDeleted">
+    <div class="container-giftuu">
+        <div class="row-giftuu ">
+            <div class="col-md-12 contentPage text-center">
+                <div class="alert alert-danger">
+                    <p style="color: #843534;"><i class="fa fa-exclamation-triangle"> </i> Deleted profile</p>
+                    <hr/>
+                    <p style="color: #843534;">Sorry, the person you are trying to find out about has left Kindo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contentPageHeader bluerpt">
+    <div class="container-fluid overlayPattern">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contentPage">
+                    <div class="containerTable fullWidth profile-heading">
+                        <div class="containerRow">
+                            <div class="containerCell wrapperProfileImage">
+                                <div class="largerProfile">
+                                    <div class="avatar largeHeart pull-left clearfix">
+                                        <svg class="redHeart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="25px" height="24px" viewBox="0 0 25 24" enable-background="new 0 0 25 24" xml:space="preserve">
+			                                <path d="M12.487 4.281C12.49 4.3 12.5 4.3 12.5 4.285s0.01-0.003 0.013-0.004 M12.513 4.281C13.388 1.8 15.5 0 18.3 0 C22.016 0 25 3.1 25 6.857c0 0.724-0.111 1.421-0.312 2.076C22.754 15.8 12.5 24 12.5 24S2.247 15.8 0.3 8.9 C0.111 8.3 0 7.6 0 6.857C0 3.1 3 0 6.7 0c2.795 0 4.9 1.8 5.8 4.3"/>
+                                        </svg>
+                                        <a class="largeFace">
+                                            <img class="gifterFace" alt="profile image"
+                                                 src="http://res.cloudinary.com/giftuu/image/facebook/w_66,h_66,c_fill/{{userProfile.profileId}}.jpg">
+                                        </a>
+
+                                        <div class="heartNumber">{{userProfile.heart || 0}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="containerCell">
+                                <h1 class="UserName">{{userProfile.displayName}}</h1>
+                            </div>
+                            <div class="containerCell">
+                                <div class="profileHeartScore pull-right">
+                                    <h2>Heart Score</h2>
+
+                                    <div class="heartProfile">
+                                        <a href="#/help#heart-scores">
+                                            <svg class="redHeart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="200px" height="192px" viewBox="0 0 50 48" enable-background="new 0 0 25 24" xml:space="preserve"><path d="M12.487 4.281C12.49 4.3 12.5 4.3 12.5 4.285s0.01-0.003 0.013-0.004 M12.513 4.281C13.388 1.8 15.5 0 18.3 0 C22.016 0 25 3.1 25 6.857c0 0.724-0.111 1.421-0.312 2.076C22.754 15.8 12.5 24 12.5 24S2.247 15.8 0.3 8.9 C0.111 8.3 0 7.6 0 6.857C0 3.1 3 0 6.7 0c2.795 0 4.9 1.8 5.8 4.3"></path></svg>
+                                            <!--// div class="heartNumber">{{gift.userProfile.hearts || 1 }}</div -->
+                                            <div class="heartNumber ng-binding">{{userProfile.heart || 0}}</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END HEADER----------------------->
+<div class="grayBG deactivated-gift alert alert-dismissable whiteText text-center"
+     ng-if="!user.active || user.deactivated">
+    <h3>Sorry, this account has been deactivated.</h3>
+    <button type="button" class="btn btn-primary btn-lg">Content guidelines<br/>
+        <small>are what makes giftuu great</small>
+    </button>
+</div>
+
+<div class="container-fluid-giftuu mainToolbar noTitle"> <!--ng-if="user.activate" This is broken - hides edit always-->
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="editProfileButtons col-md-12">
+                <div class="pull-right" ng-show="user._id == userProfile._id">
+
+
+                    <a class="pull-right btn btn-link"
+                       ng-show="!editProfileDesc"
+                       ng-click="(editProfileDesc = true) && (inputAboutMe = userProfile.aboutMe)">
+                        <i class="fa fa-pencil"></i> edit
+                    </a>
+
+
+                    <a class="pull-right btn btn-link muted cursorShow"
+                       ng-show="!editProfileDesc"
+                       ng-click="(editProfileDesc = true) && (inputAboutMe = userProfile.aboutMe)" data-toggle="modal"
+                       data-target="#deleteModal">
+                        <i class="fa fa-trash-o"></i> delete account
+                    </a>
+
+                </div>
+
+
+                <!-- Report this user -->
+                <button ng-if="loggedIn && user._id != userProfile._id"
+                        class="btn btn-link pull-right" data-toggle="modal" data-target="#reportModal">
+                    <i class="fa fa-flag"></i>
+                </button>
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success pull-right"
+                            ng-click="updateProfile(profileForm.$invalid, 1);" ng-show="editProfileDesc && !updating">
+                        <i class="fa fa-check">
+                        </i> save changes
+                    </button>
+                    <a class="btn btn-link" ng-show="editProfileDesc && !updating"
+                       ng-click="(editProfileDesc = false) && (inputAboutMe = userProfile.aboutMe)">cancel</a>
+
+                    <div ng-show="editProfileDesc && updating && buttonNo==1" class="loadingImage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!-- Page container -->
+<div class="container-fluid-giftuu">
+<div class="container-giftuu">
+<div class="row-giftuu editAndreportProfile">
+
+<!-- Editing profile cancel and save options -->
+<div class="col-md-8 contentPage">
+<h2 ng-show="!editProfileDesc">About</h2>
+
+<h2 ng-show="editProfileDesc">Edit Profile</h2>
+<hr/>
+<div ng-class="{'editableDiv': editProfileDesc == true}">
+
+    <form id="profileForm" name="profileForm" novalidate>
+        <!-----Profile start left---->
+        <div class="form-group" ng-class="{'has-error':invalidProfileUpdate && profileForm.aboutMe.$invalid}">
+            <label ng-show="editProfileDesc">About</label>
+            <textarea type="text" class="form-control msd-elastic" rows="3" id="aboutMe" name="aboutMe"
+                      ng-model="userProfile.aboutMe" placeholder="Tell people a bit about yourself"
+                      ng-show="editProfileDesc" required></textarea>
+            <span ng-show="invalidProfileUpdate && profileForm.aboutMe.$invalid" class=" form-control-feedback"></span>
+
+            <p class="profileDescription multiLine clearfix" ng-bind-html="multiLine(userProfile.aboutMe)"
+               ng-hide="editProfileDesc">
+            </p>
+        </div>
+        <div class="form-group has-feedback"
+             ng-class="{'has-error':invalidProfileUpdate && profileForm.addressFormatted.$invalid}">
+            <label ng-show="editProfileDesc">Location</label>
+            <input ng-show="editProfileDesc" type="text" id="address" name="addressFormatted" class="form-control"
+                   placeholder="enter the local community you want to give this skill to"
+                   ng-model="userProfile.location" required googleplace>
+            <input name="address" type="hidden" ng-value="userProfile.location | json" required>
+            <span ng-show="invalidGive && profileForm.address.$invalid" class="form-control-feedback"></span>
+                    <span class="pull-left" ng-hide="editProfileDesc">
+                                    <a class="gifterMap"
+                                       ng-href="https://maps.google.com/maps?saddr={{userProfile.location.formatted_address}}"
+                                       title="Click to view on google map" class="span12">
+                                        <i class="fa fa-map-marker"></i>
+                                        <!-- Location link -->
+                                        {{userProfile.location.formatted_address}}</a>
+                                </span>
+        </div>
+    </form>
+    <!-- Edit wishes on profile -->
+    <div class="form-group">
+        <label ng-show="editProfileDesc">Wishes</label>
+
+        <div ng-repeat="wish in userProfile.wishes" ng-show="editProfileDesc" class="wishInUserProfile">
+            <div class="input-group">
+                <form ng-submit="growWishes()">
+                    <input type="text" ng-class="{'completeWish':wish.value}" class="form-control" ng-model="wish.value"
+                           placeholder="Add a gift you would like"
+                           focus-me="wish.focused">
+                    <input type="submit" ng-disabled="!wish.value" hidden/>
+                </form>
+                        <span class="input-group-addon btn-danger cursorShow" ng-show="wish"
+                              ng-click="userProfile.wishes.splice($index,1)"><i class="fa fa-trash-o"></i></span>
+            </div>
+
+        </div>
+        <div class="form-control ghost-input opacity50 cursorText" ng-click="growWishes()"
+             ng-show="editProfileDesc">
+            Add a gift you would like
+        </div>
+
+    </div>
+
+    <p ng-show="editProfileDesc" class="help-block opacity70">Wishes help people discover their valuable gifts.</p>
+
+    <!-- end edit wishes ---->
+    <hr ng-show="editProfileDesc"/>
+
+</div>
+
+<div class="pager"></div>
+<!--div to clear address formatting -->
+<!---------Gift Start Left-------------------->
+<div ng-class="{'unEditableDiv': editProfileDesc == true}">
+    <div class="gifts-given clear" user-detail="userProfile._id">
+        <h2>Gifts</h2>
+
+        <div class="list-group gifts-nav">
+            <accordion close-others="false">
+                <!-------- Gifts available ----------->
+                <accordion-group ng-class="{'disabledAccordion': availGifts.length == 0}">
+                    <accordion-heading>
+                        <span ng-bind="availGifts.length"></span>
+                        <span>available</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': availGifts.length > 0}"></i></span>
+                    </accordion-heading>
+                    <div class="View-previous">
+                    <span ng-click="viewPrevious(availGifts)"
+                          ng-if="(availGifts.limit||5)<availGifts.length">view previous gifts</span>
+
+                        <div class="pull-right Previous-number">{{
+                            (availGifts.limit||5)>availGifts.length?availGifts.length:(availGifts.limit||5)}} of
+                            {{availGifts.length}}
+                        </div>
+                    </div>
+                    <div class="gift-listWrapper"
+                         ng-repeat="gift in availGifts | limitTo: (availGifts.limit || 5)  | orderBy:'created':false">
+                        <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                            <dl class="dl-listing">
+                                <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                         image-loaded
+                                         ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                                </dt>
+                                <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                    <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p></dd>
+                            </dl>
+                        </a>
+                    </div>
+
+                </accordion-group>
+
+                <!-------- Gifts given ----------->
+                <accordion-group ng-class="{'disabledAccordion': givenGiftsBy.length == 0}">
+                    <accordion-heading>
+                        <span ng-bind="givenGiftsBy.length"></span>
+                        <span>given</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': givenGiftsBy.length > 0}"></i></span>
+                    </accordion-heading>
+
+                    <div class="View-previous">
+                        <span ng-click="viewPrevious(givenGiftsBy)" ng-if="(givenGiftsBy.limit||5)<givenGiftsBy.length">view previous gifts</span>
+
+                        <div class="pull-right Previous-number">{{
+                            (givenGiftsBy.limit||5)>givenGiftsBy.length?givenGiftsBy.length:(givenGiftsBy.limit||5)}} of
+                            {{givenGiftsBy.length}}
+                        </div>
+                    </div>
+                    <div class="gift-listWrapper"
+                         ng-repeat="gift in givenGiftsBy | limitTo: (givenGiftsBy.limit || 5)  | orderBy:'created':false">
+                        <a href="{{user._id!=userProfile._id ?('#/viewGift/'+gift._id):('#/pickupGift/'+gift._id)}}"
+                           class="gift-list-link">
+                            <dl class="dl-listing">
+                                <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                         image-loaded
+                                         ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_46,h_46/{{gift.images[0].url}}"/>
+                                </dt>
+                                <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                    <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                                </dd>
+                            </dl>
+                        </a>
+                    </div>
+                </accordion-group>
+
+                <!-------- Gifts given ----------->
+                <accordion-group ng-class="{'disabledAccordion': req.givenGifts.length == 0}">
+                    <accordion-heading>
+                        <span ng-bind="req.givenGifts.length"></span>
+                        <span>received</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.givenGifts.length > 0}"></i></span>
+                    </accordion-heading>
+
+                    <div class="View-previous">
+                        <span ng-click="viewPrevious(req.givenGifts)"
+                              ng-if="(req.givenGifts.limit||5)<req.givenGifts.length">view previous gifts</span>
+
+                        <div class="pull-right Previous-number">{{
+                            (req.givenGifts.limit||5)>req.givenGifts.length?req.givenGifts.length:(req.givenGifts.limit||5)}}
+                            of
+                            {{req.givenGifts.length}}
+                        </div>
+                    </div>
+                    <div class="gift-listWrapper"
+                         ng-repeat="gift in req.givenGifts | limitTo: (req.givenGifts.limit || 5)  | orderBy:'created':false">
+                        <a href="{{user._id!=userProfile._id ?('#/viewGift/'+gift._id):('#/pickupGift/'+gift._id)}}"
+                           class="gift-list-link">
+                            <dl class="dl-listing">
+                                <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                         image-loaded
+                                         ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_46,h_46/{{gift.images[0].url}}"/>
+                                </dt>
+                                <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                    <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                                </dd>
+                            </dl>
+                        </a>
+                    </div>
+                </accordion-group>
+
+                <!-------- Gifts requested ----------->
+                <accordion-group ng-class="{'disabledAccordion': req.availGifts.length == 0}">
+                    <accordion-heading>
+                        <span ng-bind="req.availGifts.length"></span>
+                        <span>requested</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.availGifts.length > 0}"></i></span>
+                    </accordion-heading>
+
+                    <div class="View-previous">
+                    <span ng-click="viewPrevious(req.availGifts)"
+                          ng-if="(req.availGifts.limit||5)<req.availGifts.length">view previous gifts</span>
+
+                        <div class="pull-right Previous-number">{{
+                            (req.availGifts.limit||5)>req.availGifts.length?req.availGifts.length:(req.availGifts.limit||5)}}
+                            of
+                            {{req.availGifts.length}}
+                        </div>
+                    </div>
+                    <div class="gift-listWrapper"
+                         ng-repeat="gift in req.availGifts | limitTo: (req.availGifts.limit || 5)  | orderBy:'created':false">
+                        <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                            <dl class="dl-listing">
+                                <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                         image-loaded
+                                         ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_46,h_46/{{gift.images[0].url}}"/>
+                                </dt>
+                                <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                    <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                                </dd>
+                            </dl>
+                        </a>
+                    </div>
+
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<!-- End left side content -->
+<!-- Start right hand side -->
+<div class="col-md-4">
+    <!---Review start right -->
+
+    <!------------BEGIN ADD REVIEW----------------------->
+    <div class="posterActivity">
+        <div class=" giftActivity  user-reviews ">
+            <!--ng-if="wishers.length"-->
+            <div class="RequestsForGift" ng-class="{'unEditableDiv': editProfileDesc == true}">
+                <h2 class="">{{totalComments == 1 ? (totalComments + ' review') : (totalComments + '
+                    reviews')}}</h2>
+                <hr/>
+                <!-- do not show more than three comments, collapse behind a button -->
+                <div class="View-previousProfile" ng-show="comments.length>0 && comments.length< totalComments">
+                    <div ng-show="totalComments>0" class="pull-right Previous-number">{{limitComments < 3 ?
+                        (totalComments + ' of ' + totalComments) : (limitComments + ' of ' + totalComments)}}
+                    </div>
+                    <div class="View-previous" ng-click="viewMoreComments()"
+                         ng-if="comments.length>0 && comments.length< totalComments">
+                        <span>view previous reviews...</span>
+                    </div>
+                </div>
+                <div class="posterActivity wantThisGift">
+                    <ul class="chats"> <!--ng-if="comments.length"-->
+                        <!-- comments -->
+                        <li class="by-me" ng-repeat="comment in comments | orderBy:'created'"
+                            user-detail="comment.from">
+                            <!-- Use the class "pull-left" in avatar -->
+                            <giftuu-avatar></giftuu-avatar>
+                            <div class="chat-content">
+                                <!-- In meta area, first include "name" and then "time" -->
+                                <div class="chat-meta"><a ng-href="/#/profile/{{comment.userId}}"
+                                                          ng-bind="comment.user.displayName"></a>
+                                </div>
+                                <p class="multiLine" ng-bind-html="multiLine(comment.comment)"></p>
+                                <small class="pull-left dateLocation"
+                                       data-ng-bind="comment.created | ago:false"></small>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+                        <li class="by-me" user-detail="user._id">
+                            <!-- Use the class "pull-left" in avatar -->
+                            <giftuu-avatar></giftuu-avatar>
+                            <!-- Add review -->
+                            <div class="chat-content add-review" ng-if="!user.deactivated">
+                                <textarea class="form-control msd-elastic" id="addReview" name="addReview" rows="3"
+                                          placeholder="Enter your review..." ng-model="review"
+                                          ng-focus="commenting=true"></textarea>
+
+                                <div class="buttonFloatFix">
+                                    <button ng-disabled="!review || user._id==userProfile._id"
+                                            class="btn btn-primary btn-large pull-right" ng-show="commenting"
+                                            ng-click="addReview(review);review=''">Add review
+                                    </button>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <!-- end add review-->
+                        </li>
+                    </ul>
+                    <div id="giftComment"></div>
+                </div>
+                <!-------------END ADD REVIEW------------------>
+
+            </div>
+        </div>
+    </div>
+    <!---Wishes --->
+    <div class="graybg profile-wishes" ng-if="userProfile.wishes.length > 0">
+        <div class="col-lg-12 RequestsForGift">
+            <h2 ng-hide="editProfileDesc">Wishes </h2>
+            <hr/>
+            <!--Wishes 2 -->
+            <ul class="Profile-wishes heartList red" ng-hide="editProfileDesc">
+                <li ng-repeat="wish in userProfile.wishes">
+                    <span class="multiLine" ng-bind-html="multiLine(wish.value)"></span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <!-- Edit and save buttons -->
+    <div class="editAndreportProfile pull-right">
+            <span class="linkNoHref cancelButton" ng-show="editProfileDesc && !updating"
+                  ng-click="(editProfileDesc = false) && (inputAboutMe = userProfile.aboutMe)">
+           cancel</span>
+        <button type="button" class="btn btn-success" ng-click="updateProfile(profileForm.$invalid, 2);"
+                ng-show="!updating && editProfileDesc">
+            <i class="fa fa-check">
+            </i> save changes
+        </button>
+        <div ng-show="editProfileDesc && updating && buttonNo==2" class="loadingImage"></div>
+    </div>
+    <div class="heightThirty clear">&nbsp;</div>
+</div>
+</div>
+
+
+<!-- End profile edit and report -->
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> You
+                    are
+                    about to delete your account</h4>
+            </div>
+            <div class="modal-body">
+                <p>The information Kindo collected through facebook and linkedin sign up will be deleted - this includes:</p>
+                <ul>
+                    <li>Your profile picture</li>
+                    <li>Your gender</li>
+                    <li>Your profile URL</li>
+                    <li>Your email address</li>
+                </ul>
+                <p>
+                    Your Kindo profile will be deactivated - you can sign up again at any time.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteProfile()">delete my account</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- Add comment to report  ng-show=" user.canReportGift && reporting"-->
+            <form class="Add-comment-to-report" id="reportForm" name="reportForm" role="form"
+                  enctype="multipart/form-data" novalidate/>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabelReport"><i class="fa fa-flag"></i> Report user</h4>
+            </div>
+            <div class="modal-body">
+                <div ng-if="!reported">
+                    <p>Why are you reporting this user?</p>
+
+                    <div class="radio">
+                        <label>
+                            <input ng-click="reporting='quality'" type="radio" name="optionsRadios" id="optionsRadios1"
+                                   value="option1">
+                            Low quality or broken gifts
+                        </label>
+                        <textarea rows="3" ng-show="user && reporting=='quality'" class="msd-elastic form-control"
+                                  name="report" id="quality" ng-model="reportReason"
+                                  placeholder="Tell us more..." required></textarea>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-click="reporting='content'" type="radio" name="optionsRadios" id="optionsRadios2"
+                                   value="option2">
+                            Inappropriate / offensive content
+                        </label>
+                        <textarea rows="3" ng-show="user && reporting=='content'" class="msd-elastic form-control"
+                                  name="report" id="content" ng-model="reportReason"
+                                  placeholder="Tell us more..." required></textarea>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-click="reporting='information'" type="radio" name="optionsRadios"
+                                   id="optionsRadios3" value="option3">
+                            Misleading / suspicious information
+                        </label>
+                        <textarea rows="3" ng-show="user && reporting=='information'" class="msd-elastic form-control"
+                                  name="report" id="information" ng-model="reportReason"
+                                  placeholder="Tell us more..." required></textarea>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-click="reporting='spam'" type="radio" name="optionsRadios" id="optionsRadios4"
+                                   value="option4">
+                            Spam
+                        </label>
+                        <textarea rows="3" ng-show="user && reporting=='spam'" class="msd-elastic form-control"
+                                  name="report" id="spam" ng-model="reportReason"
+                                  placeholder="Tell us more..." required></textarea>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-click="reporting='other'" type="radio" name="optionsRadios" id="optionsRadios5"
+                                   value="option5">
+                            Other
+                        </label>
+                        <textarea rows="3" ng-show="user && reporting=='other'" class="msd-elastic form-control"
+                                  name="report" id="other" ng-model="reportReason"
+                                  placeholder="Tell us more..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" ng-if="reported">Thanks! We have sent your report for action.<br/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div ng-if="!reported">
+                    <button class="btn btn-default" data-dismiss="modal">cancel</button>
+                    <button class="btn btn-danger pull-right" ng-click="report()" ng-disabled="reportForm.$invalid">
+                        report
+                    </button>
+                </div>
+                <button class="btn btn-danger pull-right" data-dismiss="modal" ng-if="reported">Ok</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{
+  "name": "kindo",
+  "version": "0.0.1-109",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "domains": [],
+  "dependencies": {
+    "cloudinary": "1.2.",
+    "connect-mongo-store": "0.1.8",
+    "express": "3.4.3",
+    "express-mailer": "0.2.3",
+    "fbgraph": "1.0.0",
+    "googleapis": "2.0.4",
+    "imagemagick": "0.1.3",
+    "jade": "1.10.0",
+    "mailchimp": "1.1.0",
+    "moment": "2.6.0",
+    "mongoskin": "0.6.1",
+    "passport": "0.2.2",
+    "passport-facebook": "2.0.0",
+    "passport-google": "0.3.0",
+    "passport-google-oauth": "0.2.0",
+    "passport-linkedin-oauth2": "^1.2.1",
+    "passport.socketio": "*",
+    "q": "*",
+    "socket.io": "*",
+    "superagent": "*",
+    "url": "*",
+    "winston": "*"
+  },
+  "engines": {
+    "node": "0.10.33"
+  },
+  "subdomain": "weiwarren-temp"
+}

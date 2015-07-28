@@ -1,0 +1,22 @@
+html
+    head
+        meta(property='og:title', content=owner+' is giving away ' + giftType+': '+title)
+        meta(property='og:description', content='Ask for this on www.discoveranotheryou.com.au')
+        meta(property='og:image', content=image)
+        meta(property='og:type', content='product')
+        meta(property='og:url', content=url)
+        meta(property='og:price', content='0.00')
+        meta(property='og:country_code', content='AUD')
+        meta(property='og:image:width', content='300')
+        meta(name='name', content=title)
+        meta(name='description', content=description)
+        meta(name='image', content=image)
+        meta(property='og:site_name', content='Kindo')
+        meta(property='og:price:amount', content='0.00')
+        meta(property='og:price:currency', content='AUD')
+        meta(property='country_code', content='AU')
+
+        title()=title
+        body()
+            block content
+

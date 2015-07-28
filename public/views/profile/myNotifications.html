@@ -1,0 +1,60 @@
+<div class="contentPageHeader bluerpt">
+<div class="container-fluid overlayPattern">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 contentPage text-center">
+                <h1><i class="fa fa-comments"></i><span class="badge badge-error round" data-ng-bind="user.newNotificationsCount || 0"></span> Notifications </h1>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="container-fluid-giftuu">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12 contentPage">
+
+                <!-- odd and even alternating grey backgrounds -->
+                <ul class="media-list">
+                    <!-- START 'YOU RECEIVED GIFT' NOTIFICATION -->
+
+                    <li class="media chat-content youReceivedAGiftNotification containerTable " ng-repeat="notification in user.notifications | limitTo: (user.notifications.limit || 5) | orderBy:'created':true"
+                        user-detail="notification.from">
+
+                        <div class="containerRow">
+                            <div class="avatar containerCell">
+                                <giftuu-avatar></giftuu-avatar>
+                                <!--<a class="largeFace" ng-href="/#/profile/{{currentUser._id}}"><img
+                                        src="http://res.cloudinary.com/giftuu/image/facebook/w_45,h_45,c_fill/{{currentUser.profileId}}.jpg"
+                                        alt="profile image" class="img-circle gifterFace"/></a>--></div>
+                            <div class="chat-content containerCell" ng-class="{'bold':!notification.read}">
+                                <!-- In meta area, first include "name" and then "time" -->
+                                <notification-directive notification-type="notification.type"></notification-directive>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- START 'SOMEONE WANTS ATTEND YOUR SESSION' NOTIFICATION --><!-- END 'YOU RECEVIED GIFT' NOTIFICATION -->
+                </ul>
+
+                <div class="View-previous" ng-show="user.notifications.length">
+                        <span class="" ng-click="user.notifications.limit = user.notifications.limit + 5"
+                              ng-if="(user.notifications.limit||5)<user.notifications.length">view previous notifications</span>
+                    <div class="pull-right Previous-number">{{
+                        (user.notifications.limit||5)>user.notifications.length?user.notifications.length:(user.notifications.limit||5)}}
+                        of
+                        {{user.notifications.length}}
+                    </div>
+                </div>
+                <div ng-class="{'heightTwoHundred':!user.notifications.length}" ng-show="!user.notifications.length">
+                    <h2 class="text-center">You have no notifications right now</h2>
+                    <hr/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

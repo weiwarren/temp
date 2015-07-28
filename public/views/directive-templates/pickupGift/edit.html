@@ -1,0 +1,355 @@
+<div class="col-md-4 contentPage">
+    <div class="editExchangeAreaInfo hideInDesktop">
+        <div class="col-md-8 col-sm-8 removeLeftPadding">
+            <h3>Organise a time and place to give your gift.</h3>
+            <hr/>
+            <h4>When and where</h4>
+            <ul>
+                <li>Recommend a time and location OR</li>
+                <li>Discuss time and location before deciding</li>
+            </ul>
+
+            <h4>Communicate</h4>
+            <ul>
+                <li>Use Kindo to send and receive messages OR</li>
+                <li>Provide your email address OR</li>
+                <li>Provide your number</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-sm-4 highlight">
+            <h3>Online safety tips</h3>
+            <ul class="bulletTick">
+                <li>Organise meet ups in public places</li>
+                <li>Never give or receive money or financial information</li>
+                <li>Protect your personal information</li>
+                <li>Report suspicious users</li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="exchange-section hideInDesktop">
+        <h2 class="add">+ Add</h2>
+        <button type="button" ng-click="openDate = true;focusDate=true;prefillDate();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openDate || giftuuDetail.exchangeDate}"><i
+                class="fa fa-calendar"></i> date
+        </button>
+        <button type="button" ng-click="openTime = true;focusTime=true;prefillTime();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openTime || giftuuDetail.exchangeTime}"><i
+                class="fa fa-clock-o"></i> time
+        </button>
+        <button type="button" ng-click="openPlace = true;focusPlace=true;prefillLocation();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openPlace || giftuuDetail.location}"><i
+                class="fa fa-map-marker"></i> place
+        </button>
+
+        <button type="button" ng-click="openRoom = true;focusRoom=true;"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openRoom || giftuuDetail.room}"><i
+                class="fa fa-map-marker"></i> room
+        </button>
+        <button type="button" ng-click="openEmail = true;focusEmail=true;prefillEmail();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openEmail}"><i
+                class="fa fa-envelope"></i> email
+        </button>
+        <button type="button" ng-click="openPhone = true;focusPhone=true" class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openPhone}"><i
+                class="fa fa-phone"></i> phone
+        </button>
+    </div>
+
+    <div class="exchange-section hideInMobile" fix-menu>
+        <h2 class="add">+ Add</h2>
+        <button type="button" ng-click="openDate = true;focusDate=true;prefillDate();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openDate || giftuuDetail.exchangeDate}"><i
+                class="fa fa-calendar"></i> date
+        </button>
+        <button type="button" ng-click="openTime = true;focusTime=true;prefillTime();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openTime || giftuuDetail.exchangeTime}"><i
+                class="fa fa-clock-o"></i> time
+        </button>
+        <button type="button" ng-click="openPlace = true;focusPlace=true;prefillLocation()"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openPlace || giftuuDetail.location}"><i
+                class="fa fa-map-marker"></i> place
+        </button>
+
+        <button type="button" ng-click="openRoom = true;focusRoom=true;"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openRoom || giftuuDetail.room}"><i
+                class="fa fa-location-arrow"></i> room
+        </button>
+
+        <button type="button" ng-click="openEmail = true;focusEmail=true;prefillEmail();"
+                class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openEmail}"><i
+                class="fa fa-envelope"></i> email
+        </button>
+        <button type="button" ng-click="openPhone = true;focusPhone=true" class="btn btn-default btn-lg btn-block"
+                ng-class="{'btn-gray': openPhone}"><i
+                class="fa fa-phone"></i> phone
+        </button>
+    </div>
+
+</div>
+
+<div class="col-md-8 contentPage editExchangeArea">
+
+    <div class="jumbotron text-center" ng-show="giftuuDetail.new">
+        <!--<h2>Congratulations!</h2>-->
+        <!--<p user-detail="gift.userId">{{currentUser.displayName}} wants to give you a gift.</p>--->
+        <div class="text-center alertGiveGiftFromParent">
+            <div class="containerTable giftFromToWrapper">
+
+                <div class="avatar avatarGiftExchange containerCell center-block text-center" user-detail="gift.userId">
+                    <giftuu-avatar></giftuu-avatar>
+                </div>
+                <div class="containerCell text-center giftFromToArrow">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="arrow-gift-give containerCell text-center visualGiftGiveHeader">
+                    <a ng-href="/#/viewGift/{{gift._id}}">
+                        <img class="img-rounded"
+                             ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_100/{{gift.images[0].url}}"
+                             alt="{{gift.title}}"/>
+                    </a>
+                </div>
+                <div class="containerCell text-center giftFromToArrow">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+
+                <div class="avatar avatarGiftExchange containerCell" user-detail="wisherId"
+                     ng-repeat="wisherId in giftuuDetail.wishersId track by $index">
+                    <giftuu-avatar></giftuu-avatar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="editExchangeAreaInfo hideInMobile">
+        <div class="col-md-8 col-sm-8 removeLeftPadding">
+            <h3>Organise a time and place to give your gift{{gift.sessionType == "group" ? (' to a group of ' +
+                giftuuDetail.wishersId.length + ' people.') :
+                ('.')}}</h3>
+            <hr/>
+            <h4>When and where</h4>
+            <ul>
+                <li>Recommend a time and location OR</li>
+                <li>Discuss time and location before deciding</li>
+            </ul>
+
+            <h4>Communicate</h4>
+            <ul>
+                <li>Use Kindo to send and receive messages OR</li>
+                <li>Provide your email address OR</li>
+                <li>Provide your number</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-sm-4 highlight">
+            <h3>Online safety tips</h3>
+            <ul class="bulletTick">
+                <li>Organise meet ups in public places</li>
+                <li>Never give or receive money or financial information</li>
+                <li>Protect your personal information</li>
+                <li>Report suspicious users</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pull-right">
+        <button class="btn btn-success pull-right" type="button"
+                ng-click="saveGiftuu(exchangeForm.$invalid, openEmail, openPhone)"
+                ng-show="!giftuuDetail.new && !saving">
+            <i class="fa fa-check">
+            </i> save changes
+        </button>
+        <a class="pull-right btn btn-link" ng-show="!giftuuDetail.new && !saving"
+           ng-click="(giftuuDetail.userMode = 'view')">cancel</a>
+
+        <div ng-show="saving && !giftuuDetail.new" class="loadingImage"></div>
+    </div>
+    <div class="clear"></div>
+
+
+    <!--date-->
+    <a id="bottom"></a>
+
+    <form id="exchangeForm" name="exchangeForm" ng-model="exchangeForm" novalidate>
+        <div class="exchange-section editableDiv" ng-show="openDate || giftuuDetail.exchangeDate" id="date">
+            <div class="containerTable fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-calendar"></i> date</h3></div>
+                <div ng-click="openDate = false;giftuuDetail.exchangeDate=null" class="containerCell">
+                    <button type="button" class="close pull-right" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+            <div class="giftuuCalendar" ng-model="giftuuDetail.exchangeDate">
+                <datepicker min="Today" ng-required="true" show-weeks="false"></datepicker>
+                <!--<button class="btn btn-sm btn-info" ng-click="giftuuDetail.exchangeDate = Today">Today</button>-->
+            </div>
+            <input type="text" focus-me="focusDate" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+        <!--time-->
+        <div class="exchange-section editableDiv" ng-show="openTime ||  giftuuDetail.exchangeTime" id="time">
+            <div class="containerTable fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-clock-o"></i> time</h3></div>
+                <div ng-click="openTime = false; giftuuDetail.exchangeTime=null" class="containerCell">
+                    <button type="button" class="close pull-right" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+            <div ng-model="giftuuDetail.exchangeTime" style="display:inline-block;">
+                <timepicker class="timePickerClass" hour-step="1" minute-step="1" show-meridian="true"></timepicker>
+            </div>
+            <input type="text" focus-me="focusTime" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+        <!--place-->
+
+        <div class="exchange-section editableDiv"
+             ng-class="{'has-error': invalidExchange && exchangeForm.location.$invalid}"
+             ng-show="openPlace || giftuuDetail.location" id="place">
+            <div class="containerTable fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-map-marker"></i> place</h3></div>
+                <div ng-click="openPlace = false;giftuuDetail.location=null" class="containerCell">
+                    <button type="button" class="close pull-right" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+            <input name="location" type="text" id="address" name="addressFormatted"
+                   class="form-control" placeholder="Meet up location"
+                   ng-model="giftuuDetail.location" ng-required="openPlace || giftuuDetail.location" googleplace>
+            <input name="address" type="hidden" ng-value="giftuuDetail.location | json"
+                   ng-required="openPlace || giftuuDetail.location | json">
+            <input type="text" focus-me="focusPlace" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+        <!--room -->
+        <div class="exchange-section editableDiv"
+             ng-class="{'has-error': invalidExchange && exchangeForm.giverRoom.$invalid}" ng-show="openRoom"
+             id="room">
+            <div class="containerTable fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-location-arrow"></i> room</h3></div>
+                <div class="containerCell">
+                    <a ng-click="openRoom = false; giftuuDetail.room=null;" class="close pull-right"
+                       aria-hidden="true">&times;</a>
+                </div>
+            </div>
+            <input type="tel" class="form-control" id="giverRoom" name="giverRoom"
+                   placeholder="Meeting room"
+                   ng-model="giftuuDetail.room" ng-required="openRoom">
+            <input type="text" focus-me="focusRoom" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+        <!--email-->
+        <div class="exchange-section editableDiv"
+             ng-class="{'has-error': invalidExchange && exchangeForm.giverEmail.$invalid}" ng-show="openEmail"
+             id="email">
+            <div class="containerTable  fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-envelope"></i> email</h3></div>
+                <div ng-click="openEmail = false; giftuuDetail.contactEmail=null;" class="containerCell">
+                    <a class="close pull-right" aria-hidden="true">&times;</a>
+                </div>
+            </div>
+            <input type="email" class="form-control" id="giverEmail" name="giverEmail" placeholder="email"
+                   ng-value="giftuuDetail.contactEmail" ng-model="giftuuDetail.contactEmail" ng-required="openEmail">
+            <input type="text" focus-me="focusEmail" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+        <!--phone-->
+        <div class="exchange-section editableDiv"
+             ng-class="{'has-error': invalidExchange && exchangeForm.giverPhone.$invalid}" ng-show="openPhone"
+             id="phone">
+            <div class="containerTable fullWidth detailsHeader">
+                <div class="containerCell"><h3 class="light"><i class="fa fa-phone"></i> phone</h3></div>
+                <div class="containerCell">
+                    <a ng-click="openPhone = false; giftuuDetail.contactNumber=null;" class="close pull-right"
+                       aria-hidden="true">&times;</a>
+                </div>
+            </div>
+            <input type="tel" class="form-control" id="giverPhone" name="giverPhone"
+                   placeholder="Your phone number"
+                   ng-model="giftuuDetail.contactNumber" ng-required="openPhone">
+            <input type="text" focus-me="focusPhone" class="shadowFocus" style="margin-left:-99999px;">
+        </div>
+    </form>
+
+    <!----comments---->
+    <!-- do not show more than three comments, collapse behind a button -->
+    <div ng-class="{'unEditableDiv':!giftuuDetail.new}"> <!--ng-if="giftuuDetail.new"-->
+        <h2><i class="fa fa-comments-o"></i> {{totalMessages}} messages</h2>
+        <!-- do not show more than three comments, collapse behind a button -->
+        <div ng-show="totalMessages>message.limit" class="pull-right Previous-number">
+            {{message.limit>totalMessages?totalMessages:message.limit}} of {{totalMessages}}
+        </div>
+    <span ng-show="totalMessages>message.limit">
+        <view-previous limit="message.limit" title="messages" skip="message.skip"
+                       has-more="totalMessages > 0 && message.limit < totalMessages"></view-previous>
+    </span>
+
+        <!-- Begin comments display -->
+        <div class="posterActivity wantThisGift exchange-section" ng-class="{'unEditableDiv':!giftuuDetail.new}">
+            <ul class="chatsNew">
+                <!-- Chat by us. Use the class "by-me". -->
+                <li ng-repeat="message in giftuuDetail.messages | orderBy: 'created': false"
+                    class="by-me fx-fade-down fx-speed-600 fx-easing-quad"
+                    user-detail="message.from">
+                    <div class="by-me displayNameBelowBubble" user-detail="message.from">
+                        <giftuu-avatar></giftuu-avatar>
+                        <div role="textbox" class="chat-content">
+                            <span class="display-block chatTitle">RE: {{message.title}}</span>
+                            <span class="display-block">{{message.comment}}</span>
+
+                            <div class="display-block fromWhenBlock">
+                                <small class="pull-left FirstName"> {{currentUser.firstName}}
+                                </small>
+                                <small class="pull-right dateLocation"
+                                       data-ng-bind="message.created | ago:false"></small>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+
+            <ul class="chats">
+                <!-- Chat by us. Use the class "by-me". -->
+                <li class="by-me">
+                    <!-- Use the class "pull-left" in avatar -->
+                    <a class="avatar pull-left" ng-href="/#/profile/{{user._id}}">
+                        <img ng-src="{{user.profilePictureUrl}}" alt="" class="img-circle gifterFace"/>
+                    </a>
+
+                    <div class="chat-content">
+                        <textarea rows="3" class="form-control" name="comment" ng-model="giftuuDetail.message"
+                                  placeholder="Write a message"
+                                  ng-focus="giftuuDetail.messaging=true" auto-grow></textarea>
+                    </div>
+                    <div class="buttonFloatFix">
+                        <button ng-hide="saving && giftuuDetail.new" type="button" class="btn btn-primary pull-right"
+                                ng-disabled="!giftuuDetail.message"
+                                ng-click="saveGiftuu(exchangeForm.$invalid, openEmail, openPhone);">Give my
+                            gift
+                        </button>
+                        <a ng-hide="saving && giftuuDetail.new" ng-href="/#/viewGift/{{giftuuDetail.giftId}}"
+                           class="btn btn-default pull-right buttonMargin">Cancel</a>
+
+                        <div ng-show="saving && giftuuDetail.new" class="loadingImage"></div>
+                        <div class="heightThirty clear"></div>
+                    </div>
+
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+
+</div>
+
+

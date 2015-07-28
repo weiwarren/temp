@@ -1,0 +1,334 @@
+﻿<div class="contentPageHeader bluerpt">
+<div class="container-fluid overlayPattern">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 contentPage text-center">
+                <h1>My gifts</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Text Green Alert with a physical modal alert-->
+<!--<button ng-if="loggedIn"
+        class="btn btn-link pull-right" data-toggle="modal" data-target="#alertModal">
+    Test Alert
+</button>-->
+
+<div class="container-fluid-giftuu">
+<div class="container-giftuu">
+<div class="row-giftuu gifts-given">
+<div class="col-md-6 contentPage posted">
+    <h2>Posted</h2>
+
+    <div class="list-group gifts-nav">
+        <accordion close-others="false">
+            <!-------- Gifts available ----------->
+            <accordion-group ng-class="{'disabledAccordion': availGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="availGifts.length"></span>
+                    <span>available</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': availGifts.length > 0}"></i></span>
+                </accordion-heading>
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(availGifts)"
+                          ng-if="(availGifts.limit||5)<availGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (availGifts.limit||5)>availGifts.length?availGifts.length:(availGifts.limit||5)}} of
+                        {{availGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in availGifts | limitTo: (availGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+
+            </accordion-group>
+
+            <!-------- Gifts given ----------->
+            <accordion-group ng-class="{'disabledAccordion': gaveGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="gaveGifts.length"></span>
+                    <span>organise and rate</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': gaveGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(gaveGifts)" ng-if="(gaveGifts.limit||5)<gaveGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (gaveGifts.limit||5)>gaveGifts.length?gaveGifts.length:(gaveGifts.limit||5)}} of
+                        {{gaveGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in gaveGifts | limitTo: (gaveGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/pickupGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+
+            <!-------- Gifts rated ----------->
+            <accordion-group ng-class="{'disabledAccordion': ratedGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="ratedGifts.length"></span>
+                    <span>completed</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': ratedGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(ratedGifts)" ng-if="(ratedGifts.limit||5)<ratedGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (ratedGifts.limit||5)>ratedGifts.length?ratedGifts.length:(ratedGifts.limit||5)}} of
+                        {{ratedGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in ratedGifts | limitTo: (ratedGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+
+            <!-------- Gifts expired ----------->
+            <accordion-group ng-class="{'disabledAccordion': expiredGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="expiredGifts.length"></span>
+                    <span>expired</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': expiredGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+
+                <div class="View-previous">
+                   <span ng-click="viewPrevious(expiredGifts)"
+                         ng-if="(expiredGifts.limit||5)<expiredGifts.length">view previous gifts</span>
+                    <div class="pull-right Previous-number">{{
+                        (expiredGifts.limit||5)>expiredGifts.length?expiredGifts.length:(expiredGifts.limit||5)}}
+                        of
+                        {{expiredGifts.length}}
+                    </div>
+                </div>
+
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in expiredGifts | limitTo: (expiredGifts.limit || 5) | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
+<div class="col-md-6 contentPage requested">
+    <h2>Requested</h2>
+    <div class="list-group gifts-nav">
+        <accordion close-others="false">
+            <!-------- Gifts available ----------->
+            <accordion-group ng-class="{'disabledAccordion': req.availGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="req.availGifts.length"></span>
+                    <span>available</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.availGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(req.availGifts)"
+                          ng-if="(req.availGifts.limit||5)<req.availGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (req.availGifts.limit||5)>req.availGifts.length?req.availGifts.length:(req.availGifts.limit||5)}} of
+                        {{req.availGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in req.availGifts | limitTo: (req.availGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+
+            </accordion-group>
+
+            <!-------- Gifts given ----------->
+            <accordion-group ng-class="{'disabledAccordion': req.givenGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="req.givenGifts.length"></span>
+                    <span>organise and rate</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.givenGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(req.givenGifts)" ng-if="(req.givenGifts.limit||5)<req.givenGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (req.givenGifts.limit||5)>req.givenGifts.length?req.givenGifts.length:(req.givenGifts.limit||5)}} of
+                        {{req.givenGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in req.givenGifts | limitTo: (req.givenGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/pickupGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+
+
+            <!-------- Gifts rated ----------->
+            <accordion-group ng-class="{'disabledAccordion': req.ratedGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="req.ratedGifts.length"></span>
+                    <span>completed</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.ratedGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+                <div class="View-previous">
+                    <span ng-click="viewPrevious(req.ratedGifts)" ng-if="(req.ratedGifts.limit||5)<req.ratedGifts.length">view previous gifts</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (req.ratedGifts.limit||5)>req.ratedGifts.length?req.ratedGifts.length:(req.ratedGifts.limit||5)}} of
+                        {{req.ratedGifts.length}}
+                    </div>
+                </div>
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in req.ratedGifts | limitTo: (req.ratedGifts.limit || 5)  | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+
+
+
+            <!-------- Gifts requested ----------->
+            <accordion-group ng-class="{'disabledAccordion': req.expiredGifts.length == 0}">
+                <accordion-heading>
+                    <span ng-bind="req.expiredGifts.length"></span>
+                    <span>expired</span>
+                            <span class="pull-right"><i class="fa"
+                                                        ng-class="{'fa-angle-down': req.expiredGifts.length > 0}"></i></span>
+                </accordion-heading>
+
+
+                <div class="View-previous">
+                   <span ng-click="viewPrevious(req.expiredGifts)"
+                         ng-if="(req.expiredGifts.limit||5)<req.expiredGifts.length">view previous gifts</span>
+                    <div class="pull-right Previous-number">{{
+                        (req.expiredGifts.limit||5)>req.expiredGifts.length?req.expiredGifts.length:(req.expiredGifts.limit||5)}}
+                        of
+                        {{req.expiredGifts.length}}
+                    </div>
+                </div>
+
+                <div class="gift-listWrapper"
+                     ng-repeat="gift in req.expiredGifts | limitTo: (req.expiredGifts.limit || 5) | orderBy:'created':false">
+                    <a href="#/viewGift/{{gift._id}}" class="gift-list-link">
+                        <dl class="dl-listing">
+                            <dt><img class="giftListingImage img-rounded" src="/images/giftplaceholder.jpg"
+                                     image-loaded
+                                     ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_45,h_45/{{gift.images[0].url}}"/>
+                            </dt>
+                            <dd><h4 class="multiLine" ng-bind-html="multiLine(gift.title)"></h4>
+
+                                <p class="multiLine" ng-bind-html="multiLine(gift.description)"></p>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body alert alert-success">
+            <div>Thanks for the rating!</div>
+            <div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html ng-app="giftuu">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta property="og:title" content="Kindo - the happiness generator"/>
+    <meta property="og:description" content="Kindo makes it easy to give skills, help and things to people you trust"/>
+    <meta property="og:image" content="http://www.giftuu.com/images/kindo-logo.png"/>
+    <meta name="fragment" content="!">
+    <title data-ng-bind="page.title + ' - kindo.com.au'">Kindo</title>
+    <link rel="icon shortcut" href="favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript">less = { env: 'development' }; var submitted = false;</script>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
+
+    <!-- CSS3 Animation Lib-->
+    <link rel="stylesheet" href="stylesheets/lib/animate.css"/>
+    <!-- CSS Less -->
+    <link rel="stylesheet" href="stylesheets/styles.css"/>
+
+    <!-- Menu -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/lib/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/lib/component.css"/>
+
+    <!-- roboto font -->
+    <link charset="utf-8" href="//fonts.googleapis.com/css?family=Roboto%20Condensed:400" media="screen"
+          rel="stylesheet">
+    <link charset="utf-8" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" media="screen"
+          rel="stylesheet">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css">
+
+    <!-- Owl Carousel Assets -->
+    <link href="//cdn.jsdelivr.net/jquery.owlcarousel/1.31/owl.carousel.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/jquery.owlcarousel/1.31/owl.theme.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="st-container" class="st-container">
+<nav class="st-menu st-effect-2" id="menu-4">
+    <ul id="dashboard-menu-profile" ng-if="loggedIn">
+        <li>
+            <img name="profileImage" class="img-circle" ng-src="{{user.profilePictureUrl}}"/>
+        </li>
+        <li>
+            <ul>
+                <li role="presentation"><h2>Hi {{user.displayName}}</h2></li>
+                <li role="presentation">
+                    <a href="/#/myprofile" tabindex="-1" menu-item>My profile</a>
+                </li>
+                <!--<li role="presentation" ng-if="loggedIn">
+                    <a href="/#/whocanseemystuff" tabindex="-1" menu-item>Who can see my stuff</a>
+                </li>-->
+                <li role="presentation" menu-item><a href="/logout"><em>Not you?</em>&nbsp; Sign out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="clear"/>
+
+    <ul id="dashboard-menu">
+        <li role="presentation" ng-if="!loggedIn" menu-item>
+            <a href="#/login">Sign in / Create account</a>
+        </li>
+        <li role="presentation">
+            <a href="/" menu-item>
+                <span>Home</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="/#/search//skill" menu-item>
+                <i class="icon-skill"></i>
+                <span>Skills</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="/#/search//help" menu-item>
+                <i class="icon-help"></i>
+                <span>Help</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="/#/search//thing" menu-item>
+                <i class="icon-thing"></i>
+                <span>Things</span>
+            </a>
+        </li>
+        <li role="presentation" ng-if="loggedIn && user.active && !user.deactivated">
+            <a href="/#/addGift" menu-item>
+                <span><i class="fa fa-plus"></i> Add gift</span>
+            </a>
+        </li>
+        <li class="hide">
+            <a href="/#/shareKindo" menu-item>
+                <span><i class="icon-share"></i> Share Kindo</span>
+            </a>
+        </li>
+        <li>
+            <a href="/#/aboutkindo" menu-item>
+                <span>About Kindo</span>
+            </a>
+        </li>
+        <li>
+            <a href="/#/communityguidelines" menu-item>
+                <span>Community guidelines</span>
+            </a>
+        </li>
+        <li>
+            <a href="/#/privacy" menu-item>
+                <span>Privacy</span>
+            </a>
+        </li>
+        <!--<li>
+            <a href="/#/termsandconditions" menu-item>
+                <span>Terms and conditions</span>
+            </a>
+        </li>-->
+        <li>
+            <a href="/#/help" menu-item>
+                <span>Help</span>
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+<!--<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>-->
+<div class="st-pusher">
+<div class="st-content">
+    <!-- this is the wrapper for the content -->
+    <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+        <!-- Top Navigation -->
+        <nav role="navigation" class="navbar navbar-default navbar-static-top">
+            <!-- <div class="container"> fluid layou -->
+            <div class="navbar-header pull-left">
+                <div id="st-trigger-effects" class="logoArea">
+                    <button type="button" class="navbar-toggle" data-effect="st-effect-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand"><img class="logo" src="/images/kindo-logo.svg"/></a>
+                </div>
+            </div>
+
+
+            <div class="navbar-header pull-right">
+                <ul class="nav navbar-nav navbar-right profileTop">
+                    <li class="mainSearchButton desktopMenu">
+                        <a href="/" class="">
+                            Home
+                        </a>
+                    </li>
+                    <li class="mainSearchButton desktopMenu">
+                        <a href="/#/aboutkindo" class="">
+                            About Kindo
+                        </a>
+                    </li>
+                    <li class="mainSearchButton desktopMenu">
+                        <a href="/#/help">
+                            Help
+                        </a>
+                    </li>
+                    <li class="mainSearchButton" ng-click="searching=!searching">
+                        <a data-toggle="collapse" data-target="#mainSearch" class="collapsed">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown loginButton" id="fat-menu">
+                        <a data-toggle="dropdown" class="dropdown-toggle noUserWrap" role="button" href="#"
+                           ng-show="!loggedIn">
+                            <div class="noUser img-circle"><i class="fa fa-user"></i></div>
+                        </a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#"
+                           ng-if="loggedIn">
+                                    <span class="badge" ng-show="user.newMessages.length + user.newNotifications.length"
+                                          ng-bind="user.newMessages.length +  user.newNotifications.length"></span>
+                            <img name="profileImage" class="img-circle"
+                                 cloud-pic="user"/>
+                        </a>
+                        <ul aria-labelledby="dropdownMenu" role="menu" class="dropdown-menu">
+                            <li role="messages" ng-if="loggedIn" class="menu-item">
+                                <a href="/#/messages" tab-index="-1" menu-item>
+                                    <i class="fa fa-comments"></i> My messages ({{user.newMessages.length||0}})
+                                </a>
+                            </li>
+
+
+                            <li role="notifications" ng-if="loggedIn" class="menu-item">
+                                <a href="/#/notifications" tab-index="-1" menu-item>
+                                    <i class="fa fa-bell"></i> My notifications
+                                    ({{user.newNotifications.length||0}})
+                                </a>
+                            </li>
+
+
+                            <li role="presentation" ng-if="!loggedIn" class="menu-item">
+                                <a ng-href="/auth/linkedin{{redirectUrl}}"> <i class="fa fa-linkedin"></i> Sign
+                                    in</a>
+                            </li>
+                            <li class="divider" role="presentation" class="menu-item" ng-if="loggedIn"></li>
+
+                            <li role="myProfile" ng-if="loggedIn" class="menu-item">
+                                <a href="/#/myprofile" tab-index="-1" menu-item>
+                                    My profile
+                                </a>
+                            </li>
+
+                            <li role="myGifts" ng-if="loggedIn" class="menu-item">
+                                <a href="/#/myGifts" tab-index="-1" menu-item>
+                                    My gifts
+                                </a>
+                            </li>
+                            <li role="shareTrello" ng-if="loggedIn" class="menu-item">
+                                <a href="/#/shareKindo" tab-index="-1" menu-item>
+                                    Share Kindo
+                                </a>
+                            </li>
+                            <li class="divider" role="presentation" class="menu-item"></li>
+                            <li role="presentation" ng-if="loggedIn" class="menu-item"><a href="/logout">Sign
+                                out</a></li>
+                            <li role="presentation" ng-if="!loggedIn" class="menu-item">
+                                <a href="/#/login"><i class="fa fa-heart-o"></i> Create account</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="mainSearch" class="collapse" ng-init="searchType='';">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-12">
+            <form>
+            <div class="searchParent">
+                <div class="searchInput">
+
+                        <div class="">
+                            <input type="search" class="search dropdown-toggle" focus-scroll="searching"
+                                   placeholder="Search {{searchType.toLowerCase()}}" ng-model="term"
+                                   ng-class="{'active':searching}">
+                            <ul aria-labelledby="drop2" role="menu"
+                                class="dropdown-menu container fullWidth hide">
+                                <li role="presentation" class="menu-item"><a ng-href="#/search/{{term}}/thing"
+                                                                             tabindex="-1" menu-item>
+                                    <i class="icon-thing"></i> Things</a></li>
+                                <li role="presentation" class="menu-item"><a ng-href="#/search/{{term}}/skill"
+                                                                             tabindex="-1" menu-item>
+                                    <i class="icon-skill"></i> Skills</a></li>
+                                <li role="presentation" class="menu-item"><a ng-href="#/search/{{term}}/help"
+                                                                             tabindex="-1" menu-item>
+                                    <i class="icon-help"></i> Help</a></li>
+                                <li role="presentation" class="menu-item"><a ng-href="#/search/{{term}}/" tabindex="-1"
+                                                                             menu-item>
+                                    All</a></li>
+                            </ul>
+                            <a class="searchButton" ng-href="#/search/{{term}}/{{searchType}}"
+                               ng-class="{'active':searching}">Search <span class="search-text"
+                                                                            ng-show="searchType==''">All</span><i
+                                    class="search-icon"
+                                    ng-class="{'icon-thing': searchType=='thing', 'icon-skill': searchType=='skill', 'icon-help': searchType=='help'}"></i></a>
+                        </div>
+
+                </div>
+            </div>
+            <div class="searchFilters ">
+                <div class="searchFiltersInner">
+                    <a ng-href="#/search//" ng-class="{'active':searchType==''}" class="allFilter">All</a>
+                    <a ng-href="#/search//skill" ng-class="{'active':searchType=='skill'}" class="skillFilter">Skill</a>
+                    <a ng-href="#/search//help" ng-class="{'active':searchType=='help'}" class="helpFilter">Help</a>
+                    <a ng-href="#/search//thing" ng-class="{'active':searchType=='thing'}" class="thingFilter">Thing</a>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+        </div>
+
+        <div ng-class="{'alert alert-success fx-fade-up fx-speed-300 fx-easing-quad statusHeight': reportAlert}"
+             ng-if="reportAlert">
+            <div class="container-giftuu">
+                <div class="row-giftuu">
+                    <div class="col-md-12">
+                        <div>
+                            <i class="fullWidth clearfix" ng-class="{'fa fa-check': reportAlert}">
+                                <span data-ng-bind="reportAlertText" class="reportedStatus col-md-10"></span>
+                            </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main clearfix" ng-view></div>
+        <!-- /main -->
+        <debug val="user" ng-if="false"></debug>
+    </div>
+    <!-- /st-content-inner -->
+</div>
+<!-- /st-content -->
+
+<!--Footer-->
+<div class="giftuuAbout">
+    <footer class="footer grayBG text-center">
+        <!--Social Networks-->
+        <section class="page-block" id="social">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="social-networks hide">
+                            <a class="fa fa-facebook" href="http://www.facebook.com/giftuu" data-toggle="tooltip"
+                               data-placement="top" title="Facebook">
+                                <p>
+                                    <small>Facebook</small>
+                                </p>
+                            </a>
+                            <a class="fa fa-instagram" href="http://instagram.com/Giftuu" data-toggle="tooltip"
+                               data-placement="top" title="Instagram">
+                                <p>
+                                    <small>Instagram</small>
+                                </p>
+                            </a>
+                            <a class="fa fa-twitter" href="http://twitter.com/GiftuuGives" data-toggle="tooltip"
+                               data-placement="top" title="Twitter">
+                                <p>
+                                    <small>Twitter</small>
+                                </p>
+                            </a>
+                            <a class="fa fa-youtube" href="http://www.youtube.com/user/Giftuu" data-toggle="tooltip"
+                               data-placement="top" title="Youtube">
+                                <p>
+                                    <small>Youtube</small>
+                                </p>
+                            </a>
+                            <a class="fa fa-pinterest" href="http://www.pinterest.com/giftuu/" data-toggle="tooltip"
+                               data-placement="top" title="Pinterest">
+                                <p>
+                                    <small>Pinterest</small>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="pull-right copyright"><a href="/#/aboutkindo">About Kindo</a> | <a
+                                class="cursorShow" data-toggle="modal" data-target="#myModal">Report a bug</a> | <a
+                                href="/#/privacy">Privacy policy</a> | <!--<a href="/#/termsandconditions">Terms and
+                            conditions</a> | --><a href="/#/communityguidelines">Community guidelines</a></p>
+                        <p class="copyright pull-left">&copy; 2015 Kindo. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+</div>
+
+</div>
+
+
+</div>
+
+<!-- Report a bug modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-init="submitted=false;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Report a bug</h4>
+            </div>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" target="hidden_iframe"
+                    onLoad="if(submitted) {localStorage.setItem('reported','t'); window.location='/';}"></iframe>
+            <form action="https://docs.google.com/forms/d/11WZbQx5C6kUWvv_syDK2uvOPvodZo6-ouIE68rTQfe8/formResponse"
+                  method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+                <div class="modal-body">
+                    <p>Thanks for taking the time to improve Kindo</p>
+                    <textarea ng-model="bugDescription" class="form-control msd-elastic" rows="3" id="bugDescription"
+                              name="bugDescription" placeholder="Tell us what went wrong"
+                              style="word-wrap: break-word;"></textarea>
+                    <input type="text" hidden ng-model="bugTitle" class="form-control msd-elastic" rows="3"
+                           name="entry.1114313388" id="entry_1114313388">
+                    <textarea hidden ng-model="bugBody" class="form-control msd-elastic" rows="3" name="entry.762382191"
+                              id="entry_762382191"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button ng-hide="loadingShows" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button ng-hide="loadingShows"
+                            ng-click="loadingShows=true; bugTitle=bugDescription; bugBody='Hello Kindo,\nI would like to report a bug.\nUser id: '+user._id+'\nBrowser: '+navigator.sayswho+'\nPageUrl: '+host+path+'\n Description: '+bugDescription+'\nThankyou.\nYours sincerely, \n'+user.schema.displayName+'.'"
+                            type="submit" name="submit" value="Submit" id="ss-submit" ng-disabled="!bugDescription"
+                            class="btn btn-primary">Report this bug
+                    </button>
+                    <div ng-show="loadingShows" class="loadingImage center-block"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End report bug -->
+<!-- scripts -->
+
+<!-- libs -->
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyDITwlZOo4gcdcfjivK1h4Q2n8lMvEYBEQ&sensor=true&libraries=places"></script>
+<script src="https://www.google.com/jsapi"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/TweenMax.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/libs/jquery.easing.1.3.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.owlcarousel/1.31/owl.carousel.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/classie.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/libs/modernizr.custom.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/jquery.touchSwipe.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/jquery.placeholder.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/icheck.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/jquery.validate.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/gallery.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/jquery.fitvids.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/lib/aboutUsTheme/plugins/jquery.bxslider.min.js"></script>
+
+<!-- modules -->
+<script src="//red-bruin-387.appspot.com/javascripts/module/ng-Fx.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angular-compile.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angular-localStorage.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angular-geolocation.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/freewall.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/ng-infinite-scroll.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angular-file-upload.min.js"></script>
+<!--<script src="javascripts/module/ng-flow-standalone.min.js"></script>-->
+<script src="//red-bruin-387.appspot.com/javascripts/module/sidebarEffects.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/elastic.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angulartics.min.js"></script>
+<script src="//red-bruin-387.appspot.com/javascripts/module/angulartics-ga.min.js"></script>
+<!-- app -->
+<script src="/javascripts/giftuu-app.js"></script>
+<!-- services -->
+<script src="/javascripts/service/gift-service.js"></script>
+<script src="/javascripts/service/giftuu-service.js"></script>
+<script src="/javascripts/service/user-service.js"></script>
+<!-- directive -->
+<script src="/javascripts/directive/control-directive.js"></script>
+<script src="/javascripts/directive/image-select-directive.js"></script>
+<script src="/javascripts/directive/free-wall.js"></script>
+<script src="/javascripts/directive/google-map-directive.js"></script>
+<script src="/javascripts/directive/owl-slider.js"></script>
+<script src="/javascripts/directive/template-directive.js"></script>
+<!-- routing -->
+<script src="/javascripts/app-route.js"></script>
+<!-- controller -->
+<script src="/javascripts/controller/index.js"></script>
+<script src="/javascripts/controller/gift.js"></script>
+<script src="/javascripts/controller/user.js"></script>
+<script src="/javascripts/lib/aboutUsTheme/landing.js"></script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-52710517-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>

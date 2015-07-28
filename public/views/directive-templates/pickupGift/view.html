@@ -1,0 +1,261 @@
+<div class="receiver-view">
+
+<div class="container">
+    <div class="col-md-12 contentPage">
+        <div class="row">
+            <div class="alert alert-info fade in fx-fade-down fx-speed-400 fx-easing-quad"
+                 user-detail="giftuuDetail.wishersId" ng-if="confirmAlert">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <div><strong>Nice one! You've just given your gift to:</strong></div>
+                <div user-detail="wisherId" detail="wisherId"
+                     ng-repeat="wisherId in giftuuDetail.wishersId track by $index">
+                    <strong>{{ $index>0 ? ('' + currentUser.firstName) : (currentUser.firstName)}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 contentPage" ng-hide="!giftuuDetail.exchangeDate && !giftuuDetail.exchangeTime
+&& !giftuuDetail.location.formatted_address &&!giftuuDetail.room && !giftuuDetail.contactEmail && !giftuuDetail.contactNumber">
+    <div class="row">
+        <div class="col-md-12" ng-hide="!giftuuDetail.exchangeDate">
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-calendar"></i> date</h4>
+                <!--<p class="text-muted">Preferred date and time</p>-->
+                <p>{{giftuuDetail.exchangeDate | date:'dd MMM, yyyy'}}
+
+                <div add-this-event="giftuuDetail"></div>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="col-md-12" ng-hide="!giftuuDetail.exchangeTime"> <!-- do not show if empty -->
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-clock-o"></i> time</h4>
+
+                <p>{{ giftuuDetail.exchangeTime | date:'h:mm a'}} </p>
+            </div>
+        </div>
+
+
+        <div class="col-md-12" ng-hide="!giftuuDetail.location.formatted_address">
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-map-marker"></i> place</h4>
+                <!--<p class="text-muted">Location</p>-->
+
+                <p data-ng-bind="giftuuDetail.location.formatted_address"></p>
+                <a class="gifterMap"
+                   ng-href="https://maps.google.com/maps?saddr={{giftuuDetail.location.formatted_address}}"
+                   title="Click to view on google map" class="span12">
+                    <img class="img-responsive" alt="Click to view on google map"
+                         ng-src="http://maps.googleapis.com/maps/api/staticmap?center={{giftuuDetail.location.formatted_address}}&zoom=13&size=600x300&markers=icon:http://res.cloudinary.com/dhzzedkki/image/upload/c_fill,w_35/v1404380791/mapMarker.png%7C{{giftuuDetail.location.formatted_address}}&maptype=roadmap&sensor=false&key=AIzaSyDITwlZOo4gcdcfjivK1h4Q2n8lMvEYBEQ"
+                         alt="google map address view" class="gift-map"/>
+                </a>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-hide="!giftuuDetail.room"> <!-- do not show if empty -->
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-location-arrow"></i> room</h4>
+                <p>{{ giftuuDetail.room}} </p>
+            </div>
+        </div>
+        <div class="col-md-12" ng-hide="!giftuuDetail.contactEmail"> <!-- do not show if empty -->
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-envelope"></i> email</h4>
+                <!--<p class="text-muted">Contact details</p>-->
+
+                <p><a ng-href="mailto:{{giftuuDetail.contactEmail}}">{{giftuuDetail.contactEmail}}</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-hide="!giftuuDetail.contactNumber"> <!-- do not show if empty -->
+            <div class="thumbnail text-center">
+                <h4><i class="fa fa-phone"></i> phone</h4>
+
+                <p>{{giftuuDetail.contactNumber}} </p>
+            </div>
+        </div>
+
+        <!-- Location name and link -->
+        <!--<div class="giftuuLocation col-md-12">
+            <h4>Suggested location</h4>
+            <a ng-href="https://maps.google.com/maps?saddr={{giftuuDetail.location.formatted_address}}"
+               ng-bind="giftuuDetail.location | addressShort" title="Click to view on google map">
+            </a>
+        </div>
+        <!--Map with link -->
+        <!--<a class="gifterMap col-md-12"
+           ng-href="https://maps.google.com/maps?saddr={{giftuuDetail.street}},{{giftuuDetail.suburb}}"
+           title="Click to view on google map" class="span12">
+            <img class="img-responsive" alt="Click to view on google map"
+                 ng-src="http://maps.googleapis.com/maps/api/staticmap?center={{giftuuDetail.street}},{{giftuuDetail.suburb}}&zoom=13&size=600x300&markers={{giftuuDetail.street}},{{giftuuDetail.suburb}}&maptype=roadmap&sensor=true"
+                 alt="google map address view" class="gift-map"/>
+        </a>-->
+
+    </div>
+
+
+</div>
+
+
+<div class="col-md-8 contentPage" ng-class="{'fullWidth':!giftuuDetail.exchangeDate && !giftuuDetail.exchangeTime
+&& !giftuuDetail.location.formatted_address && !giftuuDetail.contactEmail && !giftuuDetail.contactNumber}">
+    <div class="jumbotron text-center arrow-below">
+        <!--<h2>Congratulations!</h2>-->
+        <!--<p user-detail="gift.userId">{{currentUser.displayName}} wants to give you a gift.</p>--->
+        <div class="text-center alertGiveGiftFromParent">
+            <div class="containerTable giftFromToWrapper">
+
+                <div class="avatar avatarGiftExchange containerCell center-block text-center" user-detail="gift.userId">
+                    <giftuu-avatar></giftuu-avatar>
+                </div>
+                <div class="containerCell text-center giftFromToArrow">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="arrow-gift-give containerCell text-center visualGiftGiveHeader">
+                    <a ng-href="/#/viewGift/{{gift._id}}">
+                        <img class="img-rounded"
+                             ng-src="http://res.cloudinary.com/giftuu/image/fetch/c_fill,w_100/{{gift.images[0].url}}"
+                             alt="{{gift.title}}"/>
+                    </a>
+                </div>
+                <div class="containerCell text-center giftFromToArrow">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+
+                <div class="avatar avatarGiftExchange containerCell" user-detail="wisherId"
+                     ng-repeat="wisherId in giftuuDetail.wishersId track by $index">
+                    <giftuu-avatar></giftuu-avatar>
+                </div>
+            </div>
+        </div>
+        <!--<i class="fa fa-heart"></i> Show your appreciation-->
+
+        <div class="arrow-under"><i class="fa fa-play fa-rotate-90"></i></div>
+
+      <div class="heightTwenty"></div>
+        <div class="paddingBottomMobileFix rateWidth" class="brand-green-BG"
+             ng-show="user.canRate && !giftuuDetail.isPending">
+            <div class="">
+                <div class="row-giftuu">
+                    <div class="col-md-12">
+                        <div ng-if="ratingStatus=='fading'"
+                             class="fx-fade-down fx-speed-400 fx-easing-quad">Thanks for the rating!
+                        </div>
+                        <div ng-if="ratingStatus=='show'" class="text-center">
+
+                            <h4 class=" text-center">Already exchanged? Rate your experience</h4>
+
+                            <div class="alertGiveGiftFrom">
+                                <div class="containerTable giftExperienceRatingWrapper fullWidth">
+                                    <ul class="giftExperienceRating containerRow">
+                                        <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 1)"><i
+                                                class="icon-very-sad"></i></span></li>
+                                        <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 2)"><i
+                                                class="icon-sad"></i></span></li>
+                                        <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 3)"><i
+                                                class="icon-neutral"></i></span></li>
+                                        <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 4)"><i
+                                                class="icon-happy"></i></span></li>
+                                        <li class="containerCell"><span ng-click="rate(gift._id, gift.giftuuId, 5)"><i
+                                                class="icon-very-happy"></i></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row appreciate">
+        <div class="col-md-4 "><a class="btn btn-default btn-lg btn-block disabled"><i class="glyphicon glyphicon-time"></i><br/>Show up on time</a></div>
+        <div class="col-md-4 "><a class="btn btn-default btn-lg btn-block disabled"><i class="glyphicon glyphicon-ok"></i><br/>Say thank you</a></div>
+        <div class="col-md-4 "><a class="btn btn-default btn-lg btn-block disabled"><i class="fa fa-heart"></i><br/>Give hearts</a></div>
+    </div>--->
+
+    <!--<button class="btn btn-primary pull-right" type="button">Find out more</button>-->
+
+    <!-- do not show more than three comments, collapse behind a button -->
+
+    <div class="text-right"><a href="#" title="Add to Calendar" class="addthisevent btn btn-primary">
+        <i class="fa fa-calendar"></i> Add to Calendar
+    </a></div>
+    <hr/>
+
+    <h2><i class="fa fa-comments-o"></i> {{messages.number}} messages</h2>
+    <!-- do not show more than three comments, collapse behind a button -->
+    <div ng-show="totalMessages>message.limit" class="pull-right Previous-number">
+        {{message.limit>totalMessages?totalMessages:message.limit}} of {{totalMessages}}
+    </div>
+    <span ng-show="totalMessages>message.limit">
+        <view-previous limit="message.limit" title="messages" skip="message.skip"
+                       has-more="totalMessages > 0 && message.limit < totalMessages"></view-previous>
+    </span>
+    <!-- Begin comments display -->
+    <div class="posterActivity wantThisGift exchange-section">
+        <ul class="chatsNew">
+            <!-- Chat by us. Use the class "by-me". -->
+            <li ng-repeat="message in giftuuDetail.messages | orderBy: 'created': false" class="by-me"
+                user-detail="message.from">
+                <div class="by-me displayNameBelowBubble" user-detail="message.from">
+                    <giftuu-avatar></giftuu-avatar>
+                    <div role="textbox" class="chat-content">
+                        <span class="display-block chatTitle">RE: {{message.title}}</span>
+                        <span class="display-block">{{message.comment}}</span>
+
+                        <div class="display-block fromWhenBlock">
+                            <small class="pull-left FirstName"> {{currentUser.firstName}}
+                            </small>
+                            <small class="pull-right dateLocation"
+                                   data-ng-bind="message.created | ago:false"></small>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+
+        <ul class="chats">
+            <!-- Chat by us. Use the class "by-me". -->
+            <li class="by-me">
+                <!-- Use the class "pull-left" in avatar -->
+                <a class="avatar pull-left" ng-href="/#/profile/{{user._id}}">
+                    <img ng-src="{{user.profilePictureUrl}}" alt="" class="img-circle gifterFace"/>
+                </a>
+
+                <div class="chat-content">
+                    <textarea rows="3" class="form-control msd-elastic" name="message" ng-model="giftuuDetail.message"
+                              placeholder="Write a message"
+                              ng-focus="giftuuDetail.messaging=true"></textarea>
+
+                    <div class="buttonFloatFix">
+                        <button type="button" class="btn btn-large btn-primary pull-right"
+                                ng-show="giftuuDetail.messaging && !sending"
+                                ng-click="sendMessage(gift.title, giftuuDetail.message)"
+                                ng-disabled="!giftuuDetail.message || sending">Send message
+                        </button>
+                        <div ng-show="sending" class="loadingImage"></div>
+                        <div class="heightThirty clear noChange"></div>
+                    </div>
+
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+
+
+</div>
+
+
+</div>

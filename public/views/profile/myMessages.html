@@ -1,0 +1,59 @@
+<div class="contentPageHeader bluerpt">
+    <div class="container-fluid overlayPattern">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12 contentPage text-center">
+                    <h1><i class="fa fa-comments"></i><span class="badge badge-error round"
+                                                            data-ng-bind="user.newMessagesCount || 0"></span>
+                        new messages </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid-giftuu">
+    <div class="container-giftuu">
+        <div class="row-giftuu">
+            <div class="col-md-12 contentPage" ng-class="{'heightHundred':!user.messages.length}">
+                <!-----chat from me (change class name to "by me" and on .avatar "pull-left" ------>
+                <!-----chat from other (change class name to "by other" and on .avatar "pull-right" ------>
+
+                <div class="chatsNew"
+                     ng-repeat="message in user.messages | limitTo: (user.messages.limit || 5) | orderBy:'created':true">
+                    <div class="displayNameBelowBubble by-me" user-detail="message.from">
+                        <!--ng-class="{'by-me': currentUser._id == user._id, 'by-other': currentUser._id != user._id}"-->
+                        <giftuu-avatar></giftuu-avatar>
+                        <!--ng-show="currentUser._id == user._id"-->
+                        <!--<a  ng-show="currentUser._id != user._id" class="largeFace avatar pull-right" href="/#/profile/{{currentUser._id}}">
+                            <img src="http://res.cloudinary.com/giftuu/image/facebook/w_45,h_45,c_fill/{{currentUser.profileId}}.jpg"
+                                 alt="profile image" class="img-circle gifterFace"/></a>-->
+                        <div role="textbox" class="chat-content">
+                            <a ng-href="/#/pickupGift/{{message.giftId}}">
+                                <span class="display-block chatTitle">RE: {{message.title}}</span>
+                                <span class="display-block multiLine" ng-bind-html="multiLine(message.body)"/>
+                            </a>
+
+                            <div class="display-block fromWhenBlock">
+                                <small class="pull-left FirstName"> {{currentUser.schema._json.first_name}}</small>
+                                <small class="pull-right dateLocation"
+                                       data-ng-bind="message.created | ago:false"></small>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="View-previous" ng-show="user.messages.length">
+                        <span ng-click="user.messages.limit=user.messages.limit+5"
+                              ng-if="(user.messages.limit||5)<user.messages.length">view previous messages</span>
+
+                    <div class="pull-right Previous-number">{{
+                        (user.messages.limit||5)>user.messages.length?user.messages.length:(user.messages.limit||5)}}
+                        of
+                        {{user.messages.length}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

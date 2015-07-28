@@ -1,0 +1,7 @@
+<div class="speechBubble">
+    <a href="/#/viewGift/{{notification.gift._id}}" gift-detail="notification.gift._id">
+        <span class="display-block"></span><strong class="postedByName">{{currentUser.displayName}}</strong> has asked for your gift: <strong class="multiLine" ng-bind-html="multiLine(notification.gift.title)">.</strong></span>
+        <p class="display-block multiLine" ng-bind-html="multiLine(notification.body)"/><div class="clearfix"></div>
+        <small style="margin-top:0px" class="dateLocation display-block"> {{notification.created | ago:false}} <i ng-class="{'icon-thing':currentGift.giftType=='thing', 'icon-help':currentGift.giftType=='help', 'icon-skill':currentGift.giftType=='skill' }"></i></small>
+    </a>
+</div>
